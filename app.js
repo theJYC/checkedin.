@@ -1,13 +1,23 @@
 //Object constructor for 'Book'
 class Book {
-    constructor(title,author,pages,read) {
+    constructor(title,author,pages,isRead) {
         this.title = title
         this.author = author
         this.pages = pages
-        this.read = read
+        this.isRead = isRead
     }
     info() {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.isRead}`
+    }
+}
+
+class profile {
+    constructor(firstName, lastName, lastCheckedIn, priority) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.lastCheckedIn = lastCheckedIn; // MM/DD/YY
+        this.timeSinceLastCheckIn = timeSinceLastCheckIn;
+        this.priority = priority;
     }
 }
 
@@ -17,16 +27,8 @@ console.log(book1.title);
 
 console.log(book1.info());
 
-let myLibrary = [];
+let myContacts = [];
 
-addBookToLibrary = () => {
-    books = prompt("What book would you like to add to the Reading List?")
-    for (i = 0; i < books.length; i++) {
-        myLibrary += books;
-    }
-}
-
-addBookToLibrary
 //Prototypes are shareable objects with properties and methods
 //so that you can access those methods within instances
 

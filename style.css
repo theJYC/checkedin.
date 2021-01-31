@@ -1,3 +1,12 @@
 body {
+    height: 100%;
+    width: 100%;
     background-color: #FAF7EF;
+    font-family: Arial;
+}
+
+#view {
+    display: flex;
+    justify-content: center;
+
 }
