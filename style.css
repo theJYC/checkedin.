@@ -3,10 +3,33 @@ body {
     width: 100%;
     background-color: #FAF7EF;
     font-family: Arial;
+    font-weight: bold;
+    color: #575555;
 }
 
 #view {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
+
+}
+
+header {
+    font-size: 2.75rem;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+}
+#addContact {
+    background-color: #d3d6e3;
+    border: 2.75px solid #4f4f4f;
+    border-radius: 0.75rem;
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    color: #575555;
+    font-size: 1.5rem;
 }

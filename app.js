@@ -11,26 +11,34 @@ class Book {
     }
 }
 
-class profile {
-    constructor(firstName, lastName, lastCheckedIn, priority) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.lastCheckedIn = lastCheckedIn; // MM/DD/YY
-        this.timeSinceLastCheckIn = timeSinceLastCheckIn;
-        this.priority = priority;
+class Profile {
+    constructor(firstName, lastName, checkInBy, priority) {
+        this.firstName = firstName; // e.g. "Fredrick"
+        this.lastInitial = lastInitial; // e.g. "T"
+        this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
+        this.priority = priority; // e.g. true/false (Y/N)
+    }
+    onSchedule() {
+        return pass; // this function will calculate the time since last contact
     }
 }
 
-const book1 = new Book("So Good They Can't Ignore You", "Cal Newport", "123", "not finished");
+const fred = new Profile("Fredrick", "Thompson", "01/25/21", true);
 
-console.log(book1.title);
+console.log(fred.firstName);
 
-console.log(book1.info());
+console.log(fred.priority);
 
 let myContacts = [];
 
-//Prototypes are shareable objects with properties and methods
-//so that you can access those methods within instances
+//When "add contact" is pressed:
+const addContactButton = document.getElementById("addContact");
 
+addContactButton.addEventListener("click", (e) => {
+    const target = e.target; // target attribute will return the specific button that is clicked
+    if (target.classList.contains("add-contact")) {
+        alert("you sure you want to add contact?")
+    }
+}
 
 
