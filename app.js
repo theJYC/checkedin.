@@ -33,7 +33,10 @@ document.querySelector(".addContact")
 .addEventListener("click", toggleModal);
 
 document.querySelector("#submit")
-.addEventListener("click", toggleModal);
+.addEventListener("click", (e) => {
+    event.preventDefault(); //this saves the user input into the input box;
+    toggleModal()
+});
 
 document.querySelector("#close")
 .addEventListener("click", toggleModal);
