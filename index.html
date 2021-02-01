@@ -27,8 +27,11 @@ https://github.com/jinyoungch0i/Contact-Manager
         <button class="addContact">add contact</button>
     </div>
     <!-- placeholder for popup window -->
-    <div class="modal">
+    <div class="modal modal--hidden">
         <div class="modal_contents">
+            <div class="modal_closebar">
+                <button id="close">×</button>
+            </div>
             <form>
                 <p id="modaltitle">contact info.</p>
                 <input class="namefield" type="text" placeholder="first name">

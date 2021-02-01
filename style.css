@@ -89,12 +89,16 @@ p {
 .modal {
     position: absolute;
     top: 0;
-    height: 70%;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(0,0,0,0.65);
+}
 
+.modal--hidden {
+    display: none;
 }
 
 .modal_contents {
@@ -135,4 +139,23 @@ p {
     border-radius: 0.25rem;
     border: 2.75px solid #757575;
     padding: .15rem;
+}
+
+.modal_closebar {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: -1rem;
+    margin-top: -1rem;
+    cursor: pointer;
+}
+
+#close {
+    padding: 0;
+    font-size: 18px;
+    height: 1.25em;
+    width: 1.25em;
+    border-radius: 0.25rem;
+    border: 2.75px solid #757575;
+    background-color: #949292;
+    color: white;
 }
