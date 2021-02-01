@@ -18,7 +18,7 @@ header {
     font-size: 2.75rem;
     /*color: #AF5E59;*/
     font-weight: normal;
-    padding-bottom: 15px;
+    padding-bottom: 5px;
     margin: 0px;
     display: flex;
     justify-content: center;
@@ -46,3 +46,41 @@ button {
 #addContact:active {
     background-color: #bbbdc9;
 }
+
+/*signature snippet*/
+
+#sourcecode {
+    font-family: Arial;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    font-weight: bold;
+    color: #4f4f4f;
+}
+
+p {
+    margin-block-start: 0em;
+}
+
+.sourcetext {
+    text-decoration: none;
+}
+
+#coded {
+    color: #c26965;
+}
+
+#coded:hover {
+    color: #9c5854;
+}
+
+#jinyoung {
+    color: #5c805c;
+}
+
+#jinyoung:hover {
+    color: #496349;
+}
+
+/*end of signature snippet*/

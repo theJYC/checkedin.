@@ -33,6 +33,6 @@ addContactButton.addEventListener("click", (e) => {
     if (target.classList.contains("add-contact")) {
         alert("you sure you want to add contact?")
     }
-}
+});
 
 
