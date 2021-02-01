@@ -21,16 +21,19 @@ console.log(fred.firstName);
 
 console.log(fred.checkInBy);
 
-let myContacts = [];
 
-//When "add contact" is pressed:
-// const addContactButton = document.getElementById("contact");
-
-// addContactButton.addEventListener("click", (e) => {
-//     const target = e.target; // target attribute will return the specific button that is clicked
-//     if (target.classList.contains("addContact")) {
-//         alert("you sure you want to add contact?")
-//     }
-// });
+//first creating a function that adds/removes display: hidden function of modal div
+const toggleModal = () => {
+    document.querySelector(".modal") //selecting the modal element
+    .classList.toggle("modal--hidden"); //call the classlist that hides the class
+};
 
 
+document.querySelector(".addContact")
+.addEventListener("click", toggleModal);
+
+document.querySelector("#submit")
+.addEventListener("click", toggleModal);
+
+document.querySelector("#close")
+.addEventListener("click", toggleModal);
