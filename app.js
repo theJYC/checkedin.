@@ -1,18 +1,12 @@
 //Object constructor for 'Book'
-class Book {
-    constructor(title,author,pages,isRead) {
-        this.title = title
-        this.author = author
-        this.pages = pages
-        this.isRead = isRead
-    }
-    info() {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.isRead}`
-    }
-}
 
 class Profile {
-    constructor(firstName, lastName, checkInBy, priority) {
+    constructor(
+        firstName = "Unknown",
+        lastInitial = "Unknown",
+        checkInBy = "0",
+        priority
+    ) {
         this.firstName = firstName; // e.g. "Fredrick"
         this.lastInitial = lastInitial; // e.g. "T"
         this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)

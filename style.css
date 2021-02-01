@@ -5,18 +5,23 @@ body {
     font-family: Arial;
     font-weight: bold;
     color: #575555;
+    display: block;
+
 }
 
-#view {
+#contact {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-
-
 }
 
 header {
     font-size: 2.75rem;
+    /*color: #AF5E59;*/
+    font-weight: normal;
+    padding-bottom: 15px;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
 }
 
 button {
@@ -32,4 +37,12 @@ button {
     font-weight: bold;
     color: #575555;
     font-size: 1.5rem;
+}
+
+#addContact:hover {
+    background-color: #caccd9;
+}
+
+#addContact:active {
+    background-color: #bbbdc9;
 }
