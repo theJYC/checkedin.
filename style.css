@@ -28,7 +28,7 @@ button {
     cursor: pointer;
     outline: none;
 }
-#addContact {
+.addContact {
     background-color: #d3d6e3;
     border: 2.75px solid #4f4f4f;
     border-radius: 0.75rem;
@@ -39,11 +39,11 @@ button {
     font-size: 1.5rem;
 }
 
-#addContact:hover {
+.addContact:hover {
     background-color: #caccd9;
 }
 
-#addContact:active {
+.addContact:active {
     background-color: #bbbdc9;
 }
 
@@ -84,3 +84,29 @@ p {
 }
 
 /*end of signature snippet*/
+
+
+.modal {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modal_contents {
+        background-color: #dbdbdb;
+        padding: 2rem; /* 2 rem on top, bottom, left, and right */
+        border-radius: 0.75rem;
+        border: 2.75px solid #757575;
+        text-align: center;
+}
+
+.namefields {
+    width: 30%;
+
+}
+

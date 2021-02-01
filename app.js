@@ -5,7 +5,7 @@ class Profile {
         firstName = "Unknown",
         lastInitial = "Unknown",
         checkInBy = "0",
-        priority
+        priority = false;
     ) {
         this.firstName = firstName; // e.g. "Fredrick"
         this.lastInitial = lastInitial; // e.g. "T"
