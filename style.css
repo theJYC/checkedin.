@@ -91,6 +91,10 @@ p {
     top: 0;
     height: 100%;
     width: 100%;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,7 +115,7 @@ p {
 
 .namefield {
     width: 40%;
-    font-size: 16px;
+    font-size: 18px;
     color: #757575;
 }
 
