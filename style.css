@@ -16,7 +16,7 @@ body {
 }
 
 header {
-    font-size: 2.75rem;
+    font-size: 50px;
     /*color: #AF5E59;*/
     font-weight: normal;
     padding-bottom: 5px;
@@ -53,7 +53,7 @@ button {
 
 #sourcecode {
     font-family: Arial;
-    font-size: 14px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     flex-grow: 1;
@@ -141,12 +141,20 @@ p {
 }
 
 #submit {
-    background-color: #5c805c;
+    background-color: #6c966c;
     color: white;
     font-weight: normal;
     border-radius: 0.25rem;
     border: 2.75px solid #757575;
-    padding: .15rem;
+    padding: .175rem;
+}
+
+#submit:hover {
+    background-color: #658c65;
+}
+
+#submit:active {
+    background-color: #5c805c;
 }
 
 .modal_closebar {
@@ -166,4 +174,12 @@ p {
     border: 2.75px solid #757575;
     background-color: #949292;
     color: white;
+}
+
+#close:hover {
+    background-color: #8a8a8a;
+}
+
+#close:active {
+    background-color: #757373;
 }
