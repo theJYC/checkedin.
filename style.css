@@ -6,12 +6,13 @@ body {
     font-weight: bold;
     color: #575555;
     display: block;
-
+    margin: 0;
 }
 
 #contact {
     display: flex;
     justify-content: center;
+    margin-top: 25px;
 }
 
 header {
@@ -20,6 +21,7 @@ header {
     font-weight: normal;
     padding-bottom: 5px;
     margin: 0px;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
 }
@@ -91,10 +93,12 @@ p {
     top: 0;
     height: 100%;
     width: 100%;
+    /*these were set to make sure modal overlay covers entire screen*/
     left: 0px;
     right: 0px;
     top: 0px;
     bottom: 0px;
+    /*end of attempt to get overlay to cover entire screen*/
     display: flex;
     justify-content: center;
     align-items: center;
