@@ -131,7 +131,21 @@ p {
 }
 
 #modaltitle {
-    font-size: 20px;
+    font-size: 25px;
+    color: #4a4848;
+}
+
+#notes-text {
+    font-size: 16px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+#notes-input {
+    width: 40%;
+    font-family: Arial;
+    font-size: 16px;
+    color: #757575;
 }
 
 #checkIn {

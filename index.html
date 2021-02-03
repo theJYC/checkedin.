@@ -13,7 +13,10 @@ https://github.com/jinyoungch0i/CheckedIn
     <link rel="stylesheet" type="text/css" href="style.css"></link>
 </head>
 <body>
+
+    <!-- title -->
     <header>CheckedIn</header>
+    <!-- coded by jinyoung -->
     <div id="sourcecode">
         <p>
             <a id="coded" class="sourcetext" target="_blank" href="https://github.com/jinyoungch0i/CheckedIn/blob/main/app.js">coded</a>
@@ -21,10 +24,12 @@ https://github.com/jinyoungch0i/CheckedIn
             <a id="jinyoung" class="sourcetext" target="_blank" href="https://www.jinyoung.xyz/">jinyoung</a>
     </div>
 
-    <div id="contact">
-        <button class="addContact">add contact</button>
-    </div>
     <!-- placeholder for popup window -->
+    <div id="contact">
+        <button class="addContact">new contact</button>
+    </div>
+
+    <!-- modal form window -->
     <div class="modal modal--hidden">
         <div class="modal_contents">
             <div class="modal_closebar">
@@ -34,14 +39,18 @@ https://github.com/jinyoungch0i/CheckedIn
                 <p id="modaltitle">new check in</p>
                 <input id="first-name" class="namefield" type="text" placeholder="first name">
                 <input id="last-name" class="namefield" type="text" placeholder="last name">
-                <p id="checkIn">check in due:</p>
+                <p id="notes-text">notes:</p>
+                <textarea id="notes-input" placeholder="" rows="4" style="width:287px; height:73px"></textarea>
+                <p id="checkIn">check in by:</p>
                 <input name="setTodaysDate" id="check-in-by" class="datefield" type="date" placeholder="mm/dd/yyyy">
                 <button id="submit">submit</button>
             </form>
         </div>
-
     </div>
-    <!-- async means do not use javascript before the page is loaded -->
+
+
+
+    <!-- async attribute to prevent js from running before page fully loaded -->
     <script src="app.js" type="text/javascript" async></script>
 </body>
 </html>
