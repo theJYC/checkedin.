@@ -34,18 +34,27 @@ const toggleModal = () => {
 document.querySelector(".addContact").addEventListener("click", toggleModal);
 
 
-const addCard = (e) => {
-    let contact = {
-        firstInput : document.getElementById("first-name").value,
-        lastInput : document.getElementById("last-name").value,
-        dateInput : document.getElementById("check-in-by").value
-    };
-    //adds the inputted contact info to an array, in object format.
-    contacts.push(contact);
-    document.querySelector("form").reset();
+//preventing user from selecting past date on date input
+//found on StackOverFlow; solution does not work on mobile.
+const today = new Date().toISOString().split("T")[0];
+document.getElementsByName("setTodaysDate")[0].setAttribute("min", today);
+
+
+
+//fetching the input values from 'add contact' form:
+const getProfilefromInput = () => {
+    const firstInput = document.getElementById("first-name").value;
+    const lastInput = document.getElementById("last-name").value;
+    const dateInput = document.getElementById("check-in-by").value;
+
+    return new Profile(firstName, lastInitial, checkInBy)
+
 }
 
-
+// //snippet saved for later:
+// //adds the inputted contact info to an array, in object format.
+// contacts.push(contact);
+// document.querySelector("form").reset();
 
 document.querySelector("#submit")
 .addEventListener("click", (e) => {
