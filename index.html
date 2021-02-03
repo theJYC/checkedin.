@@ -29,7 +29,7 @@ https://github.com/jinyoungch0i/CheckedIn
         <button class="addContact">add contact</button>
     </div>
 
-    <!-- modal form window -->
+    <!-- modal form window <hidden unless 'add contact' pressed> -->
     <div class="modal modal--hidden">
         <div class="modal_contents">
             <div class="modal_closebar">
@@ -48,7 +48,12 @@ https://github.com/jinyoungch0i/CheckedIn
         </div>
     </div>
 
+    <!-- cards html elements to be added via DOM traversal -->
+    <div id="card-container">
+        <div>
 
+        </div>
+    </div>
 
     <!-- async attribute to prevent js from running before page fully loaded -->
     <script src="app.js" type="text/javascript" async></script>
