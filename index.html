@@ -37,12 +37,12 @@ https://github.com/jinyoungch0i/CheckedIn
             </div>
             <form>
                 <p id="modaltitle">new check in</p>
-                <input id="first-name" class="namefield" type="text" placeholder="first name">
-                <input id="last-name" class="namefield" type="text" placeholder="last initial" maxlength="1">
+                <input name="firstName" id="first-name" class="namefield" type="text" placeholder="first name" required>
+                <input name="lastInitial" id="last-name" class="namefield" type="text" placeholder="last initial" maxlength="1" required>
                 <p id="notes-text">notes:</p>
-                <textarea id="notes-input" placeholder="" rows="4" style="width:287px; height:73px"></textarea>
+                <textarea name="notes" id="notes-input" placeholder="" rows="4" style="width:287px; height:73px" required></textarea>
                 <p id="checkIn">check in by:</p>
-                <input name="setTodaysDate" id="check-in-by" class="datefield" type="date" placeholder="mm/dd/yyyy">
+                <input name="checkInBy" id="check-in-by" class="datefield" type="date" placeholder="mm/dd/yyyy" required>
                 <button id="submit">submit</button>
             </form>
         </div>
