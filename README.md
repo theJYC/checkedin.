@@ -16,10 +16,14 @@ The author believes that the use of localStorage in this manner was a strategic 
 
 **Last initial was used, in lieu of last name, in order to provide a layer of anonymity for the user given the inherent security risk with localStorage.**
 
+### What could be done to bolster the security of user data collected in localStorage? 
+
+The author is brainstorming ways to promote enhanced user privacy and, as of Feb 4th, 2021, **believes that the use of W3C's [Web Cryptography API](https://www.w3.org/TR/WebCryptoAPI/) coupled with [Google Firebase](https://firebase.google.com/) may be the first step towards the right direction.**   
+
 ### Will CheckedIn become a native mobile application?
 
 Given the heightened level of isolation and disconnectedness brought about by the ongoing pandemic, the author remains convinced that a designated platform like CheckedIn may serve a tangible purpose to users and be of practical use for many, not just for those within the author's network. 
 
 With that said, the author is open to scaling the application upon peer feedback and back end configuration. 
 
-As of current, CheckedIn is being developed into a mobile-responsive application available on mobile browsers. **For the time being, CheckedIn will remain browser-based and will not be scaled for native mobile platforms.**
+**As of current, CheckedIn is being developed into a mobile-responsive application available on mobile browsers (albeit it is not being planned to be scaled for native mobile platforms.**
