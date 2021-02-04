@@ -18,7 +18,7 @@ The author believes that the use of localStorage in this manner was a strategic 
 
 ### What could be done to bolster the security of user data collected in localStorage? 
 
-The author is brainstorming ways to promote enhanced user privacy and, as of Feb 4th, 2021, **believes that the use of W3C's [Web Cryptography API](https://www.w3.org/TR/WebCryptoAPI/) coupled with [Google Firebase](https://firebase.google.com/) may be the first step towards the right direction.**   
+The author is brainstorming ways to promote enhanced user privacy and, as of Feb 4th, 2021, believes that **the use of W3C's [Web Cryptography API](https://www.w3.org/TR/WebCryptoAPI/) coupled with [Google Firebase](https://firebase.google.com/) may be the first step towards the right direction.**   
 
 ### Will CheckedIn become a native mobile application?
 
