@@ -18,7 +18,7 @@ The author believes that the use of localStorage in this manner was a strategic 
 
 ### Will CheckedIn become a native mobile application?
 
-Given the heightened level of isolation and disconnectedness brought about by the ongoing pandemic, the author remains convinced that a designated platform like CheckedIn may serve a tangible purpose to users and be of practical use for many, not just those within the author's network. 
+Given the heightened level of isolation and disconnectedness brought about by the ongoing pandemic, the author remains convinced that a designated platform like CheckedIn may serve a tangible purpose to users and be of practical use for many, not just for those within the author's network. 
 
 With that said, the author is open to scaling the application upon peer feedback and back end configuration. 
 
