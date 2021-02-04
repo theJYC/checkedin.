@@ -38,7 +38,7 @@ https://github.com/jinyoungch0i/CheckedIn
             <form>
                 <p id="modaltitle">new check in</p>
                 <input id="first-name" class="namefield" type="text" placeholder="first name">
-                <input id="last-name" class="namefield" type="text" placeholder="last name">
+                <input id="last-name" class="namefield" type="text" placeholder="last initial" maxlength="1">
                 <p id="notes-text">notes:</p>
                 <textarea id="notes-input" placeholder="" rows="4" style="width:287px; height:73px"></textarea>
                 <p id="checkIn">check in by:</p>
@@ -48,11 +48,8 @@ https://github.com/jinyoungch0i/CheckedIn
         </div>
     </div>
 
-    <!-- cards html elements to be added via DOM traversal -->
+    <!-- card-container to be populated when form is submitted and saved to localStorage -->
     <div id="card-container">
-        <div>
-
-        </div>
     </div>
 
     <!-- async attribute to prevent js from running before page fully loaded -->
