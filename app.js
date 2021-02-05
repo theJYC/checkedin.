@@ -55,9 +55,9 @@ let profilesList = [
         daysLeft : "24 DAY(S) LEFT"
     },
     {
-        firstName : "Jim",
-        lastInitial : "T.",
-        notes : "routine roommate check-in",
+        firstName : "Woo Seok",
+        lastInitial : "C.",
+        notes : "routine family check-in",
         checkInBy : "05-03-2021",
         checkIn : false,
         daysLeft : "75 DAY(S) LEFT"
@@ -143,7 +143,7 @@ const createProfile = (item) => {
     const nameDiv = document.createElement("div");
     const dateTextDiv = document.createElement("div");
     const dateDiv = document.createElement("div");
-    const notesDiv = document.createElement("span");
+    const notesSpan = document.createElement("span");
     const daysLeftDiv = document.createElement("div");
     const btnWrapper = document.createElement("div");
     const checkedInBtn = document.createElement("button");
@@ -173,11 +173,10 @@ const createProfile = (item) => {
     profileDiv.appendChild(daysLeftDiv);
 
     //next, add the notes (it'll be underlined 'notes' with content available on mouseover)
-    notesDiv.classList.add("notes");
-    notesDiv.textContent = `notes`;
-    notesDiv.setAttribute("aria-label", item.notes);
-    profileDiv.appendChild(notesDiv);
-
+    notesSpan.classList.add("notes");
+    notesSpan.textContent = "↠ notes ↞";
+    notesSpan.setAttribute("aria-label", item.notes);
+    profileDiv.appendChild(notesSpan);
 
     //add button wrapper to encapsulate the two btns and have them aligned side-by-side
     btnWrapper.classList.add("btnwrapper");
