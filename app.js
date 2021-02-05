@@ -31,6 +31,14 @@ class Profile {
 let profilesList = [
     //populate with sample profile for debugging purposes
     {
+        firstName : "Eva",
+        lastInitial : "F.",
+        notes : "work out buddy. need to hit the gym again soon!",
+        checkInBy : "01-03-2021",
+        checkIn : false,
+        daysLeft : "OVERDUE!"
+    },
+    {
         firstName : "Varun",
         lastInitial : "G.",
         notes : "currently working in dallas, living at his parent's house",
@@ -53,14 +61,6 @@ let profilesList = [
         checkInBy : "05-03-2021",
         checkIn : false,
         daysLeft : "75 DAY(S) LEFT"
-    },
-    {
-        firstName : "Eva",
-        lastInitial : "V.",
-        notes : "my hiit instructor. need to hit the gym again soon...",
-        checkInBy : "01-03-2021",
-        checkIn : false,
-        daysLeft : "OVERDUE!"
     },
 
 ];
