@@ -10,22 +10,61 @@ document.querySelector(".addContact").addEventListener("click", toggleModal);
 //when "X" (close) button inside the modal is clicked
 document.querySelector("#close").addEventListener("click", toggleModal);
 
-
+const $firstName = document.querySelector("#first-name");
+const $lastInitial = document.querySelector("#last-name");
+const $notes = document.querySelector("#notes-input");
+const $checkInBy = document.querySelector("#check-in-by");
 
 //Object constructor for 'Book'
 
 class Profile {
     constructor(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn) {
-        this.firstName = form.firstname.value; // e.g. "Fredrick"
-        this.lastInitial = form.lastinitial.value + "."; // e.g. "T."
-        this.notes = form.notes.value; // e.g. working in taiwan. check in about fulbright cohort!
-        this.checkInBy = form.checkinby.value; // e.g. "01/22/21" (MM/DD/YY)
+        this.firstName = firstName; // e.g. "Fredrick"
+        this.lastInitial = lastInitial; // e.g. "T."
+        this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
+        this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
         this.daysLeft = daysLeft; // e.g. "3 days left"
         this.checkedIn = checkedIn;
     }
 }
 
-let profilesList = [];
+let profilesList = [
+    //populate with sample profile for debugging purposes
+    {
+        firstName : "Jin Young",
+        lastInitial : "C.",
+        notes : "this guy fucks",
+        checkInBy : "03-28-2021",
+        checkIn : false,
+        daysLeft : "51 DAY(S) LEFT"
+    },
+    {
+        firstName : "Varun",
+        lastInitial : "G.",
+        notes : "currently working in Dallas.",
+        checkInBy : "02-08-2021",
+        checkIn : false,
+        daysLeft : "3 DAY(S) LEFT"
+    },
+    {
+        firstName : "Fredrick",
+        lastInitial : "T.",
+        notes : "currently doing fulbright in taiwan.",
+        checkInBy : "03-01-2021",
+        checkIn : false,
+        daysLeft : "24 DAY(S) LEFT"
+    },
+
+    {
+        firstName : "Jim",
+        lastInitial : "T.",
+        notes : "routine roommate check-in",
+        checkInBy : "05-03-2021",
+        checkIn : false,
+        daysLeft : "75 DAY(S) LEFT"
+    },
+
+];
 let newProfile;
 
 //grabbing input values from 'add contact' form:
@@ -35,10 +74,15 @@ const addProfileToList = () => {
     console.log("submitted new profile")
     toggleModal();
 
+    this.firstName = document.getElementById("").value;
+    this.lastInitial = `${document.getElementById("").value}.`;
+    this.notes = document.getElementById("").value;
+    this.checkInBy = document.getElementById("").value;
+
     //set checkedIn default value to false (to be used later when profile submitted)
-    let checkedIn = false;
+    this.checkedIn = false;
     //adding custom variable to count daysLeft till assigned checkin date:
-    let daysLeft = `${calculateDueDate(checkInBy)} day(s) left`;
+    this.daysLeft = `${calculateDueDate(this.checkInBy)} DAY(S) LEFT`;
 
     newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn);
     console.log(newProfile);
@@ -58,6 +102,8 @@ submitButton.addEventListener("click", addProfileToList);
 const saveToLocalStorage = () => {
     localStorage.setItem(`profilesList`, JSON.stringify(profilesList));
 }
+
+saveToLocalStorage();
 
 //preventing user from selecting past date on date input (further info. in COMMENTS)
 const today = new Date().toISOString().split("T")[0];
@@ -91,9 +137,11 @@ const createProfile = (item) => {
     const cardContainer = document.getElementById("card-container");
     const profileDiv = document.createElement("div");
     const nameDiv = document.createElement("div");
+    const dateTextDiv = document.createElement("div");
     const dateDiv = document.createElement("div");
     const notesDiv = document.createElement("span");
     const daysLeftDiv = document.createElement("div");
+    const btnWrapper = document.createElement("div");
     const checkedInBtn = document.createElement("button");
     const clearBtn = document.createElement("button");
 
@@ -106,38 +154,45 @@ const createProfile = (item) => {
     nameDiv.textContent = `${item.firstName} ${item.lastInitial}`
     profileDiv.appendChild(nameDiv)
 
+    //then the dateText (a.k.a. "check-in by:" string)
+    dateTextDiv.classList.add("datetext");
+    dateTextDiv.textContent = "check-in by:"
+    profileDiv.appendChild(dateTextDiv);
     //next comes date
     dateDiv.classList.add("date");
-    dateDiv.textContent = `check in by ${item.checkInBy}`;
+    dateDiv.textContent = `${item.checkInBy}`;
     profileDiv.appendChild(dateDiv);
-
-    //next, add the notes (it'll be underlined 'notes' with content available on mouseover)
-    notesDiv.classList.add("notes");
-    notesDiv.textContent = `notes`;
-    notesDiv.setAttribute("title", item.notes);
-    profileDiv.appendChild(notesDiv);
 
     //next, display text for daysLeft
     daysLeftDiv.classList.add("daysLeft");
     daysLeftDiv.textContent = item.daysLeft;
     profileDiv.appendChild(daysLeftDiv);
 
+    //next, add the notes (it'll be underlined 'notes' with content available on mouseover)
+    notesDiv.classList.add("notes");
+    notesDiv.textContent = `notes`;
+    notesDiv.setAttribute("aria-label", item.notes);
+    profileDiv.appendChild(notesDiv);
+
+    btnWrapper.classList.add("btnwrapper");
+    profileDiv.appendChild(btnWrapper);
+
     //next, format the checkedInBtn
     checkedInBtn.classList.add("checkedinbtn");
-    if (item.checkedIn === false) {
+    if (!item.checkedIn) {
         checkedInBtn.textContent = "pending"
-        checkedInBtn.style.backgroundColor = "#5c805c";
+        checkedInBtn.style.backgroundColor = "#768a80";
     } else {
-        checkedInBtn.textContent = "checked in";
-        checkedInBtn.style.backgroundColor = "#C26965";
+        checkedInBtn.textContent = "complete";
+        checkedInBtn.style.backgroundColor = "#5e6d91";
     }
-    profileDiv.appendChild(checkedInBtn);
+    btnWrapper.appendChild(checkedInBtn);
 
     //lastly, format the clearBtn
     clearBtn.classList.add("clearbtn");
     clearBtn.textContent = "clear";
     clearBtn.setAttribute("id", "clearBtn")
-    profileDiv.appendChild(clearBtn);
+    btnWrapper.appendChild(clearBtn);
 
 
     //finally, adding the fully-done profileDiv to the list (#card-container)

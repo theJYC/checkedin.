@@ -115,7 +115,7 @@ p {
 
 .modal_contents {
         background-color: #dbdbdb;
-        padding: 2rem; /* 2 rem on top, bottom, left, and right */
+        padding: 1.75rem; /* 2 rem on top, bottom, left, and right */
         border-radius: 0.75rem;
         border: 2.75px solid #757575;
         text-align: center;
@@ -123,9 +123,12 @@ p {
 
 .namefield {
     width: 40%;
+    height: 50%;
     font-size: 18px;
     color: #757575;
     outline-color: #757171;
+    border-radius: 0.2rem;
+    border: .05px solid #757171;
 }
 
 .datefield {
@@ -137,14 +140,18 @@ p {
 }
 
 #modaltitle {
-    font-size: 25px;
+    font-size: 35.5px;
     color: #4a4848;
+    font-weight: normal;
+    border-bottom: 2.75px solid #757575;;
+    width: 100%;
 }
 
 #notes-text {
-    font-size: 16px;
+    font-size: 27.5px;
     margin-top: 1em;
     margin-bottom: 0.5em;
+    font-weight: normal;
 }
 
 #notes-input {
@@ -157,9 +164,10 @@ p {
 }
 
 #checkIn {
-    font-size: 16px;
+    font-size: 22.5px;
     margin-top: 1em;
-    font-weight: bold;
+    font-weight: normal;
+    font-style: italic;
 }
 
 #submit {
@@ -224,10 +232,11 @@ p {
     border-radius: 0.75rem;
     border: solid #827f7f;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-
+    margin-right: 40px;
 }
 
 .name {
+    width: 100%;
     margin-top: 17.5px;
     font-size: 35px;
     font-weight: normal;
@@ -236,48 +245,91 @@ p {
     border-bottom: solid #827f7f;
 }
 
+.datetext {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .date { /*bold string*/
-    margin-top: 12px;
-    font-size: 25px;
+    margin-top: 15px;
+    font-size: 35px;
     font-weight: bold;
     text-align: center;
 }
 
 .notes { /*underlined mouseover string*/
-    margin-top: 10px;
-    font-size: 20px;
+    margin-top: 25px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
-    text-decoration: underline;
+    border-bottom: 1.5px dotted #828282;
+    cursor: help;
+    position: relative;
+}
+
+.notes[aria-label]:after {
+  opacity:0;
+  content: attr(aria-label);
+  padding: 4px 8px;
+  position: absolute;
+  border-radius: 0.75rem;
+  border: solid #827f7f;
+  left: 0;
+  top: 100%;
+  white-space: nowrap;
+  z-index: 20;
+  background: #827f7f;
+  color: #e6e7eb;
+  transition: opacity 0.25s;
+  pointer-events:none;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+span[aria-label]:hover:after {
+  opacity:1;
+  transition-delay:0.0005s;
 }
 
 .daysLeft { /*red string underlined and overlined*/
     margin-top: 12px;
-    font-size: 18px;
-    font-weight: normal;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
     text-align: center;
     color: #C26965;
-    text-decoration: underline overline;
+    text-decoration: underline;
+}
+
+.btnwrapper {
+    margin-top: 40px;
 }
 
 .checkedinbtn { /*green button with white 'checked in' text*/
     border-radius: 0.75rem;
     border: 2.75px solid #827f7f;
-    width: 155px;
+    width: 85px;
     height: 50px;
     color: #fff;
-
-    font-size: 18px;
+    font-size: 17px;
+    text-align: center;
+    display: inline-block;
+    float: left;
+    margin-right: 8px;
 }
 
 .clearbtn {
     border-radius: 0.75rem;
     border: 2.75px solid #827f7f;
-    width: 155px;
+    width: 80px;
     height: 50px;
     color: #fff;
     background-color: #C26965;
     font-size: 18px;
+    display: inline-block;
+    float: left;
 }
 
 @media (max-width: 1200px) {
