@@ -1,74 +1,57 @@
 //Object constructor for 'Book'
 
 class Profile {
-    constructor(
-        firstName = "Unknown",
-        lastInitial = "Unknown",
-        notes = "Unknown",
-        checkInBy = "0",
-    ) {
+    constructor(firstName, lastInitial, notes, checkInBy, daysLeft) {
         this.firstName = firstName; // e.g. "Fredrick"
-        this.lastInitial = lastInitial; // e.g. "T"
-        this.notes = notes;
+        this.lastInitial = lastInitial + "."; // e.g. "T."
+        this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
         this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
+        this.daysLeft = daysLeft // e.g. "3 days left"
     }
 }
 
-//created an array to be populated upon user 'add contact' submission
 let profilesList = [];
 
-// Sample Profile: Fredrick Thompson
-const fred = new Profile("Fredrick", "T", "fulbright, taiwan", "06/07/21");
-
-profilesList.push(fred);
-//testing sample Profile:
-console.log("-----")
-console.log(fred.firstName);
-console.log(fred.lastInitial);
-console.log(fred.notes);
-console.log(fred.checkInBy);
-console.log("-----")
-
-
-//first creating a function that adds/removes display: hidden function of modal div
-const toggleModal = () => {
-    document.querySelector(".modal") //selecting the modal element
-    .classList.toggle("modal--hidden"); //call the classlist that hides the class
-};
-
-//eventlistener for when 'add contact' button is pressed
-document.querySelector(".addContact").addEventListener("click", toggleModal);
-
-
-//preventing user from selecting past date on date input (further info. in COMMENTS)
-const today = new Date().toISOString().split("T")[0];
-document.getElementsByName("setTodaysDate")[0].setAttribute("min", today);
-
-// placeholder to define a daysLeft function to take in date as argument,
-// and compares it with the current date of the browser and spits out X days left.
-// needs to follow daysLeft(date) syntax since it's going to be called in getProfileFromInput;
-
-
+const saveToLocalStorage = () => localStorage.setItem("profilesList", JSON.stringify(profilesList));
 
 //grabbing input values from 'add contact' form:
-const getProfileFromInput = () => {
+const addProfileToList = () => {
 
-    const firstName = document.getElementById("first-name").value;
-    const lastInitial = document.getElementById("last-name").value;
-    const notes = document.getElementById("notes-input").value;
-    const checkInBy = document.getElementById("check-in-by").value;
-    // placeholder to add the X daysLeft variable:
-    // const daysLeft = daysLeft(checkInBy)
+    let firstName = document.getElementById("first-name").value;
+    let lastInitial = document.getElementById("last-name").value;
+    let notes = document.getElementById("notes-input").value;
+    let checkInBy = document.getElementById("check-in-by").value;
 
-    const newProfile = new Profile(firstName, lastInitial, notes, checkInBy);
-    //localStorage doesn't store objects well--
-    // objects first need to be serialized (converted to str) to be stored correctly.
-    const newProfileSerialized = JSON.stringify(newProfile);
-    console.log(newProfileSerialized)
+    //adding custom variable:
+    let daysLeft = `${calculateDueDate(checkInBy)} day(s) left`;
 
-    //this saves the new profile into localStorage
-    return localStorage.setItem("CheckInProfile", newProfileSerialized)
+    newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft);
+    console.log(newProfile);
+    console.log(profilesList);
+    profilesList.push(newProfile);
 
+    saveToLocalStorage();
+    toggleModal();
+
+}
+
+// event listener to add profile to list when form is submitted
+const submitButton = document.getElementById("submit");
+submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    addProfileToList();
+});
+
+//N.B. momentsjs should be further looked into for more accurate days left count (see COMMENTS below)
+const calculateDueDate = (date) => {
+
+    //retrieve today's date in "2021-02-05" format
+    let dateToday = new Date().toISOString().slice(0,10);
+    let diffInTime = new Date(date) - new Date(dateToday);
+
+    let diffInDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
+
+    return diffInDays;
 }
 
 // //snippet saved for later:
@@ -76,22 +59,9 @@ const getProfileFromInput = () => {
 // contacts.push(contact);
 // document.querySelector("form").reset();
 
-document.querySelector("#submit")
-.addEventListener("click", (e) => {
-    //if e is present:
-    e.preventDefault(); //this prevents the browser from reloading by default when submit button is clicked
-    getProfileFromInput();
-    toggleModal();
-
-
-});
-
-document.querySelector("#close")
-.addEventListener("click", toggleModal);
-
 //creating the checkin cards when a Profile is saved in localStorage
 //i.e. if Profile item exists in localStorage
-if (localStorage.getItem("CheckInProfile") !== null) {
+if (localStorage.getItem("profilesList") !== null) {
     const cardContainer = document.querySelector("#card-container");
     const contactCard = document.createElement("div");
 
@@ -120,6 +90,36 @@ if (localStorage.getItem("CheckInProfile") !== null) {
 }
 
 
+//
+//DOM work related to modal window & modal form//
+//
+
+//a function that adds/removes display: hidden function of modal div
+const toggleModal = () => {
+    document.querySelector(".modal") //selecting the modal element
+    .classList.toggle("modal--hidden"); //call the classlist that hides the class
+};
+
+//eventlistener for when 'add contact' button is pressed
+document.querySelector(".addContact").addEventListener("click", toggleModal);
+
+document.querySelector("#close")
+.addEventListener("click", toggleModal);
+
+//preventing user from selecting past date on date input (further info. in COMMENTS)
+const today = new Date().toISOString().split("T")[0];
+document.getElementsByName("setTodaysDate")[0].setAttribute("min", today);
+
+// placeholder to define a daysLeft function to take in date as argument,
+// and compares it with the current date of the browser and spits out X days left.
+// needs to follow daysLeft(date) syntax since it's going to be called in getProfileFromInput;
+
+//
+//End of DOM work related to modal window & modal form//
+//
+
+
+
 
 
 
@@ -134,10 +134,9 @@ and poses two immediate issues:
            if past date is typed in.
     2) allegedly the solution only works for Desktop, and not mobile.
 
--lastInitial was used instead of lastName.
-    1) this was very much a deliberate choice, knowing that localStorage is not the most secure form of storage
-        a) since the project is currently just MVP, it will continue to take in lastInitial
-           until project is fully loaded and becomes full-stack-- where lastName is more a viable data to be stored
-           since the storage will be in a server-side database (a lot more secure than browserbased localStorage.
+-daysLeft might not work with daylights savings;
+    1) StackOverFlow shows that moments.js is a great workaround for datehandling in JavaScript.
+        a) moments.js is not explored in this app since moments.js-- regardless of its size (only 5KB)
+           -- is nonetheless a dependency that I did not want to introduce into this application.
 
 */
