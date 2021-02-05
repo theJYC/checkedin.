@@ -206,15 +206,18 @@ p {
 }
 
 #card-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
-    padding: 6rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 5rem;
 }
 
-/*these below are for styling the elements of contact card*/
+/*these below are for styling the elements of newly submitted profile*/
 
-.card {
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 250px;
     height: 400px;
     background-color: #e6e7eb;
@@ -224,7 +227,7 @@ p {
 
 }
 
-.cardname {
+.name {
     margin-top: 17.5px;
     font-size: 35px;
     font-weight: normal;
@@ -233,8 +236,48 @@ p {
     border-bottom: solid #827f7f;
 }
 
-.cardnotes {
+.date { /*bold string*/
+    margin-top: 12px;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.notes { /*underlined mouseover string*/
     margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.daysLeft { /*red string underlined and overlined*/
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    color: #C26965;
+    text-decoration: underline overline;
+}
+
+.checkedinbtn { /*green button with white 'checked in' text*/
+    border-radius: 0.75rem;
+    border: 2.75px solid #827f7f;
+    width: 155px;
+    height: 50px;
+    color: #fff;
+
+    font-size: 18px;
+}
+
+.clearbtn {
+    border-radius: 0.75rem;
+    border: 2.75px solid #827f7f;
+    width: 155px;
+    height: 50px;
+    color: #fff;
+    background-color: #C26965;
+    font-size: 18px;
 }
 
 @media (max-width: 1200px) {

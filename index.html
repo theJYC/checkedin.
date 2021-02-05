@@ -35,15 +35,15 @@ https://github.com/jinyoungch0i/CheckedIn
             <div class="modal_closebar">
                 <button id="close">×</button>
             </div>
-            <form id="form" action>
+            <form id="form" action="/app.js">
                 <p id="modaltitle">new check in</p>
-                <input id="first-name" class="namefield" type="text" placeholder="first name" required>
-                <input id="last-name" class="namefield" type="text" placeholder="last initial" maxlength="1" required>
+                <input name="firstname" id="first-name" class="namefield" type="text" placeholder="first name" required>
+                <input name="lastinitial" id="last-name" class="namefield" type="text" placeholder="last initial" maxlength="1" required>
                 <p id="notes-text">notes:</p>
-                <textarea id="notes-input" placeholder="" rows="4" style="width:287px; height:73px" required></textarea>
+                <textarea name="notes" id="notes-input" placeholder="" rows="4" style="width:287px; height:73px" required></textarea>
                 <p id="checkIn">check in by:</p>
-                <input name="setTodaysDate" id="check-in-by" class="datefield" type="date" required>
-                <input type="submit" id="submit" value="submit"></button>
+                <input name="checkinby" id="check-in-by" class="datefield" type="date" required>
+                <input type="submit" form="form" id="submit" value="submit"></button>
             </form>
         </div>
     </div>

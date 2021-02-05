@@ -1,46 +1,67 @@
+//a function that adds/removes display: hidden function of modal
+const toggleModal = () => {
+    document.querySelector(".modal") //selecting the modal element
+    .classList.toggle("modal--hidden"); //call the classlist that hides the class
+};
+
+//eventlistener for when 'add contact' button is pressed
+document.querySelector(".addContact").addEventListener("click", toggleModal);
+
+//when "X" (close) button inside the modal is clicked
+document.querySelector("#close").addEventListener("click", toggleModal);
+
+
+
 //Object constructor for 'Book'
 
 class Profile {
-    constructor(firstName, lastInitial, notes, checkInBy, daysLeft) {
-        this.firstName = firstName; // e.g. "Fredrick"
-        this.lastInitial = lastInitial + "."; // e.g. "T."
-        this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
-        this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
-        this.daysLeft = daysLeft // e.g. "3 days left"
+    constructor(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn) {
+        this.firstName = form.firstname.value; // e.g. "Fredrick"
+        this.lastInitial = form.lastinitial.value + "."; // e.g. "T."
+        this.notes = form.notes.value; // e.g. working in taiwan. check in about fulbright cohort!
+        this.checkInBy = form.checkinby.value; // e.g. "01/22/21" (MM/DD/YY)
+        this.daysLeft = daysLeft; // e.g. "3 days left"
+        this.checkedIn = checkedIn;
     }
 }
 
 let profilesList = [];
-
-const saveToLocalStorage = () => localStorage.setItem("profilesList", JSON.stringify(profilesList));
+let newProfile;
 
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
 
-    let firstName = document.getElementById("first-name").value;
-    let lastInitial = document.getElementById("last-name").value;
-    let notes = document.getElementById("notes-input").value;
-    let checkInBy = document.getElementById("check-in-by").value;
+    e.preventDefault();
+    console.log("submitted new profile")
+    toggleModal();
 
+    //set checkedIn default value to false (to be used later when profile submitted)
+    let checkedIn = false;
     //adding custom variable to count daysLeft till assigned checkin date:
     let daysLeft = `${calculateDueDate(checkInBy)} day(s) left`;
 
-    newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft);
+    newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn);
     console.log(newProfile);
     console.log(profilesList);
     profilesList.push(newProfile);
 
     saveToLocalStorage();
-    toggleModal();
-
+    render();
+    form.reset();
 }
 
 // event listener to add profile to list when form is submitted
 const submitButton = document.getElementById("submit");
-submitButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    addProfileToList();
-});
+submitButton.addEventListener("click", addProfileToList);
+
+
+const saveToLocalStorage = () => {
+    localStorage.setItem(`profilesList`, JSON.stringify(profilesList));
+}
+
+//preventing user from selecting past date on date input (further info. in COMMENTS)
+const today = new Date().toISOString().split("T")[0];
+document.getElementsByName("checkinby")[0].setAttribute("min", today);
 
 //N.B. momentsjs should be further looked into for more accurate days left count (see COMMENTS below)
 const calculateDueDate = (date) => {
@@ -54,73 +75,104 @@ const calculateDueDate = (date) => {
     return diffInDays;
 }
 
-// //snippet saved for later:
-// //adds the inputted contact info to an array, in object format.
-// contacts.push(contact);
-// document.querySelector("form").reset();
+const render = () => {
+    const cardContainer = document.getElementById("card-container");
+    const profiles = document.querySelectorAll(".profile");
 
-//creating the checkin cards when a Profile is saved in localStorage
-//i.e. if Profile item exists in localStorage
-if (localStorage.getItem("profilesList") !== null) {
-    const cardContainer = document.querySelector("#card-container");
-    const contactCard = document.createElement("div");
+    profiles.forEach(profile => cardContainer.removeChild(profile));
 
-    //shaping the contact card with .card
-    contactCard.classList.add("card");
-
-    //shaping the firstName + lastName display
-    const cardName = document.createElement("div");
-    cardName.classList.add("cardname");
-
-    //John Doe to be replaced with `${firstName} ${lastInitial}`
-    //when i figure out how to successfully get input to store in localStorage
-    cardName.textContent = `Jin Young C.`
-
-    //staged to the card!
-    contactCard.appendChild(cardName);
-
-    //next, add the notes
-    const cardNotes = document.createElement("div");
-    cardNotes.classList.add("cardnotes")
-
-    //finally, adding the fully-done card to the list (#card-container)
-    cardContainer.appendChild(contactCard);
-
-
+    for (i = 0; i < profilesList.length; i++) {
+        createProfile(profilesList[i]);
+    }
 }
 
+//the nitty-gritty in between when profile is submitted and card is displayed on homescreen.
+const createProfile = (item) => {
+    const cardContainer = document.getElementById("card-container");
+    const profileDiv = document.createElement("div");
+    const nameDiv = document.createElement("div");
+    const dateDiv = document.createElement("div");
+    const notesDiv = document.createElement("span");
+    const daysLeftDiv = document.createElement("div");
+    const checkedInBtn = document.createElement("button");
+    const clearBtn = document.createElement("button");
 
-//
-//DOM work related to modal window & modal form//
-//
+    //shaping the profile with .card & indexing each profile
+    profileDiv.classList.add("profile");
+    profileDiv.setAttribute("id", profilesList.indexOf(item));
 
-//a function that adds/removes display: hidden function of modal div
-const toggleModal = () => {
-    document.querySelector(".modal") //selecting the modal element
-    .classList.toggle("modal--hidden"); //call the classlist that hides the class
+    //shaping the firstName + lastName display & appending it to profileDiv
+    nameDiv.classList.add("name");
+    nameDiv.textContent = `${item.firstName} ${item.lastInitial}`
+    profileDiv.appendChild(nameDiv)
+
+    //next comes date
+    dateDiv.classList.add("date");
+    dateDiv.textContent = `check in by ${item.checkInBy}`;
+    profileDiv.appendChild(dateDiv);
+
+    //next, add the notes (it'll be underlined 'notes' with content available on mouseover)
+    notesDiv.classList.add("notes");
+    notesDiv.textContent = `notes`;
+    notesDiv.setAttribute("title", item.notes);
+    profileDiv.appendChild(notesDiv);
+
+    //next, display text for daysLeft
+    daysLeftDiv.classList.add("daysLeft");
+    daysLeftDiv.textContent = item.daysLeft;
+    profileDiv.appendChild(daysLeftDiv);
+
+    //next, format the checkedInBtn
+    checkedInBtn.classList.add("checkedinbtn");
+    if (item.checkedIn === false) {
+        checkedInBtn.textContent = "pending"
+        checkedInBtn.style.backgroundColor = "#5c805c";
+    } else {
+        checkedInBtn.textContent = "checked in";
+        checkedInBtn.style.backgroundColor = "#C26965";
+    }
+    profileDiv.appendChild(checkedInBtn);
+
+    //lastly, format the clearBtn
+    clearBtn.classList.add("clearbtn");
+    clearBtn.textContent = "clear";
+    clearBtn.setAttribute("id", "clearBtn")
+    profileDiv.appendChild(clearBtn);
+
+
+    //finally, adding the fully-done profileDiv to the list (#card-container)
+    cardContainer.appendChild(profileDiv);
+
+    //eventlistener for when clear button is pressed
+    clearBtn.addEventListener("click", () => {
+        profilesList.splice(profilesList.indexOf(item),1);
+        saveToLocalStorage();
+        render();
+    });
+
+    //event listener for when checked in button is pressed
+    checkedInBtn.addEventListener("click", () => {
+        item.checkedIn = !item.checkedIn;
+        saveToLocalStorage();
+        render();
+    });
 };
 
-//eventlistener for when 'add contact' button is pressed
-document.querySelector(".addContact").addEventListener("click", toggleModal);
 
-document.querySelector("#close")
-.addEventListener("click", toggleModal);
+const restore = () => {
+    if(!localStorage.profilesList) {
+        render();
+    }
+    else {
+        //get profilesList from localStorage in order to feed render() function with new profiles
+        let objects = localStorage.getItem("profilesList");
+        objects = JSON.parse(objects);
+        profilesList = objects;
+        render();
+    }
+}
 
-//preventing user from selecting past date on date input (further info. in COMMENTS)
-const today = new Date().toISOString().split("T")[0];
-document.getElementsByName("setTodaysDate")[0].setAttribute("min", today);
-
-// placeholder to define a daysLeft function to take in date as argument,
-// and compares it with the current date of the browser and spits out X days left.
-// needs to follow daysLeft(date) syntax since it's going to be called in getProfileFromInput;
-
-//
-//End of DOM work related to modal window & modal form//
-//
-
-
-
-
+restore();
 
 
 
