@@ -22,7 +22,7 @@ const addProfileToList = () => {
     let notes = document.getElementById("notes-input").value;
     let checkInBy = document.getElementById("check-in-by").value;
 
-    //adding custom variable:
+    //adding custom variable to count daysLeft till assigned checkin date:
     let daysLeft = `${calculateDueDate(checkInBy)} day(s) left`;
 
     newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft);
