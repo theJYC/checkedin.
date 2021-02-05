@@ -49,13 +49,13 @@ let profilesList = [
     {
         firstName : "Fredrick",
         lastInitial : "T.",
-        notes : "promised to check-in while he is abroad on a fulbright year in taiwan",
+        notes : "promised to check-in more regularly while he's abroad",
         checkInBy : "03-01-2021",
         checkIn : false,
         daysLeft : "24 DAY(S) LEFT"
     },
     {
-        firstName : "Woo Seok",
+        firstName : "Ryan",
         lastInitial : "C.",
         notes : "routine family check-in",
         checkInBy : "05-03-2021",
