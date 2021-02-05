@@ -31,17 +31,9 @@ class Profile {
 let profilesList = [
     //populate with sample profile for debugging purposes
     {
-        firstName : "Jin Young",
-        lastInitial : "C.",
-        notes : "this guy fucks",
-        checkInBy : "03-28-2021",
-        checkIn : false,
-        daysLeft : "51 DAY(S) LEFT"
-    },
-    {
         firstName : "Varun",
         lastInitial : "G.",
-        notes : "currently working in Dallas.",
+        notes : "currently working in dallas, living at his parent's house",
         checkInBy : "02-08-2021",
         checkIn : false,
         daysLeft : "3 DAY(S) LEFT"
@@ -49,12 +41,11 @@ let profilesList = [
     {
         firstName : "Fredrick",
         lastInitial : "T.",
-        notes : "currently doing fulbright in taiwan.",
+        notes : "promised to check-in while he is abroad on a fulbright year in taiwan",
         checkInBy : "03-01-2021",
         checkIn : false,
         daysLeft : "24 DAY(S) LEFT"
     },
-
     {
         firstName : "Jim",
         lastInitial : "T.",
@@ -62,6 +53,14 @@ let profilesList = [
         checkInBy : "05-03-2021",
         checkIn : false,
         daysLeft : "75 DAY(S) LEFT"
+    },
+    {
+        firstName : "Eva",
+        lastInitial : "V.",
+        notes : "my hiit instructor. need to hit the gym again soon...",
+        checkInBy : "01-03-2021",
+        checkIn : false,
+        daysLeft : "OVERDUE!"
     },
 
 ];
@@ -82,7 +81,7 @@ const addProfileToList = () => {
     //set checkedIn default value to false (to be used later when profile submitted)
     this.checkedIn = false;
     //adding custom variable to count daysLeft till assigned checkin date:
-    this.daysLeft = `${calculateDueDate(this.checkInBy)} DAY(S) LEFT`;
+    this.daysLeft = `${calculateDueDate(this.checkInBy)}`;
 
     newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn);
     console.log(newProfile);
@@ -116,9 +115,14 @@ const calculateDueDate = (date) => {
     let dateToday = new Date().toISOString().slice(0,10);
     let diffInTime = new Date(date) - new Date(dateToday);
 
+    if (diffInTime < 0) {
+        return "OVERDUE!"
+    }
+    else {
     let diffInDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
 
-    return diffInDays;
+    return `${diffInDays} DAY(S) LEFT`;
+    }
 }
 
 const render = () => {
@@ -174,6 +178,8 @@ const createProfile = (item) => {
     notesDiv.setAttribute("aria-label", item.notes);
     profileDiv.appendChild(notesDiv);
 
+
+    //add button wrapper to encapsulate the two btns and have them aligned side-by-side
     btnWrapper.classList.add("btnwrapper");
     profileDiv.appendChild(btnWrapper);
 
@@ -184,7 +190,7 @@ const createProfile = (item) => {
         checkedInBtn.style.backgroundColor = "#768a80";
     } else {
         checkedInBtn.textContent = "complete";
-        checkedInBtn.style.backgroundColor = "#5e6d91";
+        checkedInBtn.style.backgroundColor = "#607bbd";
     }
     btnWrapper.appendChild(checkedInBtn);
 
@@ -193,7 +199,6 @@ const createProfile = (item) => {
     clearBtn.textContent = "clear";
     clearBtn.setAttribute("id", "clearBtn")
     btnWrapper.appendChild(clearBtn);
-
 
     //finally, adding the fully-done profileDiv to the list (#card-container)
     cardContainer.appendChild(profileDiv);
