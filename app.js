@@ -93,17 +93,17 @@ document.getElementsByName("checkinby")[0].setAttribute("min", today);
 //N.B. momentsjs should be further looked into for more accurate days left count (see COMMENTS below)
 const calculateDueDate = (date) => {
 
+    const msPerDay = 8.64e7;
     //retrieve today's date in "2021-02-05" format
-    let dateToday = new Date().toISOString().slice(0,10);
-    let diffInTime = new Date(date) - new Date(dateToday);
+    let dateToday = new Date().setHours(12,0,0);
+    let datePicked = new Date(date).setHours(12,0,0);
+    let diffInTime = datePicked - dateToday;
 
-    if (diffInTime < 0) {
+    if (Math.round( diffInTime / msPerDay) < 0) {
         return "OVERDUE!"
     }
     else {
-    let diffInDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
-
-    return `${diffInDays} DAY(S) LEFT`;
+        return `${Math.round(diffInTime / msPerDay)} DAY(S) LEFT`;
     }
 }
 

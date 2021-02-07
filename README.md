@@ -1,5 +1,9 @@
 # CheckedIn
 
+<a href="https://jinyoungch0i.github.io/CheckedIn/">
+    <img src="checkedin.gif" alt='checkedIn dynamic demo' width="500">
+</a>
+
 #### Technologies: HTML, CSS, Object-Oriented JavaScript, Web APIs (DOM, Web Storage)
 
 CheckedIn is an open source, browser-based CRUD application providing users with a minimalistic platform to manage their contacts and be reminded of when to get in touch with others. 
@@ -24,7 +28,9 @@ The author is brainstorming ways to promote enhanced user privacy and, as of Feb
 
 ### Isn't this a redundant reiteration of a generic Calendar application? 
 
-In a way, CheckedIn is similar to other, conventional online calendars in that it is a platform on which users can keep a record of their schedules and store it on their electronic devices. However, the area whereby CheckedIn excels is the layer of minimalism that is applied to the existing online calendar concept. 
+In a way, CheckedIn is similar to other conventional online calendars in that it is a platform on which users can keep a record of their schedules and store it on their electronic devices. 
+
+However, the area whereby CheckedIn excels is the layer of minimalism that is applied to the existing online calendar concept, resulting in enhanced usability and functionality. 
 
 **Whereas other Calendar applications allow users to input and review _all_ types of events to the platform, CheckedIn's competitive edge is its simple purpose of being the designated, one-stop platform to keep up with human connections (a singular category) through substantially simpler usability.**
 
