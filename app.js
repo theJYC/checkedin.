@@ -10,11 +10,6 @@ document.querySelector(".addContact").addEventListener("click", toggleModal);
 //when "X" (close) button inside the modal is clicked
 document.querySelector("#close").addEventListener("click", toggleModal);
 
-const $firstName = document.querySelector("#first-name");
-const $lastInitial = document.querySelector("#last-name");
-const $notes = document.querySelector("#notes-input");
-const $checkInBy = document.querySelector("#check-in-by");
-
 //Object constructor for 'Book'
 
 class Profile {
@@ -147,7 +142,7 @@ const createProfile = (item) => {
 
     //then the dateText (a.k.a. "check-in by:" string)
     dateTextDiv.classList.add("datetext");
-    dateTextDiv.textContent = "check-in by:"
+    dateTextDiv.textContent = "check in by:"
     profileDiv.appendChild(dateTextDiv);
     //next comes date
     dateDiv.classList.add("date");
