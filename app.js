@@ -31,22 +31,6 @@ class Profile {
 let profilesList = [
     //populate with sample profile for debugging purposes
     {
-        firstName : "Eva",
-        lastInitial : "F.",
-        notes : "work out buddy. need to hit the gym again soon!",
-        checkInBy : "01-03-2021",
-        checkIn : false,
-        daysLeft : "OVERDUE!"
-    },
-    {
-        firstName : "Varun",
-        lastInitial : "G.",
-        notes : "currently working in dallas, living at his parent's house",
-        checkInBy : "02-08-2021",
-        checkIn : false,
-        daysLeft : "3 DAY(S) LEFT"
-    },
-    {
         firstName : "Fredrick",
         lastInitial : "T.",
         notes : "promised to check-in more regularly while he's abroad",
@@ -69,14 +53,12 @@ let newProfile;
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
 
-    e.preventDefault();
-    console.log("submitted new profile")
-    toggleModal();
+    console.log("submitted new profile");
 
-    this.firstName = document.getElementById("").value;
-    this.lastInitial = `${document.getElementById("").value}.`;
-    this.notes = document.getElementById("").value;
-    this.checkInBy = document.getElementById("").value;
+    this.firstName = document.getElementById("first-name").value;
+    this.lastInitial = `${document.getElementById("last-name").value}.`;
+    this.notes = document.getElementById("notes-input").value;
+    this.checkInBy = document.getElementById("check-in-by").value;
 
     //set checkedIn default value to false (to be used later when profile submitted)
     this.checkedIn = false;
@@ -95,7 +77,12 @@ const addProfileToList = () => {
 
 // event listener to add profile to list when form is submitted
 const submitButton = document.getElementById("submit");
-submitButton.addEventListener("click", addProfileToList);
+
+submitButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    addProfileToList();
+    toggleModal();
+});
 
 
 const saveToLocalStorage = () => {
