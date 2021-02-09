@@ -1,3 +1,5 @@
+dayjs().format()
+
 //a function that adds/removes display: hidden function of modal
 const toggleModal = () => {
     document.querySelector(".modal") //selecting the modal element
@@ -7,11 +9,10 @@ const toggleModal = () => {
 //eventlistener for when 'add contact' button is pressed
 document.querySelector(".addContact").addEventListener("click", toggleModal);
 
-//when "X" (close) button inside the modal is clicked
+//another eventlistener for when "×" (close) button inside the modal is clicked
 document.querySelector("#close").addEventListener("click", toggleModal);
 
-//Object constructor for 'Book'
-
+//Object constructor for profile to-be-submitted
 class Profile {
     constructor(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn) {
         this.firstName = firstName; // e.g. "Fredrick"
@@ -23,8 +24,9 @@ class Profile {
     }
 }
 
+//profilesList is an array that will at once be populated by user input and be saved to localStorage
 let profilesList = [
-    //populate with sample profile for debugging purposes
+    //two manually entered input samples for debugging purposes
     {
         firstName : "Fredrick",
         lastInitial : "T.",
@@ -47,27 +49,32 @@ let newProfile;
 
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
-
-    console.log("submitted new profile");
+    //consoling out to debug function
+    console.log("submitting new profile...");
 
     this.firstName = document.getElementById("first-name").value;
     this.lastInitial = `${document.getElementById("last-name").value}.`;
     this.notes = document.getElementById("notes-input").value;
     this.checkInBy = document.getElementById("check-in-by").value;
 
-    //set checkedIn default value to false (to be used later when profile submitted)
+    //set checkedIn default value to false (i.e. "pending" upon registration)
     this.checkedIn = false;
-    //adding custom variable to count daysLeft till assigned checkin date:
+    //adding custom variable to count days left till assigned check-in date:
     this.daysLeft = `${calculateDueDate(this.checkInBy)}`;
 
     newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn);
     console.log(newProfile);
     console.log(profilesList);
+
+    //newly constructed profile to populate the profilesList array defined above
     profilesList.push(newProfile);
 
     saveToLocalStorage();
     render();
     form.reset();
+
+    //final console.log to make sure function is working from top to bottom
+    console.log("profile submitted successfully")
 }
 
 // event listener to add profile to list when form is submitted
@@ -90,20 +97,23 @@ saveToLocalStorage();
 const today = new Date().toISOString().split("T")[0];
 document.getElementsByName("checkinby")[0].setAttribute("min", today);
 
-//N.B. momentsjs should be further looked into for more accurate days left count (see COMMENTS below)
+//day.js is to be used in lieu JS's native Date() object for more accuracy in date calulations
+//
+//(see COMMENTS below)
+
 const calculateDueDate = (date) => {
 
-    const msPerDay = 8.64e7;
     //retrieve today's date in "2021-02-05" format
-    let dateToday = new Date().setHours(12,0,0);
-    let datePicked = new Date(date).setHours(12,0,0);
-    let diffInTime = datePicked - dateToday;
+    let dateToday = dayjs();
+    let datePicked = dayjs(date);
+    console.log("dayjs is working with no error");
+    let inXDays = datePicked.diff(dateToday, "days");
 
-    if (Math.round( diffInTime / msPerDay) < 0) {
+    if (inXDays < 0) {
         return "OVERDUE!"
     }
     else {
-        return `${Math.round(diffInTime / msPerDay)} DAY(S) LEFT`;
+        return `${inXDays} DAY(S) LEFT`;
     }
 }
 
