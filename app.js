@@ -107,7 +107,15 @@ const calculateDueDate = (date) => {
     let dateToday = dayjs();
     let datePicked = dayjs(date);
     console.log("dayjs is working with no error");
-    let inXDays = datePicked.diff(dateToday, "days");
+    let inXDaysFloat = datePicked.diff(dateToday, "days", true);
+    let inXDaysInt = datePicked.diff(dateToday,"days");
+
+    //for debugging purposes
+    console.log(`${inXDaysFloat} days in float`)
+
+    //1.1234 days need to be converted to 2 day(s), not 1 day(s):
+    let inXDays = Math.ceil(inXDaysFloat);
+
 
     if (inXDays < 0) {
         return "OVERDUE!"
@@ -241,5 +249,13 @@ and poses two immediate issues:
     1) StackOverFlow shows that moments.js is a great workaround for datehandling in JavaScript.
         a) moments.js is not explored in this app since moments.js-- regardless of its size (only 5KB)
            -- is nonetheless a dependency that I did not want to introduce into this application.
+
+*/
+
+
+/* DEBUG LIST (IN ORDER OF PRIORITY)
+
+-with regards to diffInTime, the resulting number of days is rounding up,
+and is not entirely accurate given the
 
 */
