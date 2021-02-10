@@ -255,8 +255,8 @@ p {
 }
 
 .date { /*bold string*/
-    margin-top: 15px;
-    font-size: 35px;
+    margin-top: 25px;
+    font-size: 40px;
     font-weight: bold;
     text-align: center;
 }
@@ -297,7 +297,7 @@ span[aria-label]:hover:after {
 }
 
 .daysLeft { /*red string underlined and overlined*/
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 20px;
     font-weight: bold;
     font-style: italic;

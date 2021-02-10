@@ -33,7 +33,7 @@ let profilesList = [
         notes : "promised to check-in more regularly while he's abroad",
         checkInBy : "2021-03-01",
         checkIn : false,
-        daysLeft : "24 DAY(S) LEFT"
+        daysLeft : "24 days left"
     },
     {
         firstName : "Ryan",
@@ -41,7 +41,7 @@ let profilesList = [
         notes : "routine family check-in",
         checkInBy : "2021-05-03",
         checkIn : false,
-        daysLeft : "87 DAY(S) LEFT"
+        daysLeft : "87 days left"
     },
 
 ];
@@ -116,11 +116,20 @@ const calculateDueDate = (date) => {
     //e.g. 1.1234 days need to be converted to 2 day(s), not 1 day(s). therefore Math.ceil():
     let inXDays = Math.ceil(inXDaysFloat);
 
-    if (inXDays < 0) {
-        return "OVERDUE!"
+    if (inXDays == -1) {
+        return `1 day ago`
+    }
+    else if (inXDays == 0) {
+        return "today"
+    }
+    else if (inXDays < 0) {
+        return `${inXDays * -1} days ago`
+    }
+    else if (inXDays == 1) {
+        return "tomorrow"
     }
     else {
-        return `${inXDays} DAY(S) LEFT`;
+        return `in ${inXDays} days`;
     }
 }
 
