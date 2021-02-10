@@ -52,8 +52,10 @@ const addProfileToList = () => {
     //consoling out to debug function
     console.log("submitting new profile...");
 
-    this.firstName = document.getElementById("first-name").value;
-    this.lastInitial = `${document.getElementById("last-name").value}.`;
+    let firstNameStr = document.getElementById("first-name").value;
+
+    this.firstName = firstNameStr[0].toUpperCase() + firstNameStr.substring(1);
+    this.lastInitial = `${document.getElementById("last-name").value.toUpperCase()}.`;
     this.notes = document.getElementById("notes-input").value;
     this.checkInBy = document.getElementById("check-in-by").value;
 
@@ -70,6 +72,7 @@ const addProfileToList = () => {
     profilesList.push(newProfile);
 
     saveToLocalStorage();
+    console.log("saved to local storage");
     render();
     form.reset();
 
