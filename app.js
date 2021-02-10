@@ -104,7 +104,7 @@ document.getElementsByName("checkinby")[0].setAttribute("min", today);
 //
 //(see COMMENTS below)
 
-const calculateDueDate = (date) => {
+const calculateDueDate = date => {
 
     //retrieve today's date in "2021-02-05" format
     let dateToday = dayjs();
@@ -230,7 +230,7 @@ const createProfile = (item) => {
 
 
 const restore = () => {
-    if(!localStorage.profilesList) {
+    if(!localStorage.Profiles) {
         render();
     }
     else {
