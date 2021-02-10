@@ -262,6 +262,7 @@ p {
 }
 
 .notes { /*underlined mouseover string*/
+    color: #7d7979;
     margin-top: 25px;
     font-size: 25px;
     font-weight: bold;
@@ -333,6 +334,14 @@ span[aria-label]:hover:after {
     font-size: 18px;
     display: inline-block;
     float: left;
+}
+
+.clearbtn:hover {
+    background-color: #b3615d;
+}
+
+.clearbtn:active {
+    background-color: #9c5652;
 }
 
 @media (max-width: 1200px) {
