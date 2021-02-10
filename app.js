@@ -47,6 +47,42 @@ let profilesList = [
 ];
 let newProfile;
 
+//day.js is to be used in lieu JS's native Date() object for more accuracy in date calulations
+//
+//(see COMMENTS below)
+
+const calculateDueDate = date => {
+
+    //retrieve today's date in "2021-02-05" format
+    let dateToday = dayjs();
+    let datePicked = dayjs(date);
+    console.log("dayjs is working with no error");
+    let inXDaysFloat = datePicked.diff(dateToday, "days", true);
+    let inXDaysInt = datePicked.diff(dateToday,"days");
+
+    //for debugging purposes
+    console.log(`${inXDaysFloat} days in float`)
+
+    //e.g. 1.1234 days need to be converted to 2 day(s), not 1 day(s). therefore Math.ceil():
+    let inXDays = Math.ceil(inXDaysFloat);
+
+    if (inXDays == -1) {
+        return `1 day ago`
+    }
+    else if (inXDays == 0) {
+        return "today"
+    }
+    else if (inXDays < 0) {
+        return `${inXDays * -1} days ago`
+    }
+    else if (inXDays == 1) {
+        return "tomorrow"
+    }
+    else {
+        return `in ${inXDays} days`;
+    }
+}
+
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
     //consoling out to debug function
@@ -100,41 +136,6 @@ saveToLocalStorage();
 const today = new Date().toISOString().split("T")[0];
 document.getElementsByName("checkinby")[0].setAttribute("min", today);
 
-//day.js is to be used in lieu JS's native Date() object for more accuracy in date calulations
-//
-//(see COMMENTS below)
-
-const calculateDueDate = date => {
-
-    //retrieve today's date in "2021-02-05" format
-    let dateToday = dayjs();
-    let datePicked = dayjs(date);
-    console.log("dayjs is working with no error");
-    let inXDaysFloat = datePicked.diff(dateToday, "days", true);
-    let inXDaysInt = datePicked.diff(dateToday,"days");
-
-    //for debugging purposes
-    console.log(`${inXDaysFloat} days in float`)
-
-    //e.g. 1.1234 days need to be converted to 2 day(s), not 1 day(s). therefore Math.ceil():
-    let inXDays = Math.ceil(inXDaysFloat);
-
-    if (inXDays == -1) {
-        return `1 day ago`
-    }
-    else if (inXDays == 0) {
-        return "today"
-    }
-    else if (inXDays < 0) {
-        return `${inXDays * -1} days ago`
-    }
-    else if (inXDays == 1) {
-        return "tomorrow"
-    }
-    else {
-        return `in ${inXDays} days`;
-    }
-}
 
 const render = () => {
     const cardContainer = document.getElementById("card-container");
