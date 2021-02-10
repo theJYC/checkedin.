@@ -113,9 +113,8 @@ const calculateDueDate = (date) => {
     //for debugging purposes
     console.log(`${inXDaysFloat} days in float`)
 
-    //1.1234 days need to be converted to 2 day(s), not 1 day(s):
+    //e.g. 1.1234 days need to be converted to 2 day(s), not 1 day(s). therefore Math.ceil():
     let inXDays = Math.ceil(inXDaysFloat);
-
 
     if (inXDays < 0) {
         return "OVERDUE!"
