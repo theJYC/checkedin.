@@ -31,7 +31,7 @@ let profilesList = [
         firstName : "Fredrick",
         lastInitial : "T.",
         notes : "promised to check-in more regularly while he's abroad",
-        checkInBy : "03-01-2021",
+        checkInBy : "2021-03-01",
         checkIn : false,
         daysLeft : "24 DAY(S) LEFT"
     },
@@ -39,7 +39,7 @@ let profilesList = [
         firstName : "Ryan",
         lastInitial : "C.",
         notes : "routine family check-in",
-        checkInBy : "05-03-2021",
+        checkInBy : "2021-05-03",
         checkIn : false,
         daysLeft : "87 DAY(S) LEFT"
     },
@@ -163,7 +163,7 @@ const createProfile = (item) => {
     profileDiv.appendChild(dateTextDiv);
     //next comes date
     dateDiv.classList.add("date");
-    dateDiv.textContent = `${item.checkInBy}`;
+    dateDiv.textContent = `${dayjs(item.checkInBy).format("MM-DD-YYYY")}`;
     profileDiv.appendChild(dateDiv);
 
     //next, display text for daysLeft
@@ -243,13 +243,6 @@ and poses two immediate issues:
         a) there will need to be an alert (etc.) function that prevents user from submitting the form entirely,
            if past date is typed in.
     2) allegedly the solution only works for Desktop, and not mobile.
-
--daysLeft might not work with daylights savings;
-    1) StackOverFlow shows that moments.js is a great workaround for datehandling in JavaScript.
-        a) moments.js is not explored in this app since moments.js-- regardless of its size (only 5KB)
-           -- is nonetheless a dependency that I did not want to introduce into this application.
-
-*/
 
 
 /* DEBUG LIST (IN ORDER OF PRIORITY)
