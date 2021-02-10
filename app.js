@@ -163,7 +163,7 @@ const createProfile = (item) => {
     profileDiv.appendChild(dateTextDiv);
     //next comes date
     dateDiv.classList.add("date");
-    dateDiv.textContent = `${dayjs(item.checkInBy).format("MM-DD-YYYY")}`;
+    dateDiv.textContent = `${dayjs(item.checkInBy).format("MMM D")}`;
     profileDiv.appendChild(dateDiv);
 
     //next, display text for daysLeft
