@@ -35,7 +35,7 @@ let profilesList = [
         notes : "promised to check-in more regularly while he's abroad",
         checkInBy : "2021-03-01",
         checkIn : false,
-        daysLeft : "24 days left"
+        daysLeft : "17 days left"
     },
     {
         firstName : "Ryan",
@@ -43,7 +43,7 @@ let profilesList = [
         notes : "routine family check-in",
         checkInBy : "2021-05-03",
         checkIn : false,
-        daysLeft : "87 days left"
+        daysLeft : "81 days left"
     },
 
 ];
