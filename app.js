@@ -189,7 +189,12 @@ const createProfile = (item) => {
     //next, add the notes (it'll be underlined 'notes' with content available on mouseover)
     notesSpan.classList.add("notes");
     notesSpan.textContent = "↠ notes ↞";
-    notesSpan.setAttribute("aria-label", item.notes);
+    if (item.notes) {
+        notesSpan.setAttribute("aria-label", item.notes);
+    }
+    else {
+        notesSpan.setAttribute("aria-label", "n/a");
+    }
     profileDiv.appendChild(notesSpan);
 
     //add button wrapper to encapsulate the two btns and have them aligned side-by-side
