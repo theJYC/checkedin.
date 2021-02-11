@@ -1,0 +1,22 @@
+{
+  "name": "checkedin",
+  "version": "1.0.0",
+  "description": "<a href=\"https://jinyoungch0i.github.io/CheckedIn/\">     <img src=\"misc/checkedin.gif\" alt='checkedIn dynamic demo' width=\"500\"> </a>",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinyoungch0i/CheckedIn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jinyoungch0i/CheckedIn/issues"
+  },
+  "homepage": "https://github.com/jinyoungch0i/CheckedIn#readme",
+  "dependencies": {
+    "dayjs": "^1.10.4"
+  }
+}
