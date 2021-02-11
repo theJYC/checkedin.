@@ -1,3 +1,5 @@
+//sporadic error:
+//app.js:1 Uncaught ReferenceError: dayjs is not defined at app.js:1
 dayjs().format()
 
 //a function that adds/removes display: hidden function of modal
