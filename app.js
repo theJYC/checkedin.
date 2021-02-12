@@ -1,6 +1,9 @@
 //sporadic error:
 //app.js:1 Uncaught ReferenceError: dayjs is not defined at app.js:1
+
+
 dayjs().format()
+
 
 //a function that adds/removes display: hidden function of modal
 const toggleModal = () => {
@@ -131,8 +134,6 @@ submitButton.addEventListener("click", (event) => {
 const saveToLocalStorage = () => {
     localStorage.setItem(`profilesList`, JSON.stringify(profilesList));
 }
-
-saveToLocalStorage();
 
 //preventing user from selecting past date on date input (further info. in COMMENTS)
 const today = new Date().toISOString().split("T")[0];
