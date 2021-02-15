@@ -1,5 +1,5 @@
+//a one-liner snippet to incorpate dayjs library
 dayjs().format()
-
 
 //a function that adds/removes display: hidden function of modal
 const toggleModal = () => {
