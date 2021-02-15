@@ -12,7 +12,13 @@ CheckedIn is an open source, browser-based CRUD application providing users with
 
 ## FAQ
 
-### Why last initial, instead of last name? 
+### Who are Fredrick T. and Ryan C.?
+
+**They are two sample inputs that have been populated to visualise what happens when the user submits the 'add to contact' form.** 
+
+Make sure to hover your mouse over the `↠ notes ↞` to preview the note snippet that is submitted for the particular CheckedIn occasion!
+
+### Why does the user submit the contact's last initial, instead of last name? 
 
 The currently deployed application is an MVP and functions entirely on the front end, through the use of the Web Storage API.
 
@@ -28,19 +34,19 @@ The author is brainstorming ways to promote enhanced user privacy and, as of Feb
 
 ### Isn't this a redundant reiteration of a generic Calendar application? 
 
-In a way, CheckedIn is similar to other conventional online calendars in that it is a platform on which users can keep a record of their schedules and store it on their electronic devices. 
+In a way, CheckedIn is similar to conventional online calendars in that it is a platform on which users can keep a record of their schedules and store it on their electronic devices. 
 
-However, the area whereby CheckedIn excels is the layer of minimalism that is applied to the existing online calendar concept, resulting in enhanced usability and functionality. 
+However, the area whereby CheckedIn excels is the layer of minimalism that is applied to the existing calendar concept, resulting in enhanced and much simpler UX. 
 
-**Whereas other Calendar applications allow users to input and review _all_ types of events to the platform, CheckedIn's competitive edge is its simple purpose of being the designated, one-stop platform to keep up with human connections (a singular category) through substantially simpler usability.**
+**Compared to other Calendar applications whereby the user may get lost amidst the wide range of events that are stored on their respective platforms, CheckedIn stands out in its sole purpose of allowing users to record and easily visualise their CheckIn appointments, adding greater emphasis on contact name CheckIn due date**
 
 ### Would the author be open to adding a reminder functionality, perhaps in the form of push-notifications, etc?
 
 With CheckedIn's guiding philosophies of user-centricity and minimalism, the author intends for the application to not have any notifying features that would remind the user at calculated intervals. 
 
-**This is because the author believes the user should claim full agency with regards to their use of CheckedIn, not the other way round whereby the application dictates the user and make them dependant to technology.** 
+**This is because the author believes the user should claim full agency with regards to their use of CheckedIn, not the other way round whereby the application dictates the user and make them become dependent to technology such as this one.** 
 
-**While online and electronic in its very nature, CheckedIn can be approached the same way an offline medium would be used; the user picks up the platform only when they feel obliged to do so.** 
+**While online and electronic in its very nature, CheckedIn can be approached the same way an offline medium would be used; the user picks up the platform when-- and only when-- they feel obliged to do so.** 
 
 ### Will CheckedIn become a native mobile application?
 
@@ -48,10 +54,10 @@ Given the heightened level of isolation and disconnectedness brought about by th
 
 With that said, the author is open to scaling the application upon peer feedback and back end configuration. 
 
-**As of current, CheckedIn is being developed into a mobile-responsive application available on mobile browsers (albeit it is not being planned to be scaled for native mobile platforms).**
+**As of current, CheckedIn is being developed into a mobile-responsive application available on mobile browsers although the possibility of mobile-native development is yet to be decided.**
 
 ### How can I provide user-feedback and/or contribute?
 
-As a BSD-3 licensed open source application, the author will be grateful for any feedback regarding CheckedIn's UX (User Experience). Furthermore, any developer contribution is especially welcome given the author's growing (yet limited) knowledge of software development.
+As a BSD-3 licensed open source application, the author would be grateful for any feedback regarding CheckedIn's UX. Furthermore, any developer contribution is especially welcome given the author's growing (yet limited) knowledge of software development.
 
-**Please direct all feedback via [email](mailto:jinyoungsjourney@gmail.com) and kindly submit a Pull Request for contribution opportunities.**   
+**Please direct all feedback via [email](mailto:jinyoungsjourney@gmail.com) and kindly submit a Pull Request for developer contribution opportunities.**   
