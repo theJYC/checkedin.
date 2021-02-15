@@ -11,3 +11,7 @@ e.g. if the user submitted the profile today for a duedate of 'tomorrow', if the
 ### Once the number of cards become greater than 8, the responsiveness fails. (on MacBookPro 13 inch) 
 
 One way to mitigate this would be to do flex wrap, and make sure that after 8 entries, the 9th card will start from the row below, and so on.
+
+### Update functionality is missing
+
+I, the author, have been approaching the development of CheckedIn as a heuristic process. As soon as I get around to learning how to edit cards (which will be coded into the app.js script), I will be incorporating the functionality. 
