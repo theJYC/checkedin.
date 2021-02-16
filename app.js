@@ -102,7 +102,18 @@ const addProfileToList = () => {
     //firstname input to make sure formatted output is e.g. 'Firstname'
     this.firstName = firstNameStr[0].toUpperCase() + firstNameStr.substring(1).toLowerCase();
     //last initial input to be formatted to uppercase e.g. 'L'
-    this.lastInitial = `${document.getElementById("last-name").value.toUpperCase()}.`;
+
+    //stored as variable to check whether user has included a lastname or not
+    //which will determine whether formatting is necessary or not
+    let lastInitialStr = document.getElementById("last-name").value;
+
+    //format the lastInitial from "c" to "C." if user inputs a lastInitial value
+    if (lastInitialStr) {
+        this.lastInitial = `${document.getElementById("last-name").value.toUpperCase()}.`
+    //if user doesn't input a lastInitial, return empty str.
+    } else {
+        this.lastInitial = '';
+    }
 
     //notes input will have no additional formatting; just plain string data e.g. 'sample note'
     this.notes = document.getElementById("notes-input").value;
@@ -280,11 +291,5 @@ and poses two immediate issues:
         a) there will need to be an alert (etc.) function that prevents user from submitting the form entirely,
            if past date is typed in.
     2) allegedly the solution only works for Desktop, and not mobile.
-
-
-/* DEBUG LIST (IN ORDER OF PRIORITY)
-
--with regards to diffInTime, the resulting number of days is rounding up,
-and is not entirely accurate given the
 
 */
