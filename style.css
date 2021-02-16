@@ -198,7 +198,7 @@ p {
 #close {
     padding: 0;
     font-size: 18px;
-    height: 1.25em;
+    height: 1.365em;
     width: 1.25em;
     border-radius: 0.25rem;
     border: 2.75px solid #757575;
@@ -364,6 +364,3 @@ span[aria-label]:hover:after {
         grid-template-columns: repeat(1, 1fr);
     }
 }
-
-
-/*Caleb was here*/
