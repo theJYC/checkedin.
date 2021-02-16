@@ -21,7 +21,7 @@ class Profile {
         this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
         this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
         this.daysLeft = daysLeft; // e.g. "3 days left"
-        this.checkedIn = checkedIn;
+        this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
     }
 }
 
@@ -32,34 +32,37 @@ let profilesList = [
         firstName : "Fredrick",
         lastInitial : "T.",
         notes : "promised to check-in more regularly while he's abroad",
-        checkInBy : "2021-03-01",
+        checkInBy : "2021-08-01",
         checkIn : false,
-        daysLeft : "17 days left"
+        daysLeft : "100+ days left"
     },
     {
         firstName : "Ryan",
         lastInitial : "C.",
         notes : "routine family check-in",
-        checkInBy : "2021-05-03",
+        checkInBy : "2021-12-31",
         checkIn : false,
-        daysLeft : "81 days left"
+        daysLeft : "100+ days left"
     },
 
 ];
-let newProfile;
 
 //day.js is to be used in lieu JS's native Date() object for more accuracy in date calulations
-//
-//(see COMMENTS below)
+//(see COMMENTS footnote)
 
 const calculateDueDate = date => {
 
-    //retrieve today's date in "2021-02-05" format
+    //retrieve today's date in "YYYY-MM-DD" format
     let dateToday = dayjs();
+    //retrieve the user-input check-in date in "YYYY-MM-DD" format
     let datePicked = dayjs(date);
-    console.log("dayjs is working with no error");
+
+    //debugging purpose-- logging dayjs functionality to console
+    console.log("dayjs is incorporated successfully");
+
+    //diff. between current date & check-in date was calculated to its floating point value
+    //instead of the integer value, since the former gives more accurate date calc.
     let inXDaysFloat = datePicked.diff(dateToday, "days", true);
-    let inXDaysInt = datePicked.diff(dateToday,"days");
 
     //for debugging purposes
     console.log(`${inXDaysFloat} days in float`)
@@ -84,29 +87,43 @@ const calculateDueDate = date => {
     }
 }
 
+//initialising newProfile as an undefined variable on the global scope
+//to be used locally in addProfileToList:
+let newProfile;
+
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
     //consoling out to debug function
     console.log("submitting new profile...");
 
+    //firstname to be stored as a variable to be manipulated for formatting below
     let firstNameStr = document.getElementById("first-name").value;
 
-    this.firstName = firstNameStr[0].toUpperCase() + firstNameStr.substring(1);
+    //firstname input to make sure formatted output is e.g. 'Firstname'
+    this.firstName = firstNameStr[0].toUpperCase() + firstNameStr.substring(1).toLowerCase();
+    //last initial input to be formatted to uppercase e.g. 'L'
     this.lastInitial = `${document.getElementById("last-name").value.toUpperCase()}.`;
+
+    //notes input will have no additional formatting; just plain string data e.g. 'sample note'
     this.notes = document.getElementById("notes-input").value;
+    //checkInBy will also be displayed as is inputted (via calendar widget or manual entry) e.g. 'YYYY-MM-DD'
     this.checkInBy = document.getElementById("check-in-by").value;
 
-    //set checkedIn default value to false (i.e. "pending" upon registration)
+    //set checkedIn default value to false (i.e. "pending")
+    //and staged for 'click' eventlistener that will convert it "complete"
     this.checkedIn = false;
     //adding custom variable to count days left till assigned check-in date:
     this.daysLeft = `${calculateDueDate(this.checkInBy)}`;
 
+    //newProfile to be created and populated with the grabbed user input
     newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn);
     console.log(newProfile);
-    console.log(profilesList);
 
     //newly constructed profile to populate the profilesList array defined above
     profilesList.push(newProfile);
+
+    //log profilesList array with the user input pushed as last index.
+    console.log(profilesList);
 
     saveToLocalStorage();
     console.log("saved to local storage");
@@ -147,7 +164,7 @@ const render = () => {
     }
 }
 
-//the nitty-gritty in between when profile is submitted and card is displayed on homescreen.
+//createProfile function enables user input to be displayed as profile cards.
 const createProfile = (item) => {
     const cardContainer = document.getElementById("card-container");
     const profileDiv = document.createElement("div");
@@ -183,10 +200,11 @@ const createProfile = (item) => {
     daysLeftDiv.textContent = item.daysLeft;
     profileDiv.appendChild(daysLeftDiv);
 
-    //next, add the notes (it'll be underlined 'notes' with content available on mouseover)
+    //next, add the notes display ('↠ notes ↞', with content available on mouseover)
     notesSpan.classList.add("notes");
     notesSpan.textContent = "↠ notes ↞";
     if (item.notes) {
+        //setting the aria-label attribute will display note text when mouse-hovered
         notesSpan.setAttribute("aria-label", item.notes);
     }
     else {
@@ -227,7 +245,9 @@ const createProfile = (item) => {
 
     //event listener for when checked in button is pressed
     checkedInBtn.addEventListener("click", () => {
+        //when green pending btn is clicked, display the reverse state-- blue 'complete'
         item.checkedIn = !item.checkedIn;
+        //making sure to save the new reversed logic to localStorage
         saveToLocalStorage();
         render();
     });
@@ -235,7 +255,7 @@ const createProfile = (item) => {
 
 
 const restore = () => {
-    if(!localStorage.Profiles) {
+    if(!localStorage.profilesList) {
         render();
     }
     else {
