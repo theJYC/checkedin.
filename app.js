@@ -223,8 +223,12 @@ const createProfile = (item) => {
 
     //next, the time of CheckIn
     timeDiv.classList.add("time");
-    console.log(item.checkInTime)
+    console.log(item.checkInTime);
 
+    //firstly, checking that item.checkInTime input exists;
+    if (!item.checkInTime) {
+        return;
+    }
     //formatting the time input raw value (e.g. "23:30")
     //to more palatable format (e.g. "11:30pm")
     let checkInHourStr = item.checkInTime.slice(0,2); //grabbing hour (00 to 23)
