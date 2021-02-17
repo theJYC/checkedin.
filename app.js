@@ -226,7 +226,8 @@ const createProfile = (item) => {
     console.log(item.checkInTime);
 
     //firstly, checking that item.checkInTime input exists;
-    //this is the debug solution to
+    //this is the debug solution to item.checkInTime.slice() method throwing an error on undefined
+    //when no profile has been added to localstorage.
     if (!item.checkInTime) {
         return;
     }
