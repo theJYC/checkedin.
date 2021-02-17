@@ -15,11 +15,12 @@ document.querySelector("#close").addEventListener("click", toggleModal);
 
 //Object constructor for profile to-be-submitted
 class Profile {
-    constructor(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn) {
+    constructor(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn) {
         this.firstName = firstName; // e.g. "Fredrick"
         this.lastInitial = lastInitial; // e.g. "T."
         this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
         this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
+        this.checkInTime = checkInTime;
         this.daysLeft = daysLeft; // e.g. "3 days left"
         this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
     }
@@ -33,6 +34,7 @@ let profilesList = [
         lastInitial : "T.",
         notes : "promised to check-in more regularly while he's abroad",
         checkInBy : "2021-08-01",
+        checkInTime : "09:00",
         checkIn : false,
         daysLeft : "100+ days left"
     },
@@ -41,6 +43,7 @@ let profilesList = [
         lastInitial : "C.",
         notes : "routine family check-in",
         checkInBy : "2021-12-31",
+        checkInTime : "19:00",
         checkIn : false,
         daysLeft : "100+ days left"
     },
@@ -71,7 +74,7 @@ const calculateDueDate = date => {
     let inXDays = Math.ceil(inXDaysFloat);
 
     if (inXDays == -1) {
-        return `1 day ago`
+        return `yesterday`
     }
     else if (inXDays == 0) {
         return "today"
@@ -120,6 +123,8 @@ const addProfileToList = () => {
     //checkInBy will also be displayed as is inputted (via calendar widget or manual entry) e.g. 'YYYY-MM-DD'
     this.checkInBy = document.getElementById("check-in-by").value;
 
+    this.checkInTime = document.getElementById("check-in-time").value;
+
     //set checkedIn default value to false (i.e. "pending")
     //and staged for 'click' eventlistener that will convert it "complete"
     this.checkedIn = false;
@@ -127,7 +132,7 @@ const addProfileToList = () => {
     this.daysLeft = `${calculateDueDate(this.checkInBy)}`;
 
     //newProfile to be created and populated with the grabbed user input
-    newProfile = new Profile(firstName, lastInitial, notes, checkInBy, daysLeft, checkedIn);
+    newProfile = new Profile(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn);
     console.log(newProfile);
 
     //newly constructed profile to populate the profilesList array defined above
@@ -182,6 +187,7 @@ const createProfile = (item) => {
     const nameDiv = document.createElement("div");
     const dateTextDiv = document.createElement("div");
     const dateDiv = document.createElement("div");
+    const timeDiv = document.createElement("div");
     const notesSpan = document.createElement("span");
     const daysLeftDiv = document.createElement("div");
     const btnWrapper = document.createElement("div");
@@ -209,10 +215,42 @@ const createProfile = (item) => {
     dateTextDiv.classList.add("datetext");
     dateTextDiv.textContent = "check in by:"
     profileDiv.appendChild(dateTextDiv);
+
     //next comes date
     dateDiv.classList.add("date");
     dateDiv.textContent = `${dayjs(item.checkInBy).format("MMM D")}`;
     profileDiv.appendChild(dateDiv);
+
+    //next, the time of CheckIn
+    timeDiv.classList.add("time");
+    console.log(item.checkInTime)
+
+    //formatting the time input raw value (e.g. "23:30")
+    //to more palatable format (e.g. "11:30pm")
+    let checkInHourStr = item.checkInTime.slice(0,2); //grabbing hour (00 to 23)
+    //converting hour to int in order to perform int calculations for am/pm determination
+    let checkInHourInt = parseInt(checkInHourStr);
+    let checkInMinutes = item.checkInTime.slice(3); // grabbing minutes (00 to 59)
+
+    let formattedTime = "";
+    console.log(checkInHourInt); //str "00" to "12"
+    console.log(typeof checkInHourInt)
+    console.log(checkInMinutes);
+
+    if (checkInHourInt == 0) {
+        checkInHourInt = 12;
+        formattedTime = `${checkInHourInt}:${checkInMinutes}am`;
+    }
+    else if (checkInHourInt < 13) {
+        checkInHourInt.toString();
+        formattedTime = `${checkInHourInt}:${checkInMinutes}am`;
+    } else {
+        checkInHourInt -= 12; //format "23" to "11"
+        formattedTime = `${checkInHourInt}:${checkInMinutes}pm`;
+    }
+
+    timeDiv.textContent = formattedTime;
+    profileDiv.appendChild(timeDiv);
 
     //next, display text for daysLeft
     daysLeftDiv.classList.add("daysLeft");
@@ -221,7 +259,7 @@ const createProfile = (item) => {
 
     //next, add the notes display ('↠ notes ↞', with content available on mouseover)
     notesSpan.classList.add("notes");
-    notesSpan.textContent = "↠ notes ↞";
+    notesSpan.textContent = "↠note↞";
     if (item.notes) {
         //setting the aria-label attribute will display note text when mouse-hovered
         notesSpan.setAttribute("aria-label", item.notes);
