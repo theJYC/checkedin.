@@ -133,7 +133,7 @@ p {
 }
 
 .datefield {
-    width: 40%;
+    width: 36%;
     font-family: Arial;
     font-size: 16px;
     color: #757575;
@@ -164,11 +164,19 @@ p {
     border-radius: 0.25rem;
 }
 
-#checkIn {
+#checkInText {
     font-size: 22.5px;
     margin-top: 1em;
     font-weight: normal;
     font-style: italic;
+}
+
+#check-in-time {
+    width: 26.5%;
+    font-family: Arial;
+    font-size: 16px;
+    color: #757575;
+    outline-color: #757171;
 }
 
 #submit {
@@ -177,7 +185,7 @@ p {
     font-weight: normal;
     border-radius: 0.25rem;
     border: 2.75px solid #757575;
-    padding: .175rem;
+    padding: .2rem;
 }
 
 #submit:hover {
