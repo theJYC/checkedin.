@@ -226,6 +226,7 @@ const createProfile = (item) => {
     console.log(item.checkInTime);
 
     //firstly, checking that item.checkInTime input exists;
+    //this is the debug solution to
     if (!item.checkInTime) {
         return;
     }
