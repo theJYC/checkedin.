@@ -189,12 +189,20 @@ const createProfile = (item) => {
     const clearBtn = document.createElement("button");
 
     //shaping the profile with .card & indexing each profile
-    profileDiv.classList.add("profile");
+
+    //if the contact is past-due on CheckedIn, paint the card container red!
+    if ((dayjs(item.checkInBy).diff(dayjs(), "days", true)) <= -1) {
+        profileDiv.classList.add("profileOverDue");
+        nameDiv.classList.add("nameOverDue")
+    } else {
+        profileDiv.classList.add("profile");
+        nameDiv.classList.add("name")
+    }
+    //populating the name div with user-input contact name
+    nameDiv.textContent = `${item.firstName} ${item.lastInitial}`
+    //indexing each contact for ease-of-reference
     profileDiv.setAttribute("id", profilesList.indexOf(item));
 
-    //shaping the firstName + lastName display & appending it to profileDiv
-    nameDiv.classList.add("name");
-    nameDiv.textContent = `${item.firstName} ${item.lastInitial}`
     profileDiv.appendChild(nameDiv)
 
     //then the dateText (a.k.a. "check-in by:" string)
