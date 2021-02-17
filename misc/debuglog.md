@@ -4,6 +4,11 @@ This is a working documentation of currently-existent bugs that need to be addre
 
 The list is organised in the order of priority.
 
+
+### Why is there no time input? 
+
+This is a functionality that will be implemented. This was brought to the author's awareness upon iterations after iterations.
+
 ### When page reloads/refreshes, the daysLeft function needs to do a recalculation from the current date (not the date on which the card was created)
 
 e.g. if the user submitted the profile today for a duedate of 'tomorrow', daysLeft should display 'today' if the user goes on and refreshes CheckedIn tomorrow. Currently, daysLeft is a static variable that needs to be updated every time the user is accessing CheckedIn.
@@ -17,3 +22,9 @@ One way to mitigate this would be to do flex wrap, and make sure that after 8 en
 ### Update functionality is missing
 
 I, the author, have been approaching the development of CheckedIn as a heuristic process. As soon as I get around to learning how to edit cards (for which the functionality will be integrated into the app.js script), update will be a live functionality.
+
+### How does the non-tech savvy user access the FAQ? (personal entry) 
+
+Currently the FAQ is written into the README.md document of the project's root directory. In order to increase the accesibility to FAQ (and also to encourage all users to provide feedback), there will be a visible 'FAQ' hyperlink somewhere in the header section of the CheckedIn platform. 
+
+
