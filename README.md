@@ -4,7 +4,7 @@
     <img src="misc/checkedin.gif" alt='checkedIn dynamic demo' width="500">
 </a>
 
-#### Technologies: HTML, CSS, Object-Oriented JavaScript, Web APIs (DOM, Web Storage)
+#### Technologies: HTML, CSS, Object-Oriented JavaScript, DayJS, Web APIs (DOM, Web Storage)
 
 CheckedIn is an open source, browser-based CRUD application providing users with a minimalistic platform to manage their contacts and be reminded of when to get in touch with others. 
 
