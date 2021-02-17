@@ -30,3 +30,7 @@ Currently the FAQ is written into the README.md document of the project's root d
 ### Cards should always sort display by order of CheckInDate
 
 This would be a better way of organising the CheckedIn contacts, in order to imply a sense of urgency towards those who are past due.  
+
+### Allow users to press `esc` on keyboard to close modalbox
+
+This will be integrated soon enough!
