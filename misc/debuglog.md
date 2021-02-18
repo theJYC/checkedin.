@@ -4,6 +4,9 @@ This is a working documentation of currently-existent bugs that need to be addre
 
 The list is organised in the order of priority.
 
+### HTML "type="time"" attribute does not work in Safari or Internet Explorer
+
+This is [unfortunately the case](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_time) and it would be futile for the author to try to find a hack around this issue. Feedback on how to make CheckedIn compatible with Safari and Internet Explorer would be much appreciated! 
 
 ### When page reloads/refreshes, the daysLeft function needs to do a recalculation from the current date (not the date on which the card was created) (testing debug!)
 
