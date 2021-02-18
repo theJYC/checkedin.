@@ -5,10 +5,6 @@ This is a working documentation of currently-existent bugs that need to be addre
 The list is organised in the order of priority.
 
 
-### No time input 
-
-This is a functionality that will be implemented. This was brought to the author's awareness upon iterations after iterations.
-
 ### When page reloads/refreshes, the daysLeft function needs to do a recalculation from the current date (not the date on which the card was created)
 
 e.g. if the user submitted the profile today for a duedate of 'tomorrow', daysLeft should display 'today' if the user goes on and refreshes CheckedIn tomorrow. Currently, daysLeft is a static variable that needs to be updated every time the user is accessing CheckedIn.
