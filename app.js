@@ -20,35 +20,15 @@ class Profile {
         this.lastInitial = lastInitial; // e.g. "T."
         this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
         this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
-        this.checkInTime = checkInTime;
+        this.checkInTime = checkInTime; // e.g. "3:00pm"
         this.daysLeft = daysLeft; // e.g. "3 days left"
         this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
     }
 }
 
-//profilesList is an array that will at once be populated by user input and be saved to localStorage
-let profilesList = [
-    //two manually entered input samples for debugging purposes
-    {
-        firstName : "Fredrick",
-        lastInitial : "T.",
-        notes : "promised to check-in more regularly while he's abroad",
-        checkInBy : "2021-08-01",
-        checkInTime : "09:00",
-        checkIn : false,
-        daysLeft : "100+ days left"
-    },
-    {
-        firstName : "Ryan",
-        lastInitial : "C.",
-        notes : "routine family check-in",
-        checkInBy : "2021-12-31",
-        checkInTime : "19:00",
-        checkIn : false,
-        daysLeft : "100+ days left"
-    },
-
-];
+//profilesList is an array that will at once be populated by user input
+//and later be saved to localStorage
+let profilesList = [];
 
 //day.js is to be used in lieu JS's native Date() object for more accuracy in date calulations
 //(see COMMENTS footnote)
@@ -262,6 +242,7 @@ const createProfile = (item) => {
     //next, display text for daysLeft
     daysLeftDiv.classList.add("daysLeft");
     daysLeftDiv.textContent = calculateDueDate(item.checkInBy);
+    console.log(daysLeftDiv.textContent);
     profileDiv.appendChild(daysLeftDiv);
 
     //next, add the notes display ('↠ notes ↞', with content available on mouseover)
@@ -332,9 +313,6 @@ const restore = () => {
 }
 
 restore();
-
-
-
 
 /* COMMENTS
 
