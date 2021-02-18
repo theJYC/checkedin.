@@ -5,15 +5,15 @@ This is a working documentation of currently-existent bugs that need to be addre
 The list is organised in the order of priority.
 
 
-### When page reloads/refreshes, the daysLeft function needs to do a recalculation from the current date (not the date on which the card was created)
+### When page reloads/refreshes, the daysLeft function needs to do a recalculation from the current date (not the date on which the card was created) (testing debug!)
 
 e.g. if the user submitted the profile today for a duedate of 'tomorrow', daysLeft should display 'today' if the user goes on and refreshes CheckedIn tomorrow. Currently, daysLeft is a static variable that needs to be updated every time the user is accessing CheckedIn.
 
 **This will have to come in the form of defining and calling a function upon page reload (or new session), that checks the session/reload date/timestamp with that of the user-inputed checkInBy date variable.**
 
-### Once the number of cards become greater than 8, the responsiveness fails. (on MacBookPro 13 inch) 
+### The app displays erroneously on mobile browsers. In particular, the hover note functionality is compromised since hover does not exist on mobile
 
-One way to mitigate this would be to do flex wrap, and make sure that after 8 entries, the 9th card will start from the row below, and so on.
+This is true. The hover-note functionality is an integral aspect of this program and, given that it cannot be accessed on mobile, the author is pondering on ways that it can be adapted to the mobile environment. Immediately, what comes to mind is that it could be a clickable note with a pop-up textbox containing within it the note input. This could be toggled upon clicking anywhere outside the textbox when it appears. However, such solution may not be as elegant as the hover access. 
 
 ### Update functionality is missing
 
