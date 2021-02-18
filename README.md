@@ -12,12 +12,6 @@ CheckedIn is an open source, browser-based CRUD application providing users with
 
 ## FAQ
 
-### Who are Fredrick T. and Ryan C.?
-
-**They are two sample inputs that have been populated to visualise what happens when the user submits the 'add to contact' form.** 
-
-Make sure to hover your mouse over the `↠ notes ↞` to preview the note snippet that is submitted for the particular CheckedIn occasion!
-
 ### Why does the user submit the contact's last initial, instead of last name? 
 
 The currently deployed application is an MVP and functions entirely on the front end, through the use of the Web Storage API.
@@ -27,6 +21,10 @@ This means that all of the CRUD *(Create, Read, Update, and Delete)* activity is
 The author believes that the use of localStorage in this manner was a strategic decision that offers a great security trade-off for speedy deployment and rapid prototyping. 
 
 **Last initial was used, in lieu of last name, in order to provide a layer of anonymity for the user given the inherent security risk with localStorage.**
+
+### Where can I see the notes I've included with a contact? 
+
+Make sure to hover your mouse over the `↠notes↞` text to preview the note snippet that you've submitted!
 
 ### What could be done to bolster the security of user data collected in localStorage? 
 
