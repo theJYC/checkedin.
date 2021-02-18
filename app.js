@@ -154,6 +154,7 @@ const addProfileToList = () => {
 const submitButton = document.getElementById("submit");
 
 submitButton.addEventListener("click", (event) => {
+    //preventDefault prevents the form from its default activity; adding to the root url with form input queries.
     event.preventDefault();
     addProfileToList();
     toggleModal();
@@ -260,7 +261,7 @@ const createProfile = (item) => {
 
     //next, display text for daysLeft
     daysLeftDiv.classList.add("daysLeft");
-    daysLeftDiv.textContent = item.daysLeft;
+    daysLeftDiv.textContent = calculateDueDate(item.checkInBy);
     profileDiv.appendChild(daysLeftDiv);
 
     //next, add the notes display ('↠ notes ↞', with content available on mouseover)
