@@ -252,11 +252,11 @@ p {
     flex-direction: column;
     align-items: center;
     width: 250px;
-    height: 400px;
+    height: 392.5px;
     background-color: #e6e7eb;
     border-radius: 0.75rem;
     border: solid #ad5e5a;
-    box-shadow:0 0 15px 4px rgba(173,94,90,0.20);
+    box-shadow:0 0 15px 4px rgba(173,94,90,0.15);
     margin-left: 12px;
     margin-right: 12px;
     margin-top: 24px;
