@@ -156,6 +156,10 @@ const render = () => {
 
     profiles.forEach(profile => cardContainer.removeChild(profile));
 
+    //earmark for debug item-- sorting by checkInDate (and possibly checkInTime)
+    profilesListSort = [];
+
+
     for (i = 0; i < profilesList.length; i++) {
         createProfile(profilesList[i]);
     }
