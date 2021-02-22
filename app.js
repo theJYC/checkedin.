@@ -184,7 +184,9 @@ const createProfile = (item) => {
 
     //if the contact is past-due on CheckedIn, paint the card container red!
     if ((dayjs(item.checkInBy).diff(dayjs(), "days", true)) <= -1) {
-        profileDiv.classList.add("profileOverDue");
+        profileDiv.classList.add("profile");
+        profileDiv.classList.add("overdue");
+        nameDiv.classList.add("name");
         nameDiv.classList.add("nameOverDue")
     } else {
         profileDiv.classList.add("profile");

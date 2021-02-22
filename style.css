@@ -248,7 +248,7 @@ p {
     margin-bottom: 15px;
 }
 
-.profileOverDue {
+.overdue {
     display: flex;
     flex-direction: column;
     align-items: center;
