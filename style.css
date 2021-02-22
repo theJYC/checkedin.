@@ -73,30 +73,30 @@ p {
     text-decoration: none;
 }
 
-#coded {
+#demo {
     color: #c26965;
     border-bottom: 2.5px dotted #828282;
 }
 
 
-#coded:hover {
+#demo:hover {
     color: #9c5854;
 }
 
-#coded:active {
+#demo:active {
     color: #804b47;
 }
 
-#demo {
+#coded {
     color: #607BBD;
     border-bottom: 2.5px dotted #828282;
 }
 
-#demo:hover {
+#coded:hover {
     color: #485c8c;
 }
 
-#demo:active {
+#coded:active {
     color: #38486e;
 }
 
