@@ -16,7 +16,7 @@ body {
 #contact {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 header {
@@ -75,10 +75,39 @@ p {
 
 #coded {
     color: #c26965;
+    border-bottom: 2.5px dotted #828282;
 }
+
 
 #coded:hover {
     color: #9c5854;
+}
+
+#coded:active {
+    color: #804b47;
+}
+
+#demo {
+    color: #607BBD;
+    border-bottom: 2.5px dotted #828282;
+}
+
+#demo:hover {
+    color: #485c8c;
+}
+
+#demo:active {
+    color: #38486e;
+}
+
+#codeanddemo {
+    font-family: Arial;
+    font-size: 18.5px;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    font-weight: bold;
+    color: #4f4f4f;
 }
 
 #jinyoung {
