@@ -52,7 +52,7 @@ const calculateDueDate = date => {
 
     //e.g. 1.1234 days need to be converted to 2 day(s), not 1 day(s). therefore Math.ceil():
     let inXDays = Math.ceil(inXDaysFloat);
-
+    console.log(inXDays);
     if (inXDays == -1) {
         return `yesterday`
     }
@@ -157,7 +157,8 @@ const render = () => {
     profiles.forEach(profile => cardContainer.removeChild(profile));
 
     //earmark for debug item-- sorting by checkInDate (and possibly checkInTime)
-    profilesListSort = [];
+    let profilesListSorted = [];
+
 
 
     for (i = 0; i < profilesList.length; i++) {
