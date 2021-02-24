@@ -4,9 +4,13 @@ This is a working documentation of currently-existent bugs that need to be addre
 
 The list is organised in the order of priority.
 
-### HTML "type="time"" attribute does not work in Safari or Internet Explorer
+### "type="time"" and "type="date"" HTML attributes do not work in Safari or Internet Explorer
 
-This is [unfortunately the case](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_time) and it would be futile for the author to try to find a hack around this issue. Feedback on how to make CheckedIn compatible with Safari and Internet Explorer would be much appreciated! 
+This is [unfortunately the case](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_time) and it would be futile for the author to try to find a hack around this issue. 
+
+While it's not really an issue per sé (since the user can type in the date and time (vs. clicking on a more intuitive widget), this does make the UX of Safari users less than optimal. 
+
+Feedback on how to make CheckedIn compatible with Safari and Internet Explorer would be much appreciated! 
 
 ### The overdue indicator (red borders around profile card) is only date sensitive and not date *and* time sensitive
 
@@ -34,7 +38,7 @@ Currently the FAQ is written into the README.md document of the project's root d
 
 This is the direction that the author is thinking of taking CheckedIn, and he is brainstorming the best way to go about with its implementation. 
 
-As of now (02/22/2021), the demo link is appended right below the "add contact" button, which works well because 1) it will appear in the center of the screen when no contact is registered, and 2) it will be positioned below the last row of contact cards, which doesn't get in the user's way yet remains visible. 
+As of now (02/22/2021), the demo link is appended right below the "add contact" button, which works well because 1. it will appear in the center of the screen when no contact is registered, and 2. it will be positioned below the last row of contact cards, which doesn't get in the user's way yet remains visible. 
 
 The link is planned to direct the user to a separate html script with an image tag, specifically a GIF, that displays the screen recording or step by step screenshots of how the application works:
 
