@@ -422,6 +422,34 @@ span[aria-label]:hover:after {
     background-color: #9c5652;
 }
 
+#gif {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    display: block;
+    border-radius: 1.5%;
+
+}
+
+#gif-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right : auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 750px;
+    height: 570px;
+    background-color: #999999;
+    border-radius: 1.75%;
+    border: 2.75px solid #4f4f4f;
+}
+
+#above-gif {
+    height: 70px;
+}
 @media (max-width: 1200px) {
     #card-container {
         grid-template-columns: repeat(2, 1fr);
