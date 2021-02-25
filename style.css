@@ -448,8 +448,21 @@ span[aria-label]:hover:after {
 }
 
 #above-gif {
-    height: 70px;
+    height: 30px;
 }
+
+#return {
+    font-family: Arial;
+    font-size: 18.5px;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    font-weight: bold;
+    color: #4f4f4f;
+    margin-top: 1.5rem;
+}
+
+
 @media (max-width: 1200px) {
     #card-container {
         grid-template-columns: repeat(2, 1fr);
