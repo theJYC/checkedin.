@@ -320,14 +320,3 @@ const restore = () => {
 }
 
 restore();
-
-/* COMMENTS
-
--Preventing past date input function was derived from StackOverFlow
-and poses two immediate issues:
-    1) solution only works for calendar popup, but user can still manually type in past date in text form.
-        a) there will need to be an alert (etc.) function that prevents user from submitting the form entirely,
-           if past date is typed in.
-    2) allegedly the solution only works for Desktop, and not mobile.
-
-*/
