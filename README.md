@@ -1,6 +1,6 @@
 # checkedin.
 
-<a href="https://jinyoungch0i.github.io/CheckedIn/">
+<a href="https://jinyoungch0i.github.io/checkedin./">
     <img src="misc/demo.gif" alt='checkedIn dynamic demo'>
 </a>
 
@@ -8,9 +8,11 @@
 
 `checkedin.` is an open source, browser-based CRUD application providing users with a minimalistic platform to manage their contacts and be reminded of when to get in touch with others. 
 
-Through the use of `localstorage` and `DOM manipulation`, `checkedin.` enables users to submit a contact that are due for a check-in and, upon page-refresh, update each contact's `daysLeft` variable to indicate whether the check-in is due/past-due, and/or signal how many days are between the check-in date and the current date of browser session. 
+Through the use of `localstorage` and `DOM manipulation`, `checkedin.` enables users to submit a contact that are due for a check-in and, upon page-refresh, update each contact's `daysLeft` variable to indicate whether the check-in is due/past-due, and/or signal how many days are left between the check-in date and the current date of browser session. 
 
-[Live Demo](https://jinyoungch0i.github.io/CheckedIn/) & [Source Code](https://github.com/jinyoungch0i/CheckedIn)
+To make the most out of `checkedin.` it is encouraged to bookmark the [URL](https://jinyoungch0i.github.io/checkedin./) for ease of access, and to run it on a Chromium-based browser (such as Google Chrome, Microsoft Edge, or [Brave](https://brave.com/))
+
+[Live Demo](https://jinyoungch0i.github.io/checkedin./) & [Source Code](https://github.com/jinyoungch0i/checkedin.)
 
 ## FAQ
 
