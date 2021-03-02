@@ -156,10 +156,16 @@ const render = () => {
 
     profiles.forEach(profile => cardContainer.removeChild(profile));
 
-    //earmark for debug item-- sorting by checkInDate (and possibly checkInTime)
-    let profilesListSorted = [];
-
-
+    //sorting by checkInDate (does not incorporate checkInTime, as of 03/02/2021)
+    profilesList.sort(function (a,b) {
+        if (a.checkInBy < b.checkInBy) {
+            return -1;
+        }
+        else if (a.checkInBy > b.checkInBy) {
+            return 1;
+        }
+        return 0;
+    })
 
     for (i = 0; i < profilesList.length; i++) {
         createProfile(profilesList[i]);
