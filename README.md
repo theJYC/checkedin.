@@ -1,4 +1,4 @@
-# CheckedIn
+# checkedin.
 
 <a href="https://jinyoungch0i.github.io/CheckedIn/">
     <img src="misc/demo.gif" alt='checkedIn dynamic demo'>
@@ -6,7 +6,9 @@
 
 #### Technologies: HTML, CSS, Object-Oriented JavaScript, DayJS, Web APIs (DOM, Web Storage)
 
-CheckedIn is an open source, browser-based CRUD application providing users with a minimalistic platform to manage their contacts and be reminded of when to get in touch with others. 
+`checkedin.` is an open source, browser-based CRUD application providing users with a minimalistic platform to manage their contacts and be reminded of when to get in touch with others. 
+
+Through the use of `localstorage` and `DOM manipulation`, `checkedin.` enables users to submit a contact that are due for a check-in and, upon page-refresh, update each contact's `daysLeft` variable to indicate whether the check-in is due/past-due, and/or signal how many days are between the check-in date and the current date of browser session. 
 
 [Live Demo](https://jinyoungch0i.github.io/CheckedIn/) & [Source Code](https://github.com/jinyoungch0i/CheckedIn)
 
