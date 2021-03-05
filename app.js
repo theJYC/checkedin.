@@ -172,6 +172,23 @@ const render = () => {
     }
 }
 
+//placeholder for the crUd functionality:
+/*
+basically, when eventlistener "update" is clicked,
+modal box will pop up with the forms filled with the previously filled info.
+when the modal is submitted,
+the old profilecard will be removed from profilesList,
+and the new profile will be created via createProfile();
+*/
+
+/*
+
+const update = () => {
+
+}
+
+*/
+
 //createProfile function enables user input to be displayed as profile cards.
 const createProfile = (item) => {
     const cardContainer = document.getElementById("card-container");
