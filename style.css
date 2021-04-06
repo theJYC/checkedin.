@@ -483,3 +483,9 @@ span[aria-label]:hover:after {
         grid-template-columns: repeat(1, 1fr);
     }
 }
+
+/*placeholder media query
+which will be activated when max-width is mobile width;
+js will trigger the body display to none/hidden
+and will display instead an element
+which tells users to access the site on mobile*/
