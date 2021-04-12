@@ -124,9 +124,12 @@ p {
 #checkedin {
     text-decoration: none;
     font-weight: normal;
-    color: #575555;
+    color: #666464;
 }
 
+#checkedin:hover {
+    color: #474545;
+}
 
 .modal {
     position: absolute;
