@@ -60,9 +60,10 @@ button {
     border: 2.75px solid #757575;
     text-align: center;
     z-index: 20;
-    margin-top: 75%;
-    margin-right: 30%;
-    margin-left: 30%;
+    margin-top: 65%;
+    margin-right: 15%;
+    margin-left: 15%;
+    font-size: 3.50rem;
 }
 
 
