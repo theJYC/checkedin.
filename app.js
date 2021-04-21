@@ -5,13 +5,64 @@ dayjs().format()
 const toggleModal = () => {
     document.querySelector(".modal") //selecting the modal element
     .classList.toggle("modal--hidden"); //call the classlist that hides the class
+    resetModal();
 };
+
+//a function that resets placholder text for modal popup
+//(important feature with the update functionality)
+const resetModal = () => {
+    document.getElementById("modaltitle").innerHTML = "new check-in";
+    document.getElementById("first-name").placeholder = "first name";
+    document.getElementById("last-name").placeholder = "last initial";
+    document.getElementById("notes-input").placeholder = "";
+    document.getElementById("check-in-by").placeholder = "YYYY-MM-DD";
+    document.getElementById("check-in-time").placeholder = "09:00";
+}
+
 
 //eventlistener for when 'add contact' button is pressed
 document.querySelector(".addContact").addEventListener("click", toggleModal);
 
 //another eventlistener for when "×" (close) button inside the modal is clicked
-document.querySelector("#close").addEventListener("click", toggleModal);
+document.querySelector("#close").addEventListener("click", () => {
+    toggleModal();
+    resetModal();
+});
+
+//a function that adds/removes display:hidden function of prefilled modal form
+const toggleUpdate = (item) => {
+    document.querySelector(".modal") //selecting the modal element
+    .classList.toggle("modal--hidden"); //call the classlist that hides the class
+
+    document.getElementById("modaltitle").innerHTML = "edit check-in";
+
+    //prefill the fields with the profile card values:
+
+    console.log(item);
+    let profileToUpdate = profilesList[item]
+    console.log(profileToUpdate);
+
+    //first the names (stored in str format)
+    document.getElementById("first-name").value = profileToUpdate.firstName;
+    document.getElementById("last-name").value = profileToUpdate.lastInitial ? profileToUpdate.lastInitial[0] : "";
+
+    //then, prefilling the notes text box with the notes (str format in localStorage)
+    document.getElementById("notes-input").value = profileToUpdate.notes;
+
+    //then, the date (stored as e.g. "2021-04-21", and time (e.g. "06:00"):
+    document.getElementById("check-in-by").value = profileToUpdate.checkInBy;
+    document.getElementById("check-in-time").value = profileToUpdate.checkInTime;
+
+    //if update is submitted, reset the modal & delete the existing card!
+    document.querySelector("#submit").addEventListener("click", () => {
+        resetModal();
+        profilesList.splice(profilesList.indexOf(item),1);
+        saveToLocalStorage();
+        render();
+    });
+    document.querySelector("#close").addEventListener("click", resetModal);
+
+};
 
 //Object constructor for profile to-be-submitted
 class Profile {
@@ -200,8 +251,10 @@ const createProfile = (item) => {
     const notesSpan = document.createElement("span");
     const daysLeftDiv = document.createElement("div");
     const btnWrapper = document.createElement("div");
-    const checkedInBtn = document.createElement("button");
+    const updateBtn = document.createElement("button");
     const clearBtn = document.createElement("button");
+    const checkedInWrapper = document.createElement("div");
+    const checkedInBtn = document.createElement("button");
 
     //shaping the profile with .card & indexing each profile
 
@@ -287,11 +340,26 @@ const createProfile = (item) => {
     }
     profileDiv.appendChild(notesSpan);
 
-    //add button wrapper to encapsulate the two btns and have them aligned side-by-side
+    //add button wrapper to encapsulate the two btns on top and have them aligned side-by-side
     btnWrapper.classList.add("btnwrapper");
     profileDiv.appendChild(btnWrapper);
 
-    //next, format the checkedInBtn
+    //next, format the updateBtn; this will be to the left of clearBtn
+    updateBtn.classList.add("updatebtn");
+    updateBtn.textContent = "update";
+    btnWrapper.appendChild(updateBtn);
+
+    //format the clearBtn
+    clearBtn.classList.add("clearbtn");
+    clearBtn.textContent = "clear";
+    btnWrapper.appendChild(clearBtn);
+
+    //checkedInBtn is going to be double width of other two btns,
+    //so will be enclosed within a separate wrapper:
+    checkedInWrapper.classList.add("checkedinwrapper");
+    profileDiv.appendChild(checkedInWrapper);
+
+    //then, format the checkedInBtn & append to its own wrapper
     checkedInBtn.classList.add("checkedinbtn");
     if (!item.checkedIn) {
         checkedInBtn.textContent = "pending"
@@ -300,16 +368,18 @@ const createProfile = (item) => {
         checkedInBtn.textContent = "complete";
         checkedInBtn.style.backgroundColor = "#607bbd";
     }
-    btnWrapper.appendChild(checkedInBtn);
-
-    //lastly, format the clearBtn
-    clearBtn.classList.add("clearbtn");
-    clearBtn.textContent = "clear";
-    clearBtn.setAttribute("id", "clearBtn")
-    btnWrapper.appendChild(clearBtn);
+    checkedInWrapper.appendChild(checkedInBtn);
 
     //finally, adding the fully-done profileDiv to the list (#card-container)
     cardContainer.appendChild(profileDiv);
+
+    //eventlistener for when update button is pressed
+    updateBtn.addEventListener("click", () => {
+        //first, toggle modal, but with all fields filled in with prior info.
+        toggleUpdate(profilesList.indexOf(item));
+        saveToLocalStorage();
+        render();
+    })
 
     //eventlistener for when clear button is pressed
     clearBtn.addEventListener("click", () => {
