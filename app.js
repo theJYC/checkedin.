@@ -1,27 +1,28 @@
 //a one-liner snippet to incorpate dayjs library
 dayjs().format()
 
-//a function that adds/removes display: hidden function of modal
-const toggleModal = () => {
-    document.querySelector(".modal") //selecting the modal element
-    .classList.toggle("modal--hidden"); //call the classlist that hides the class
-    resetModal();
-};
-
 //a function that resets placholder text for modal popup
 //(important feature with the update functionality)
 const resetModal = () => {
     document.getElementById("modaltitle").innerHTML = "new check-in";
-    document.getElementById("first-name").placeholder = "first name";
-    document.getElementById("last-name").placeholder = "last initial";
-    document.getElementById("notes-input").placeholder = "";
-    document.getElementById("check-in-by").placeholder = "YYYY-MM-DD";
-    document.getElementById("check-in-time").placeholder = "09:00";
+    document.getElementById("first-name").value = "";
+    document.getElementById("last-name").value = "";
+    document.getElementById("notes-input").value = "";
+    document.getElementById("check-in-by").value = "";
+    document.getElementById("check-in-time").value = "09:00";
 }
 
+//a function that adds/removes display: hidden function of modal
+const toggleModal = () => {
+    document.querySelector(".modal") //selecting the modal element
+    .classList.toggle("modal--hidden"); //call the classlist that hides the class
+};
 
 //eventlistener for when 'add contact' button is pressed
-document.querySelector(".addContact").addEventListener("click", toggleModal);
+document.querySelector(".addContact").addEventListener("click", () => {
+    resetModal();
+    toggleModal();
+});
 
 //another eventlistener for when "×" (close) button inside the modal is clicked
 document.querySelector("#close").addEventListener("click", () => {
@@ -56,7 +57,8 @@ const toggleUpdate = (item) => {
     //if update is submitted, reset the modal & delete the existing card!
     document.querySelector("#submit").addEventListener("click", () => {
         resetModal();
-        profilesList.splice(profilesList.indexOf(item),1);
+        //having the below line prevented the new profile from being added upon [add contact -> submit]
+        // profilesList.splice(profilesList.indexOf(item),1);
         saveToLocalStorage();
         render();
     });
