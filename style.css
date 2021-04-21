@@ -315,7 +315,7 @@ p {
     flex-direction: column;
     align-items: center;
     width: 250px;
-    height: 392.5px;
+    height: 425.5px;
     background-color: #e6e7eb;
     border-radius: 0.75rem;
     border: solid #827f7f;
@@ -352,6 +352,7 @@ p {
     text-align: center;
     height: 15%;
     border-bottom: solid #827f7f;
+    margin-bottom:;
 }
 
 .nameOverDue {
@@ -365,7 +366,7 @@ p {
 }
 
 .datetext {
-    margin-top: 20px;
+    margin-top: 15px;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
@@ -435,19 +436,7 @@ span[aria-label]:hover:after {
 .btnwrapper {
     margin-top: 15px;
     margin-bottom: 10px;
-}
-
-.checkedinbtn { /*green button with white 'checked in' text*/
-    border-radius: 0.75rem;
-    border: 2.75px solid #827f7f;
-    width: 85px;
-    height: 50px;
-    color: #fff;
-    font-size: 17px;
-    text-align: center;
-    display: inline-block;
-    float: left;
-    margin-right: 8px;
+    display: flex;
 }
 
 .clearbtn {
@@ -459,7 +448,8 @@ span[aria-label]:hover:after {
     background-color: #C26965;
     font-size: 18px;
     display: inline-block;
-    float: left;
+    float: right;
+    margin-left: 2.5px;
 }
 
 .clearbtn:hover {
@@ -469,6 +459,40 @@ span[aria-label]:hover:after {
 .clearbtn:active {
     background-color: #9c5652;
 }
+
+.updatebtn {
+    border-radius: 0.75rem;
+    border: 2.75px solid #827f7f;
+    width: 80px;
+    height: 50px;
+    color: #fff;
+    background-color: #8c7d6c;
+    font-size: 17px;
+    display: inline-block;
+    float: left;
+    margin-right: 2.5px;
+}
+
+.updatebtn:hover {
+    background-color: #7d6f60;
+}
+
+.updatebtn:active {
+    background-color: #6b5f52;
+}
+
+.checkedinbtn { /*green button with white 'checked in' text*/
+    border-radius: 0.75rem;
+    border: 2.75px solid #827f7f;
+    width: 165px;
+    height: 50px;
+    color: #fff;
+    font-size: 18.5px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
 
 #gif {
     margin-top: 30px;
