@@ -2,7 +2,7 @@
 dayjs().format()
 
 //a function that resets placholder text for modal popup
-//(important feature with the update functionality)
+// (important feature with the update functionality in mind)
 const resetModal = () => {
     document.getElementById("modaltitle").innerHTML = "new check-in";
     document.getElementById("first-name").value = "";
@@ -12,7 +12,7 @@ const resetModal = () => {
     document.getElementById("check-in-time").value = "09:00";
 }
 
-//a function that adds/removes display: hidden function of modal
+//a function that displays/hides modal popup
 const toggleModal = () => {
     document.querySelector(".modal") //selecting the modal element
     .classList.toggle("modal--hidden"); //call the classlist that hides the class
@@ -20,6 +20,8 @@ const toggleModal = () => {
 
 //eventlistener for when 'add contact' button is pressed
 document.querySelector(".addContact").addEventListener("click", () => {
+    //invoking resetModal() function is integral
+    //since otherwise the form will be filled with [update] values of existing profilecard
     resetModal();
     toggleModal();
 });
@@ -30,7 +32,8 @@ document.querySelector("#close").addEventListener("click", () => {
     resetModal();
 });
 
-//a function that adds/removes display:hidden function of prefilled modal form
+//a function that adds/removes display:hidden function of *prefilled* modal form
+//for the purpose of updating profile:
 const toggleUpdate = (item) => {
     document.querySelector(".modal") //selecting the modal element
     .classList.toggle("modal--hidden"); //call the classlist that hides the class
@@ -39,36 +42,43 @@ const toggleUpdate = (item) => {
 
     //prefill the fields with the profile card values:
 
-    console.log(item);
-    let profileToUpdate = profilesList[item]
-    console.log(profileToUpdate);
+    console.log(item) // output is the specific Profile object
+    console.log(item.randomId); // output is the randomId tied to the specific Profile object
 
     //first the names (stored in str format)
-    document.getElementById("first-name").value = profileToUpdate.firstName;
-    document.getElementById("last-name").value = profileToUpdate.lastInitial ? profileToUpdate.lastInitial[0] : "";
+    document.getElementById("first-name").value = item.firstName;
+    document.getElementById("last-name").value = item.lastInitial ? item.lastInitial[0] : "";
 
     //then, prefilling the notes text box with the notes (str format in localStorage)
-    document.getElementById("notes-input").value = profileToUpdate.notes;
+    document.getElementById("notes-input").value = item.notes;
 
     //then, the date (stored as e.g. "2021-04-21", and time (e.g. "06:00"):
-    document.getElementById("check-in-by").value = profileToUpdate.checkInBy;
-    document.getElementById("check-in-time").value = profileToUpdate.checkInTime;
+    document.getElementById("check-in-by").value = item.checkInBy;
+    document.getElementById("check-in-time").value = item.checkInTime;
 
-    //if update is submitted, reset the modal & delete the existing card!
+    //if update is submitted, reset the modal & delete the existing card (which can be found via randomId):
     document.querySelector("#submit").addEventListener("click", () => {
         resetModal();
-        //having the below line prevented the new profile from being added upon [add contact -> submit]
-        // profilesList.splice(profilesList.indexOf(item),1);
+
+        //logging the unique randomId for existing card for debugging
+        console.log("this profilecard has the randomId of: ", item.randomId);
+
+        //remove the og profilecard (with the referenced randomId) from the list!
+        // 0): get index of original profilecard with above-logged randomId:
+        const removeIndex = profilesList.map(item => item.randomId).indexOf(item.randomId)
+        // 1): remove the profilecard
+        profilesList.splice(removeIndex, 1);
+
         saveToLocalStorage();
         render();
     });
+    //to make sure that once the [x] is clicked on updatemodal, the field values are reset.
     document.querySelector("#close").addEventListener("click", resetModal);
-
 };
 
 //Object constructor for profile to-be-submitted
 class Profile {
-    constructor(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn) {
+    constructor(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn, randomId) {
         this.firstName = firstName; // e.g. "Fredrick"
         this.lastInitial = lastInitial; // e.g. "T."
         this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
@@ -76,6 +86,7 @@ class Profile {
         this.checkInTime = checkInTime; // e.g. "3:00pm"
         this.daysLeft = daysLeft; // e.g. "3 days left"
         this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
+        this.randomId = randomId; // e.g. "6ab811e529". this is the unique identifier for each created profile (and reference when updated)
     }
 }
 
@@ -127,6 +138,25 @@ const calculateDueDate = date => {
 //to be used locally in addProfileToList:
 let newProfile;
 
+// added post-crUd functionality integration! ---
+
+//in order to best reference profile cards other than referencing via their indexes,
+// (which was discovered to be problematic when the update functionality is involved
+//  since the list will be dynamically changing; i.e. when the checkin profile is updated to a different date
+//  which will change the order (i.e. change its index in the profilesList array)
+
+//the function below generates a random hex string to give as id attribute to each profile card
+//so that each profile card can be referenced more precisely when performing crUd algorithm:
+const generateRandomId = () => {
+    let output = '';
+    //this is to create a 15-digit random hexadecimal string (10 digits so that id overlap btwn profiles is ~slim~)
+    for (let i = 0; i < 10; ++i) {
+        output += (Math.floor(Math.random() * 16)).toString(16);
+    }
+    return output;
+}
+// -------
+
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
     //consoling out to debug function
@@ -158,6 +188,8 @@ const addProfileToList = () => {
 
     this.checkInTime = document.getElementById("check-in-time").value;
 
+    this.randomId = generateRandomId();
+
     //set checkedIn default value to false (i.e. "pending")
     //and staged for 'click' eventlistener that will convert it "complete"
     this.checkedIn = false;
@@ -165,7 +197,7 @@ const addProfileToList = () => {
     this.daysLeft = `${calculateDueDate(this.checkInBy)}`;
 
     //newProfile to be created and populated with the grabbed user input
-    newProfile = new Profile(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn);
+    newProfile = new Profile(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn, randomId);
     console.log(newProfile);
 
     //newly constructed profile to populate the profilesList array defined above
@@ -224,23 +256,6 @@ const render = () => {
         createProfile(profilesList[i]);
     }
 }
-
-//placeholder for the crUd functionality:
-/*
-basically, when eventlistener "update" is clicked,
-modal box will pop up with the forms filled with the previously filled info.
-when the modal is submitted,
-the old profilecard will be removed from profilesList,
-and the new profile will be created via createProfile();
-*/
-
-/*
-
-const update = () => {
-
-}
-
-*/
 
 //createProfile function enables user input to be displayed as profile cards.
 const createProfile = (item) => {
@@ -378,7 +393,9 @@ const createProfile = (item) => {
     //eventlistener for when update button is pressed
     updateBtn.addEventListener("click", () => {
         //first, toggle modal, but with all fields filled in with prior info.
-        toggleUpdate(profilesList.indexOf(item));
+
+        //arg (item) for toggleUpdate to be the specific profile object created via createProfile():
+        toggleUpdate(item);
         saveToLocalStorage();
         render();
     })
