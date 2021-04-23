@@ -18,6 +18,13 @@ const toggleModal = () => {
     .classList.toggle("modal--hidden"); //call the classlist that hides the class
 };
 
+//eventlistener for when 'esc' is pressed; to close modalform:
+document.addEventListener("keydown", e => {
+    if(e.keyCode == 27) {
+        toggleModal();
+    }
+});
+
 //eventlistener for when 'add contact' button is pressed
 document.querySelector(".addContact").addEventListener("click", () => {
     //invoking resetModal() function is integral
