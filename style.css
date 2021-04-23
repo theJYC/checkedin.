@@ -302,6 +302,8 @@ p {
 
 #card-container {
     display: flex;
+    /*flex-wrap prevents the cards to display squished
+    and instead let cards retain their shape while rolling over to the next row*/
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: row;
