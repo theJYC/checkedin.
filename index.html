@@ -60,14 +60,14 @@ https://github.com/jinyoungch0i/checkedin.
             </div>
             <form id="form">
                 <p id="modaltitle">new check-in</p>
-                <input id="first-name" required="required" class="namefield" type="text" placeholder="first name" autocomplete="off"/>
-                <input id="last-name" required="required" class="namefield" type="text" placeholder="last initial" maxlength="1" autocomplete="off"/>
+                <input id="first-name" name="firstName" required="required" class="namefield" type="text" placeholder="first name" autocomplete="off"/>
+                <input id="last-name" name="lastInitial" required="required" class="namefield" type="text" placeholder="last initial" maxlength="1" autocomplete="off"/>
                 <p id="notes-text">notes:</p>
-                <textarea id="notes-input" placeholder="" rows="4" style="width:287px; height:73px" required></textarea>
+                <textarea id="notes-input" name="notes" placeholder="" rows="4" style="width:287px; height:73px" required></textarea>
                 <p id="checkInText">check in by:</p>
                 <!-- date placeholder value indicated below is compatible with safari -->
-                <input name="checkinby" id="check-in-by" required="required" placeholder="YYYY-MM-DD" class="datefield" type="date" required/>
-                <input name="checkintime" id="check-in-time" required="required" type="time" value="09:00" required/>
+                <input  id="check-in-by" name="checkInBy" required="required" placeholder="YYYY-MM-DD" class="datefield" type="date" required/>
+                <input id="check-in-time" name="checkInTime" required="required" type="time" value="09:00" required/>
                 <input type="submit" form="form" id="submit" value="submit"/>
             </form>
         </div>
