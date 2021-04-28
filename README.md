@@ -1,7 +1,7 @@
 # checkedin.
 
 <a href="https://jinyoungch0i.github.io/checkedin./">
-    <img src="misc/demo.gif" alt='checkedIn dynamic demo'>
+    <img src="misc/demo-resized.gif" alt='checkedIn dynamic demo'>
 </a>
 
 #### Technologies: HTML, CSS, Object-Oriented JavaScript, DayJS, Web APIs (DOM, Web Storage)
