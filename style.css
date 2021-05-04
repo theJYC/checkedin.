@@ -264,6 +264,7 @@ p {
     border-radius: 0.25rem;
     border: 2.75px solid #757575;
     padding: .2rem;
+    outline-color: #757171;
 }
 
 #submit:hover {
@@ -272,6 +273,24 @@ p {
 
 #submit:active {
     background-color: #5c805c;
+}
+
+#update {
+    background-color: #C26965;
+    color: white;
+    font-weight: normal;
+    border-radius: 0.25rem;
+    border: 2.75px solid #757575;
+    padding: .2rem;
+    outline-color: #757171;
+}
+
+#update:hover {
+    background-color: #b3615d;
+}
+
+#update:active {
+    background-color: #9c5652;
 }
 
 .modal_closebar {
