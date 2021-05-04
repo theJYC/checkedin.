@@ -34,9 +34,8 @@ document.querySelector(".addContact").addEventListener("click", () => {
     //invoking resetModal() function is integral
     //since otherwise the form will be filled with [update] values of existing profilecard
 
-    //displaying the submit button (selectively, rather than also displaying "update" form btn):
-    document.getElementById("submit").classList.toggle("button--hidden");
-
+    //display submit button (by removing button--hidden class)
+    document.getElementById("submit").classList.toggle("button--hidden")
     resetModal();
     toggleModal();
 });
@@ -62,9 +61,8 @@ const toggleUpdate = (item) => {
 
 
     //prefill the fields with the profile card values:
-    console.log(item) // output is the specific Profile object
-    console.log(item.randomId); // output is the randomId tied to the specific Profile object
-    //first the names (stored in str format)
+    console.log("profile to update:", item) // output is the specific Profile object
+
     document.getElementById("first-name").value = item.firstName;
     document.getElementById("last-name").value = item.lastInitial ? item.lastInitial[0] : "";
     //then, prefilling the notes text box with the notes (str format in localStorage)
@@ -74,8 +72,9 @@ const toggleUpdate = (item) => {
     document.getElementById("check-in-time").value = item.checkInTime;
 
     //if update is submitted, reset the modal & delete the existing card (which can be found via randomId):
-    document.querySelector("#update").addEventListener("click", () => {
-        resetModal();
+    document.querySelector("#update").addEventListener("click", (event) => {
+        event.preventDefault();
+
         //logging the unique randomId for existing card for debugging
         console.log("this profilecard has the randomId of: ", item.randomId);
         //remove the og profilecard (with the referenced randomId) from the list!
@@ -84,9 +83,12 @@ const toggleUpdate = (item) => {
         // 1): remove the profilecard
         profilesList.splice(removeIndex, 1);
 
-        //add the newly edited profilecard to profilesList:
-        saveToLocalStorage();
+        addProfileToList();
+        resetModal();
         toggleModal();
+
+        //to hide "update" button from modal display:
+        document.getElementById("update").classList.toggle("button--hidden");
     });
     //to make sure that once the [x] is clicked on updatemodal, the field values are reset.
     document.querySelector("#close").addEventListener("click", resetModal);
@@ -114,16 +116,14 @@ const calculateDueDate = date => {
     let dateToday = dayjs();
     //retrieve the user-input check-in date in "YYYY-MM-DD" format
     let datePicked = dayjs(date);
-    //debugging purpose-- logging dayjs functionality to console
-    console.log("dayjs is incorporated successfully");
+
     //diff. between current date & check-in date was calculated to its floating point value
     //instead of the integer value, since the former gives more accurate date calc.
     let inXDaysFloat = datePicked.diff(dateToday, "days", true);
-    //for debugging purposes
-    console.log(`${inXDaysFloat} days in float`)
+
     //e.g. 1.1234 days need to be converted to 2 day(s), not 1 day(s). therefore Math.ceil():
     let inXDays = Math.ceil(inXDaysFloat);
-    console.log(inXDays);
+
     if (inXDays == -1) {
         return `yesterday`
     }
@@ -162,8 +162,6 @@ const generateRandomId = () => {
 // -------
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
-    //consoling out to debug function
-    console.log("submitting new profile...");
     //firstname to be stored as a variable to be manipulated for formatting below
     let firstNameStr = document.getElementById("first-name").value;
     //firstname input to make sure formatted output is e.g. 'Firstname'
@@ -192,17 +190,14 @@ const addProfileToList = () => {
     this.daysLeft = `${calculateDueDate(this.checkInBy)}`;
     //newProfile to be created and populated with the grabbed user input
     newProfile = new Profile(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn, randomId);
-    console.log(newProfile);
+    console.log("new profile:", newProfile);
     //newly constructed profile to populate the profilesList array defined above
     profilesList.push(newProfile);
     //log profilesList array with the user input pushed as last index.
     console.log(profilesList);
     saveToLocalStorage();
-    console.log("saved to local storage");
     render();
     form.reset();
-    //final console.log to make sure function is working from top to bottom
-    console.log("profile submitted successfully")
 }
 // event listener to add profile to list when form is submitted
 const submitButton = document.getElementById("submit");
@@ -281,7 +276,7 @@ const createProfile = (item) => {
     profileDiv.appendChild(dateDiv);
     //next, the time of CheckIn
     timeDiv.classList.add("time");
-    console.log(item.checkInTime);
+
     //firstly, checking that item.checkInTime input exists;
     //this is the debug solution to item.checkInTime.slice() method throwing an error on undefined
     //when no profile has been added to localstorage.
@@ -295,9 +290,7 @@ const createProfile = (item) => {
     let checkInHourInt = parseInt(checkInHourStr);
     let checkInMinutes = item.checkInTime.slice(3); // grabbing minutes (00 to 59)
     let formattedTime = "";
-    console.log(checkInHourInt); //str "00" to "12"
-    console.log(typeof checkInHourInt)
-    console.log(checkInMinutes);
+
     if (checkInHourInt == 0) {
         checkInHourInt = 12;
         formattedTime = `${checkInHourInt}:${checkInMinutes}am`;
@@ -314,7 +307,6 @@ const createProfile = (item) => {
     //next, display text for daysLeft
     daysLeftDiv.classList.add("daysLeft");
     daysLeftDiv.textContent = calculateDueDate(item.checkInBy);
-    console.log(daysLeftDiv.textContent);
     profileDiv.appendChild(daysLeftDiv);
     //next, add the notes display ('↠ notes ↞', with content available on mouseover)
     notesSpan.classList.add("notes");
