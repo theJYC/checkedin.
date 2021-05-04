@@ -280,7 +280,7 @@ p {
 }
 
 #update {
-    background-color: #C26965;
+    background-color: #8c7d6c;
     color: white;
     font-weight: normal;
     border-radius: 0.25rem;
@@ -290,11 +290,11 @@ p {
 }
 
 #update:hover {
-    background-color: #b3615d;
+    background-color: #7d6f60;
 }
 
 #update:active {
-    background-color: #9c5652;
+    background-color: #6b5f52;
 }
 
 .modal_closebar {
