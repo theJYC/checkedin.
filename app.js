@@ -72,6 +72,7 @@ const toggleUpdate = (item) => {
     //then, the date (stored as e.g. "2021-04-21", and time (e.g. "06:00"):
     document.getElementById("check-in-by").value = item.checkInBy;
     document.getElementById("check-in-time").value = item.checkInTime;
+
     //if update is submitted, reset the modal & delete the existing card (which can be found via randomId):
     document.querySelector("#update").addEventListener("click", () => {
         resetModal();
@@ -82,8 +83,10 @@ const toggleUpdate = (item) => {
         const removeIndex = profilesList.map(item => item.randomId).indexOf(item.randomId)
         // 1): remove the profilecard
         profilesList.splice(removeIndex, 1);
+
+        //add the newly edited profilecard to profilesList:
         saveToLocalStorage();
-        render();
+        toggleModal();
     });
     //to make sure that once the [x] is clicked on updatemodal, the field values are reset.
     document.querySelector("#close").addEventListener("click", resetModal);
@@ -140,6 +143,7 @@ const calculateDueDate = date => {
 //initialising newProfile as an undefined variable on the global scope
 //to be used locally in addProfileToList:
 let newProfile;
+
 // added post-crUd functionality integration! ---
 //in order to best reference profile cards other than referencing via their indexes,
 // (which was discovered to be problematic when the update functionality is involved
@@ -150,7 +154,7 @@ let newProfile;
 const generateRandomId = () => {
     let output = '';
     //this is to create a 15-digit random hexadecimal string (10 digits so that id overlap btwn profiles is ~slim~)
-    for (let i = 0; i < 10; ++i) {
+    for (let i = 0; i < 10; i++) {
         output += (Math.floor(Math.random() * 16)).toString(16);
     }
     return output;
@@ -203,6 +207,9 @@ const addProfileToList = () => {
 // event listener to add profile to list when form is submitted
 const submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", (event) => {
+    if (!document.getElementById("submit").classList.contains("button--hidden")) {
+        document.getElementById("submit").classList.toggle("button--hidden");
+    }
     //preventDefault prevents the form from its default activity; adding to the root url with form input queries.
     event.preventDefault();
     addProfileToList();
@@ -214,6 +221,7 @@ const saveToLocalStorage = () => {
 //preventing user from selecting past date on date input (further info. in COMMENTS)
 const today = new Date().toISOString().split("T")[0];
 document.getElementsByName("checkinby")[0].setAttribute("min", today);
+
 const render = () => {
     const cardContainer = document.getElementById("card-container");
     const profiles = document.querySelectorAll(".profile");
