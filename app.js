@@ -46,6 +46,10 @@ document.querySelector("#close").addEventListener("click", () => {
     if (!document.getElementById("submit").classList.contains("button--hidden")) {
         document.getElementById("submit").classList.toggle("button--hidden");
     }
+
+    if (!document.getElementById("update").classList.contains("button--hidden")) {
+    document.getElementById("update").classList.toggle("button--hidden");
+    }
     toggleModal();
     resetModal();
 });
