@@ -13,12 +13,18 @@ const resetModal = () => {
 //a function that displays/hides modal popup
 const toggleModal = () => {
     document.querySelector(".modal") //selecting the modal element
-    .classList.toggle("modal--hidden"); //call the classlist that hides the class
+    .classList.toggle("modal--hidden"); //"turning off" the classlist that hides the class
 };
 
 //eventlistener for when 'esc' is pressed; to close modalform:
 document.addEventListener("keydown", e => {
     if(e.keyCode == 27) {
+        if (!document.getElementById("submit").classList.contains("button--hidden")) {
+            document.getElementById("submit").classList.toggle("button--hidden");
+        }
+        else if (!document.getElementById("update").classList.contains("button--hidden")) {
+            document.getElementById("update").classList.toggle("button--hidden");
+        }
         toggleModal();
     }
 });
@@ -27,11 +33,19 @@ document.addEventListener("keydown", e => {
 document.querySelector(".addContact").addEventListener("click", () => {
     //invoking resetModal() function is integral
     //since otherwise the form will be filled with [update] values of existing profilecard
+
+    //displaying the submit button (selectively, rather than also displaying "update" form btn):
+    document.getElementById("submit").classList.toggle("button--hidden");
+
     resetModal();
     toggleModal();
 });
 //another eventlistener for when "×" (close) button inside the modal is clicked
 document.querySelector("#close").addEventListener("click", () => {
+
+    if (!document.getElementById("submit").classList.contains("button--hidden")) {
+        document.getElementById("submit").classList.toggle("button--hidden");
+    }
     toggleModal();
     resetModal();
 });
@@ -41,6 +55,8 @@ const toggleUpdate = (item) => {
     document.querySelector(".modal") //selecting the modal element
     .classList.toggle("modal--hidden"); //call the classlist that hides the class
     document.getElementById("modaltitle").innerHTML = "edit check-in";
+
+
     //prefill the fields with the profile card values:
     console.log(item) // output is the specific Profile object
     console.log(item.randomId); // output is the randomId tied to the specific Profile object
@@ -53,7 +69,7 @@ const toggleUpdate = (item) => {
     document.getElementById("check-in-by").value = item.checkInBy;
     document.getElementById("check-in-time").value = item.checkInTime;
     //if update is submitted, reset the modal & delete the existing card (which can be found via randomId):
-    document.querySelector("#submit").addEventListener("click", () => {
+    document.querySelector("#update").addEventListener("click", () => {
         resetModal();
         //logging the unique randomId for existing card for debugging
         console.log("this profilecard has the randomId of: ", item.randomId);
@@ -328,7 +344,11 @@ const createProfile = (item) => {
     cardContainer.appendChild(profileDiv);
     //eventlistener for when update button is pressed
     updateBtn.addEventListener("click", () => {
-        //first, toggle modal, but with all fields filled in with prior info.
+
+        //displaying the updateform button (selectively, rather than also displaying "update" form btn):
+        if (document.getElementById("update").classList.contains("button--hidden")) {
+            document.getElementById("update").classList.toggle("button--hidden");
+        }
         //arg (item) for toggleUpdate to be the specific profile object created via createProfile():
         toggleUpdate(item);
         saveToLocalStorage();

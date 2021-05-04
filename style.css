@@ -257,6 +257,10 @@ p {
     outline-color: #757171;
 }
 
+.button--hidden {
+    display: none;
+}
+
 #submit {
     background-color: #6c966c;
     color: white;
@@ -281,7 +285,7 @@ p {
     font-weight: normal;
     border-radius: 0.25rem;
     border: 2.75px solid #757575;
-    padding: .2rem;
+    padding: .25rem;
     outline-color: #757171;
 }
 
