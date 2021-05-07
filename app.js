@@ -206,8 +206,8 @@ submitButton.addEventListener("click", (event) => {
     }
     //preventDefault prevents the form from its default activity; adding to the root url with form input queries.
     event.preventDefault();
-    addProfileToList();
     toggleModal();
+    addProfileToList();
 });
 const saveToLocalStorage = () => {
     localStorage.setItem(`profilesList`, JSON.stringify(profilesList));
