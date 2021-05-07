@@ -2,6 +2,21 @@
 dayjs().format()
 //a function that resets placholder text for modal popup
 // (important feature with the update functionality in mind)
+
+//Object constructor for profile to-be-submitted
+class Profile {
+    constructor(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn, randomId) {
+        this.firstName = firstName; // e.g. "Fredrick"
+        this.lastInitial = lastInitial; // e.g. "T."
+        this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
+        this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
+        this.checkInTime = checkInTime; // e.g. "3:00pm"
+        this.daysLeft = daysLeft; // e.g. "3 days left"
+        this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
+        this.randomId = randomId; // e.g. "6ab811e529". this is the unique identifier for each created profile (and reference when updated)
+    }
+}
+
 const resetModal = () => {
     document.getElementById("modaltitle").innerHTML = "new check-in";
     document.getElementById("first-name").value = "";
@@ -61,7 +76,7 @@ const toggleUpdate = (item) => {
 
 
     //prefill the fields with the profile card values:
-    console.log("profile to update:", item) // output is the specific Profile object
+    console.log("profile to update:", item.randomId) // output is the specific Profile object
 
     document.getElementById("first-name").value = item.firstName;
     document.getElementById("last-name").value = item.lastInitial ? item.lastInitial[0] : "";
@@ -73,16 +88,10 @@ const toggleUpdate = (item) => {
 
     //if update is submitted, reset the modal & delete the existing card (which can be found via randomId):
     document.querySelector("#update").addEventListener("click", (event) => {
+        profilesList = profilesList.filter(item => item.randomId !== item.randomId);
         event.preventDefault();
 
-        //logging the unique randomId for existing card for debugging
-        console.log("this profilecard has the randomId of: ", item.randomId);
-        //remove the og profilecard (with the referenced randomId) from the list!
-        // 0): get index of original profilecard with above-logged randomId:
-        const removeIndex = profilesList.map(item => item.randomId).indexOf(item.randomId)
-        // 1): remove the profilecard
-        profilesList.splice(removeIndex, 1);
-
+        console.log();
         addProfileToList();
         resetModal();
         toggleModal();
@@ -93,19 +102,7 @@ const toggleUpdate = (item) => {
     //to make sure that once the [x] is clicked on updatemodal, the field values are reset.
     document.querySelector("#close").addEventListener("click", resetModal);
 };
-//Object constructor for profile to-be-submitted
-class Profile {
-    constructor(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn, randomId) {
-        this.firstName = firstName; // e.g. "Fredrick"
-        this.lastInitial = lastInitial; // e.g. "T."
-        this.notes = notes; // e.g. working in taiwan. check in about fulbright cohort!
-        this.checkInBy = checkInBy; // e.g. "01/22/21" (MM/DD/YY)
-        this.checkInTime = checkInTime; // e.g. "3:00pm"
-        this.daysLeft = daysLeft; // e.g. "3 days left"
-        this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
-        this.randomId = randomId; // e.g. "6ab811e529". this is the unique identifier for each created profile (and reference when updated)
-    }
-}
+
 //profilesList is an array that will at once be populated by user input
 //and later be saved to localStorage
 let profilesList = [];
@@ -162,11 +159,13 @@ const generateRandomId = () => {
 // -------
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
+    console.log(this);
     //firstname to be stored as a variable to be manipulated for formatting below
     let firstNameStr = document.getElementById("first-name").value;
     //firstname input to make sure formatted output is e.g. 'Firstname'
     this.firstName = firstNameStr[0].toUpperCase() + firstNameStr.substring(1).toLowerCase();
     //last initial input to be formatted to uppercase e.g. 'L'
+
     //stored as variable to check whether user has included a lastname or not
     //which will determine whether formatting is necessary or not
     let lastInitialStr = document.getElementById("last-name").value;
@@ -355,8 +354,6 @@ const createProfile = (item) => {
         }
         //arg (item) for toggleUpdate to be the specific profile object created via createProfile():
         toggleUpdate(item);
-        saveToLocalStorage();
-        render();
     })
     //eventlistener for when clear button is pressed
     clearBtn.addEventListener("click", () => {
