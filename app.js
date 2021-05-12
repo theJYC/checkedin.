@@ -88,20 +88,38 @@ const toggleUpdate = (item) => {
 
     //if update is submitted, reset the modal & delete the existing card (which can be found via randomId):
     document.querySelector("#update").addEventListener("click", (event) => {
-        profilesList = profilesList.filter(item => item.randomId !== item.randomId);
-        event.preventDefault();
 
-        console.log();
-        addProfileToList();
-        resetModal();
-        toggleModal();
+    //this removes the existing profileCard from profilesList
+    removeExistingProfile(item);
+    event.preventDefault();
+    addProfileToList();
+    resetModal();
+    toggleModal();
 
-        //to hide "update" button from modal display:
-        document.getElementById("update").classList.toggle("button--hidden");
+    //to hide "update" button from modal display:
+    document.getElementById("update").classList.toggle("button--hidden");
     });
-    //to make sure that once the [x] is clicked on updatemodal, the field values are reset.
-    document.querySelector("#close").addEventListener("click", resetModal);
 };
+
+//separate function to run when update is clicked, to remove existing profileCard from profilesList
+//based on its randomId
+
+const removeExistingProfile = (item) => {
+    console.log(item.randomId);
+
+    const index = profilesList.findIndex(profile => profile.randomId === item.randomId);
+    if (index > -1) {
+        console.log("removed: ", item.randomId);
+        profilesList.splice(index, 1);
+    }
+    else {
+        console.log("failed to remove: ", item);
+    }
+};
+
+//to make sure that once the [x] is clicked on updatemodal, the field values are reset.
+document.querySelector("#close").addEventListener("click", resetModal);
+
 
 //profilesList is an array that will at once be populated by user input
 //and later be saved to localStorage
@@ -159,7 +177,6 @@ const generateRandomId = () => {
 // -------
 //grabbing input values from 'add contact' form:
 const addProfileToList = () => {
-    console.log(this);
     //firstname to be stored as a variable to be manipulated for formatting below
     let firstNameStr = document.getElementById("first-name").value;
     //firstname input to make sure formatted output is e.g. 'Firstname'
