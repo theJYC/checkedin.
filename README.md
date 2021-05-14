@@ -47,7 +47,7 @@ In a way, `checkedin.` is similar to conventional online calendars in that it is
 
 However, the area whereby `checkedin.` excels is the layer of minimalism that is applied to the existing calendar concept, resulting in a more intuitive UX. 
 
-**Compared to other calendar applications whereby the user may get lost amidst the wide variety of recorded events & multiple synced accounts, `checkedin.` is easy to navigate and allows the user to regain control of their schedule through its minimalist UI.**
+**Compared to other calendar applications whereby the user may get lost amidst the wide variety of recorded events & multiple synced accounts, `checkedin.` is easy to navigate and allows the user to regain control of their schedule through its user-centric UI.**
 
 ### Would the author be open to adding a reminder functionality, perhaps in the form of push-notifications, etc?
 
@@ -69,4 +69,4 @@ With that said, the author is open to scaling the application upon peer feedback
 
 As a BSD-3 licensed open source application, the author would be grateful for any feedback regarding `checkedin.`'s UX. Furthermore, any developer contribution is especially welcome given the author's growing (yet limited) knowledge of software development.
 
-**Please direct all feedback via [email](mailto:jinyoungsjourney@gmail.com) and kindly submit a Pull Request for developer contribution opportunities.**   
+**Please direct all feedback via [email](mailto:jinyoungsjourney@gmail.com) and kindly submit a Pull Request for [developer contribution opportunities](https://github.com/jinyoungch0i/checkedin./blob/main/misc/debuglog.md).**   
