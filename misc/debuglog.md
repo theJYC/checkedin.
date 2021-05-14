@@ -6,7 +6,7 @@ The list is organised in the order of priority.
 
 ### Form should be validating for required fields.
 
-Upon research, it was found that form validation with pure HTML (using the inline ["required" attribute](https://github.com/jinyoungch0i/checkedin./blob/main/index.html)) may not work when the submit button element is added a "click" eventlistener. This is because, when JS is involed, the best practice is to add the eventlistener *not* to the submit button, but rather the entire form element itself. 
+Upon research, it was found that form validation with pure HTML (using the inline ["required" attribute](https://github.com/jinyoungch0i/checkedin./blob/f7baf239fbf6952ae896d82b7d1b7a2770756c31/index.html#L63-L70)) may not work when the submit button element is added a "click" eventlistener. This is because, when JS is involed, the best practice is to add the eventlistener *not* to the submit button, but rather the entire form element itself. 
 
 Knowing this doesn't provide a quick fix, however. The main reason the author could not simply add the event listener to the form is that the form currently performs **two** different types of actions:
 
