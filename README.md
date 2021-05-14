@@ -12,7 +12,7 @@ Through the use of `localstorage` and `DOM manipulation`, `checkedin.` enables u
 
 To make the most out of `checkedin.` it is encouraged to bookmark the [URL](https://jinyoungch0i.github.io/checkedin./) for ease of access, and to run it on a Chromium-based browser (such as Google Chrome, Microsoft Edge, or [Brave](https://brave.com/))
 
-[Live Demo](https://jinyoungch0i.github.io/checkedin./) & [Source Code](https://github.com/jinyoungch0i/checkedin.)
+[Live Demo](https://jinyoungch0i.github.io/checkedin./) & [Source Code](https://github.com/jinyoungch0i/checkedin.) & [Open Source Contribution Opps](https://github.com/jinyoungch0i/checkedin./blob/main/misc/debuglog.md)
 
 ## FAQ
 <!-- 
