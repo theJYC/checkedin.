@@ -405,7 +405,6 @@ const restore = () => {
         //get profilesList from localStorage in order to feed render() function with new profiles
         let objects = localStorage.getItem("profilesList");
         objects = JSON.parse(objects);
-        objects = objects.map(profile => new Profile(profile))
         profilesList = objects;
         render();
     }
