@@ -1,9 +1,7 @@
 //a one-liner snippet to incorpate dayjs library
 dayjs().format()
-//a function that resets placholder text for modal popup
-// (important feature with the update functionality in mind)
 
-//Object constructor for profile to-be-submitted
+//constructor for every new Profile object (which is to be stored in profilesList array)
 class Profile {
     constructor(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn, randomId) {
         this.firstName = firstName; // e.g. "Fredrick"
@@ -15,12 +13,9 @@ class Profile {
         this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
         this.randomId = randomId; // e.g. "6ab811e529". this is the unique identifier for each created profile (and reference when updated)
     }
-
-    setName(newName){
-        this.firstName = newName
-    }
 }
 
+//a function that "refreshes" modal form fields from "update" mode:
 const resetModal = () => {
     document.getElementById("modaltitle").innerHTML = "new check-in";
     document.getElementById("first-name").value = "";
@@ -50,34 +45,36 @@ document.addEventListener("keydown", e => {
 
 //eventlistener for when 'add contact' button is pressed
 document.querySelector(".addContact").addEventListener("click", () => {
-    //invoking resetModal() function is integral
-    //since otherwise the form will be filled with [update] values of existing profilecard
-
     //display submit button (by removing button--hidden class)
     document.getElementById("submit").classList.toggle("button--hidden")
+    //invoking resetModal() function is integral
+    //since otherwise the form will be filled with [update] values of existing profilecard
     resetModal();
     toggleModal();
 });
+
 //another eventlistener for when "×" (close) button inside the modal is clicked
 document.querySelector("#close").addEventListener("click", () => {
 
+    //if submitbtn is not hidden from modal, hide it!
     if (!document.getElementById("submit").classList.contains("button--hidden")) {
         document.getElementById("submit").classList.toggle("button--hidden");
     }
-
+    //if updatebtn is not hidden from modal, hide it too!
     if (!document.getElementById("update").classList.contains("button--hidden")) {
     document.getElementById("update").classList.toggle("button--hidden");
     }
     toggleModal();
     resetModal();
 });
-//a function that adds/removes display:hidden function of *prefilled* modal form
-//for the purpose of updating profile:
+
+//a function that adds/removes display:hidden function of *prefilled* modal
+//for the purpose of updating an existing profileCard:
 const toggleUpdate = (item) => {
     document.querySelector(".modal") //selecting the modal element
     .classList.toggle("modal--hidden"); //call the classlist that hides the class
+    //modal title to be corrected to "edit check-in" to indicate "update mode"
     document.getElementById("modaltitle").innerHTML = "edit check-in";
-
 
     //prefill the fields with the profile card values:
     console.log("profile to update:", item.randomId) // output is the specific Profile object
@@ -107,13 +104,13 @@ const toggleUpdate = (item) => {
 
     //since this eventlistener is "added" everytime toggleUpdate is invoked (upon clicking the "updateBtn" on profileCard),
     //there needs to be a mechanism that removes the eventlistener so that the event listener is not "stacking up".
+    //refer to last line of updateFunction definition (updateBtnModal.removeEventListener...)^
     updateBtnModal.addEventListener("click", updateFunction);
 
 };
 
 //separate function to run when update is clicked, to remove existing profileCard from profilesList
 //based on its randomId
-
 const removeExistingProfile = (item) => {
     console.log(item.randomId);
 
@@ -130,12 +127,11 @@ const removeExistingProfile = (item) => {
 //to make sure that once the [x] is clicked on updatemodal, the field values are reset.
 document.querySelector("#close").addEventListener("click", resetModal);
 
-
 //profilesList is an array that will at once be populated by user input
 //and later be saved to localStorage
 let profilesList = [];
 //day.js is to be used in lieu JS's native Date() object for more accuracy in date calulations
-//(see COMMENTS footnote)
+//(see: https://www.youtube.com/watch?v=-5wpm-gesOY)
 const calculateDueDate = date => {
     //retrieve today's date in "YYYY-MM-DD" format
     let dateToday = dayjs();
@@ -205,13 +201,24 @@ const addProfileToList = () => {
     }
     //notes input will have no additional formatting; just plain string data e.g. 'sample note'
     this.notes = document.getElementById("notes-input").value;
+
     //checkInBy will also be displayed as is inputted (via calendar widget or manual entry) e.g. 'YYYY-MM-DD'
     this.checkInBy = document.getElementById("check-in-by").value;
+
     this.checkInTime = document.getElementById("check-in-time").value;
+
+    //randomId is to be used to reference existing profileCard for update operation
     this.randomId = generateRandomId();
+
     //set checkedIn default value to false (i.e. "pending")
     //and staged for 'click' eventlistener that will convert it "complete"
     this.checkedIn = false;
+    //n.b. ^this means that when "updating" an exisiting profile, even if the existing profile has been "complete",
+    //the updated profilecard will show "pending".
+
+    //this is a bug but a trivial one, since majority of use cases for "update" is prior to the check-in.
+    //i.e. very unlikely that the user will want to update a profilecard if that check-in has been completed.
+
     //adding custom variable to count days left till assigned check-in date:
     this.daysLeft = `${calculateDueDate(this.checkInBy)}`;
     //newProfile to be created and populated with the grabbed user input
@@ -243,6 +250,7 @@ const saveToLocalStorage = () => {
 const today = new Date().toISOString().split("T")[0];
 document.getElementsByName("checkinby")[0].setAttribute("min", today);
 
+//rendering the created profile objects onto the browser UI,
 const render = () => {
     const cardContainer = document.getElementById("card-container");
     const profiles = document.querySelectorAll(".profile");
@@ -256,11 +264,13 @@ const render = () => {
             return 1;
         }
         return 0;
-    })
+    });
+
     for (i = 0; i < profilesList.length; i++) {
         createProfile(profilesList[i]);
-    }
-}
+    };
+};
+
 //createProfile function enables user input to be displayed as profile cards.
 const createProfile = (item) => {
     const cardContainer = document.getElementById("card-container");
@@ -276,7 +286,8 @@ const createProfile = (item) => {
     const clearBtn = document.createElement("button");
     const checkedInWrapper = document.createElement("div");
     const checkedInBtn = document.createElement("button");
-    //shaping the profile with .card & indexing each profile
+
+    //shaping the profile with card border, with nuanced difference for ongoing/overdue cards:
     //if the contact is past-due on CheckedIn, paint the card container red!
     if ((dayjs(item.checkInBy).diff(dayjs(), "days", true)) <= -1) {
         profileDiv.classList.add("profile");
@@ -287,28 +298,26 @@ const createProfile = (item) => {
         profileDiv.classList.add("profile");
         nameDiv.classList.add("name")
     }
+
     //populating the name div with user-input contact name
     nameDiv.textContent = `${item.firstName} ${item.lastInitial}`
     //indexing each contact for ease-of-reference
     profileDiv.setAttribute("id", profilesList.indexOf(item));
     profileDiv.appendChild(nameDiv)
+
     //then the dateText (a.k.a. "check-in by:" string)
     dateTextDiv.classList.add("datetext");
     dateTextDiv.textContent = "check in by:"
     profileDiv.appendChild(dateTextDiv);
+
     //next comes date
     dateDiv.classList.add("date");
     dateDiv.textContent = `${dayjs(item.checkInBy).format("MMM D")}`;
     profileDiv.appendChild(dateDiv);
+
     //next, the time of CheckIn
     timeDiv.classList.add("time");
 
-    //firstly, checking that item.checkInTime input exists;
-    //this is the debug solution to item.checkInTime.slice() method throwing an error on undefined
-    //when no profile has been added to localstorage.
-    if (!item.checkInTime) {
-        return;
-    }
     //formatting the time input raw value (e.g. "23:30")
     //to more palatable format (e.g. "11:30pm")
     let checkInHourStr = item.checkInTime.slice(0,2); //grabbing hour (00 to 23)
@@ -330,10 +339,12 @@ const createProfile = (item) => {
     }
     timeDiv.textContent = formattedTime;
     profileDiv.appendChild(timeDiv);
+
     //next, display text for daysLeft
     daysLeftDiv.classList.add("daysLeft");
     daysLeftDiv.textContent = calculateDueDate(item.checkInBy);
     profileDiv.appendChild(daysLeftDiv);
+
     //next, add the notes display ('↠ notes ↞', with content available on mouseover)
     notesSpan.classList.add("notes");
     notesSpan.textContent = "↠note↞";
@@ -345,6 +356,7 @@ const createProfile = (item) => {
         notesSpan.setAttribute("aria-label", "n/a");
     }
     profileDiv.appendChild(notesSpan);
+
     //add button wrapper to encapsulate the two btns on top and have them aligned side-by-side
     btnWrapper.classList.add("btnwrapper");
     profileDiv.appendChild(btnWrapper);
@@ -372,6 +384,7 @@ const createProfile = (item) => {
     checkedInWrapper.appendChild(checkedInBtn);
     //finally, adding the fully-done profileDiv to the list (#card-container)
     cardContainer.appendChild(profileDiv);
+
     //eventlistener for when update button is pressed
     updateBtn.addEventListener("click", (event) => {
         event.preventDefault()
@@ -382,12 +395,14 @@ const createProfile = (item) => {
         //arg (item) for toggleUpdate to be the specific profile object created via createProfile():
         toggleUpdate(item);
     })
+
     //eventlistener for when clear button is pressed
     clearBtn.addEventListener("click", () => {
         profilesList.splice(profilesList.indexOf(item),1);
         saveToLocalStorage();
         render();
     });
+
     //event listener for when checked in button is pressed
     checkedInBtn.addEventListener("click", () => {
         //when green pending btn is clicked, display the reverse state-- blue 'complete'
@@ -397,6 +412,8 @@ const createProfile = (item) => {
         render();
     });
 };
+
+//a function that restores the previously created/updated Profile objects onto UI
 const restore = () => {
     if(!localStorage.profilesList) {
         render();
@@ -409,4 +426,6 @@ const restore = () => {
         render();
     }
 }
+
+//to be run upon every time app.js script is loaded
 restore();
