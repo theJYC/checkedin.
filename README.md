@@ -14,7 +14,7 @@ To make the most out of `checkedin.` it is encouraged to bookmark the [URL](http
 
 [Live Demo](https://jinyoungch0i.github.io/checkedin./) & [Source Code](https://github.com/jinyoungch0i/checkedin.) 
 
-Open Source [contributions](https://github.com/jinyoungch0i/checkedin./blob/main/misc/debuglog.md) welcome!
+Open source [contributions](https://github.com/jinyoungch0i/checkedin./blob/main/misc/debuglog.md) welcome!
 
 ## FAQ
 <!-- 
