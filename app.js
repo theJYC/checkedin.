@@ -15,6 +15,10 @@ class Profile {
         this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
         this.randomId = randomId; // e.g. "6ab811e529". this is the unique identifier for each created profile (and reference when updated)
     }
+
+    setName(newName){
+        this.firstName = newName
+    }
 }
 
 const resetModal = () => {
@@ -86,19 +90,25 @@ const toggleUpdate = (item) => {
     document.getElementById("check-in-by").value = item.checkInBy;
     document.getElementById("check-in-time").value = item.checkInTime;
 
+    const updateBtnModal = document.querySelector("#update");
     //if update is submitted, reset the modal & delete the existing card (which can be found via randomId):
-    document.querySelector("#update").addEventListener("click", (event) => {
+    const updateFunction = (event) => {
+        //this removes the existing profileCard from profilesList
+        removeExistingProfile(item);
+        event.preventDefault();
+        addProfileToList();
+        resetModal();
+        toggleModal();
+        //to hide "update" button from modal display:
+        updateBtnModal.classList.toggle("button--hidden");
+        //to prevent the stacking up of the event listener on line 94 everytime the toggleUpdate function is invoked
+        updateBtnModal.removeEventListener("click", updateFunction);
+    }
 
-    //this removes the existing profileCard from profilesList
-    removeExistingProfile(item);
-    event.preventDefault();
-    addProfileToList();
-    resetModal();
-    toggleModal();
+    //since this eventlistener is "added" everytime toggleUpdate is invoked (upon clicking the "updateBtn" on profileCard),
+    //there needs to be a mechanism that removes the eventlistener so that the event listener is not "stacking up".
+    updateBtnModal.addEventListener("click", updateFunction);
 
-    //to hide "update" button from modal display:
-    document.getElementById("update").classList.toggle("button--hidden");
-    });
 };
 
 //separate function to run when update is clicked, to remove existing profileCard from profilesList
@@ -363,8 +373,8 @@ const createProfile = (item) => {
     //finally, adding the fully-done profileDiv to the list (#card-container)
     cardContainer.appendChild(profileDiv);
     //eventlistener for when update button is pressed
-    updateBtn.addEventListener("click", () => {
-
+    updateBtn.addEventListener("click", (event) => {
+        event.preventDefault()
         //displaying the updateform button (selectively, rather than also displaying "update" form btn):
         if (document.getElementById("update").classList.contains("button--hidden")) {
             document.getElementById("update").classList.toggle("button--hidden");
@@ -395,6 +405,7 @@ const restore = () => {
         //get profilesList from localStorage in order to feed render() function with new profiles
         let objects = localStorage.getItem("profilesList");
         objects = JSON.parse(objects);
+        objects = objects.map(profile => new Profile(profile))
         profilesList = objects;
         render();
     }
