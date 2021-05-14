@@ -4,9 +4,9 @@ This is a working documentation of currently-existent bugs that need to be addre
 
 The list is organised in the order of priority.
 
-### Form should be validating for required fields
+### Form should be validating for required fields.
 
-Upon research, it was found that form validation with pure HTML (using the inline "required" attribute) may not work when the submit button element is added a "click" eventlistener. This is because, when JS is involed, the best practice is to add the eventlistener *not* to the submit button, but rather the entire form element itself. 
+Upon research, it was found that form validation with pure HTML (using the inline ["required" attribute](https://github.com/jinyoungch0i/checkedin./blob/main/index.html)) may not work when the submit button element is added a "click" eventlistener. This is because, when JS is involed, the best practice is to add the eventlistener *not* to the submit button, but rather the entire form element itself. 
 
 Knowing this doesn't provide a quick fix, however. The main reason the author could not simply add the event listener to the form is that the form currently performs **two** different types of actions:
 
@@ -33,21 +33,25 @@ Unfortunately, working with dates in JavaScript has proven to be one of the most
 
 Immediately, the solution would be to find a way to concatenate the date and time variable (with the assumption that they would be converted to compatible string formats), and then measure the difference between the current session date (that includes the timestamp as well as date) and the concatenated string value.  
 
+### Increasing FAQ input accesibility to non-tech savvy user 
+
+Currently the FAQ is written into the README.md document of the project's root directory. In order to increase the accesibility to FAQ (and also to encourage all users to provide feedback), there will be a visible 'FAQ' hyperlink somewhere in the header section of the CheckedIn platform. 
+
 ### The app displays erroneously on mobile browsers. In particular, the hover note functionality is compromised since hover does not exist on mobile
 
 This is true. 
 
 The hover-note functionality is an integral aspect of this program and, given that it cannot be accessed on mobile, the author is pondering on ways that it can be adapted to the mobile environment. Immediately, what comes to mind is that it could be a clickable note with a pop-up textbox containing within it the note input. This could be toggled upon clicking anywhere outside the textbox when it appears. However, such solution may not be as elegant as the hover access. 
 
+That being said, the author also believes that the merit of `checkedin.` lies in the fact that the UX it aims to deliver is akin to that of an analog medium; given this fact, it may be better for `checkedin.` to solely exist on Desktop. 
+
+Hence, 'please access via desktop browser' has been integrated into mobile display until a suitable solution can be explored.
+
 ### ~~Update functionality is missing~~
 
 ~~I, the author, have been approaching the development of CheckedIn as a heuristic process. As soon as I get around to learning how to edit cards (for which the functionality will be integrated into the app.js script), update will be a live functionality.~~
 
-Update is now fully integrated into `checkedin.`.
-
-### Increasing FAQ input accesibility to non-tech savvy user 
-
-Currently the FAQ is written into the README.md document of the project's root directory. In order to increase the accesibility to FAQ (and also to encourage all users to provide feedback), there will be a visible 'FAQ' hyperlink somewhere in the header section of the CheckedIn platform. 
+~Update is now fully integrated into `checkedin.`.~
 
 ### ~~Perhaps a demo page that is referenced on the platform could enhance the accessibility of the application to a wide target user-audience~~
 
