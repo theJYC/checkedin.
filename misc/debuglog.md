@@ -13,7 +13,9 @@ Knowing this doesn't provide a quick fix, however. The main reason the author co
 1) To "submit" a new, non-existing profile
 2) To "update" an existing profile
 
-So far, the only way to make the modal perform these two independent actions has been to add the event listeners to the "submit" and "update" buttons (which are hidden/displayed via CSS) on *hypothetically~ the **same** form element. 
+So far, the only way to make the modal perform these two independent actions has been to add separate event listeners to the "submit" and "update" buttons (which are hidden/displayed via CSS) on the **same** form element. 
+
+Since different actions are required for the form in "submit" and "update" modes, simply tagging the form element with one event listener would be a messy operation.
 
 If there is a suggested way to tackle this particular bug, please kindly submit a PR!
 
