@@ -145,21 +145,11 @@ const calculateDueDate = date => {
     //e.g. 1.1234 days need to be converted to 2 day(s), not 1 day(s). therefore Math.ceil():
     let inXDays = Math.ceil(inXDaysFloat);
 
-    if (inXDays == -1) {
-        return `yesterday`
-    }
-    else if (inXDays == 0) {
-        return "today"
-    }
-    else if (inXDays < 0) {
-        return `${inXDays * -1} days ago`
-    }
-    else if (inXDays == 1) {
-        return "tomorrow"
-    }
-    else {
-        return `in ${inXDays} days`;
-    }
+    if (inXDays == -1) return `yesterday`
+    else if (inXDays == 0) return "today"
+    else if (inXDays < 0) return `${inXDays * -1} days ago`
+    else if (inXDays == 1) return "tomorrow"
+    else return `in ${inXDays} days`
 }
 //initialising newProfile as an undefined variable on the global scope
 //to be used locally in addProfileToList:
