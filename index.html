@@ -23,6 +23,7 @@ https://github.com/jinyoungch0i/checkedin.
     />
     <meta name="author" content="Jin Young Choi" />
     <!-- end of thumbnail content -->
+
 </head>
 <body>
 
@@ -32,28 +33,28 @@ https://github.com/jinyoungch0i/checkedin.
         <a id="checkedin" href="."><span>c</span>hecked<span>i</span>n<span>.</span></a>
     </header>
     <!-- coded by jinyoung -->
-    <div id="sourcecode">
+    <section id="sourcecode">
         <p>
             by
             <a id="jinyoung" class="sourcetext" target="_blank" href="https://www.jinyoung.xyz/">jinyoung</a>
         </p>
-    </div>
+    </section>
 
     <!-- popup for when accessed on mobile. hidden by default -->
-    <div id="popup">
+    <section id="popup">
             <div id="popup_window">
                 please access via desktop browser
             </div>
-    </div>
+    </section>
 
 
     <!-- add contact button -->
-    <div id="contact">
+    <section id="contact">
         <button class="addContact">add contact</button>
-    </div>
+    </section>
 
     <!-- modal form window <hidden unless 'add contact' pressed> -->
-    <div class="modal modal--hidden">
+    <section class="modal modal--hidden">
         <div class="modal_contents">
             <div class="modal_closebar">
                 <button id="close">×</button>
@@ -72,24 +73,24 @@ https://github.com/jinyoungch0i/checkedin.
                 <input type="submit" form="form" id="update" class="button--hidden" value="update"/>
             </form>
         </div>
-    </div>
+    </section>
 
     <!-- card-container to be populated when form is submitted and saved to localStorage -->
-    <div id="card-container">
-    </div>
+    <main id="card-container">
+    </main>
 
-    <div id="codeanddemo">
+    <footer id="codeanddemo">
         <p>
             <a id="demo" class="sourcetext" href="demo.html">demo</a>
              &
             <a id="coded" class="sourcetext" target="_blank" href="https://github.com/jinyoungch0i/CheckedIn/blob/main/app.js">code</a>
         </p>
-    </div>
+    </footer>
 
     <!-- Day.js global reference -->
     <script src="misc/dayjs.min.js"></script>
 
-    <!-- main .js script file is placed below day.js reference in order to run only once dayjs.min.js file is loaded first -->
+    <!-- app.js to run once above dependency (dayjs) is fully loaded -->
     <script src="app.js" type="text/javascript"></script>
 
 </body>
