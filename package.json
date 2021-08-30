@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jinyoungch0i/CheckedIn#readme",
   "dependencies": {
-    "dayjs": "^1.10.4"
+    "dayjs": "^1.10.4",
+    "dotenv": "^10.0.0"
   }
 }
