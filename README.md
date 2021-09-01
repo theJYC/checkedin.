@@ -4,27 +4,67 @@
     <img src="misc/demo-resized.gif" alt='checkedIn dynamic demo'>
 </a>
 
-#### Technologies: HTML, CSS, Object-Oriented JavaScript, DayJS, Web APIs (DOM, Web Storage)
+## Summary
 
 `checkedin.` is an open source, browser-based CRUD application providing users with a minimalistic platform to manage their contacts and be reminded of when to get in touch with others. 
 
 Through the use of `localstorage` and `DOM manipulation`, `checkedin.` enables users to submit a contact that are due for a check-in and, upon page-refresh, update each contact's `daysLeft` variable to indicate whether the check-in is due/past-due, and/or signal how many days are left between the check-in date and the current date of browser session. 
 
-To make the most out of `checkedin.` it is encouraged to bookmark the [URL](https://jinyoungch0i.github.io/checkedin./) for ease of access, and to run it on a Chromium-based browser (such as Google Chrome, Microsoft Edge, or [Brave](https://brave.com/))
+To make the most out of `checkedin.` it is encouraged to bookmark the [URL](https://jinyoungch0i.github.io/checkedin./public) for ease of access, and to run it on a Chromium-based browser (e.g. Google Chrome, Microsoft Edge, or [Brave](https://brave.com/)) for optimal user experience.
 
 [Live Demo](https://jinyoungch0i.github.io/checkedin./) & [Source Code](https://github.com/jinyoungch0i/checkedin.) 
 
-Open source [contributions](https://github.com/jinyoungch0i/checkedin./blob/main/misc/debuglog.md) welcome!
+## Technologies
+
+`checkedin.` is built with HTML, CSS, JavaScript, DayJS, and Web Browser APIs (localStorage).
+
+(8/31/21): `checkedin.` is in the process of Google Firebase integration in order to enhance the portability and security of user data.
+
+## Directory Map
+
+The repository is organised as the below tree structure:
+
+```
+root
+│   LICENSE
+│   README.md
+│   package.json    
+│   package-lock.json    
+│
+└───public
+│   │   demo.html
+│   │   index.html
+│   │   style.css
+│
+└───src
+│   │   index.js
+│   │
+│   └───components
+│       │   modal.js
+│       │   profileConstructor.js
+│       │   contactUploader.js
+│       │
+│
+└───lib
+│   │   dayjs.min.js
+│
+└───misc
+│   │   ...
+│
+└───changelog
+│   │   ...
+│
+```
+
+## Contributions
+
+Open source contributions are always welcome. 
+Please refer to the debuglog, at:
+
+[debuglog](https://github.com/jinyoungch0i/checkedin./blob/main/misc/debuglog.md)
 
 ## FAQ
-<!-- 
-### Can I use `checkedin.` offline? 
 
-Yes! `checkedin.` can be installed on your computer using a set of terminal commands:
-
-first, open up your Terminal/PowerShell window ensure that you have downloaded the dependencies:
-
- -->
 ### Why does the user submit the contact's last initial, instead of last name? 
 
 The currently deployed application is an MVP and functions entirely on client's browser, through the use of the Web Storage API.
