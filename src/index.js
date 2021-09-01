@@ -1,3 +1,6 @@
+//right before dissecting the index.js file.
+//if app crashes, revert to this git commit!
+
 //a one-liner snippet to incorpate dayjs library
 dayjs().format()
 
