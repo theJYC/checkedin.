@@ -16,7 +16,7 @@ To make the most out of `checkedin.` it is encouraged to bookmark the [URL](http
 
 ## Technologies
 
-`checkedin.` is built with HTML, CSS, JavaScript, DayJS, and Web Browser APIs (localStorage).
+`checkedin.` is built with HTML, CSS, JavaScript, Node.js, Day.js, and Web Browser APIs (localStorage).
 
 (8/31/21): `checkedin.` is in the process of Google Firebase integration in order to enhance the portability and security of user data.
 
