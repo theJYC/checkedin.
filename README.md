@@ -16,8 +16,10 @@ To make the most out of `checkedin.` it is encouraged to bookmark the [URL](http
 
 (8/31/21): `checkedin.` is in the process of Google Firebase integration in order to enhance the portability and security of user data.
 
+## Demo
+
 <a href="https://jinyoungch0i.github.io/checkedin./">
-    <img src="misc/demo-resized.gif" alt='checkedIn dynamic demo'>
+    <img src="public/demo.gif" alt='checkedin. dynamic demo'>
 </a>
 
 ## Directory Map
@@ -26,42 +28,43 @@ The repository is organised as the below tree structure:
 
 ```
 root
+│   contribute.md
 │   LICENSE
-│   README.md
 │   package.json    
-│   package-lock.json    
+│   package-lock.json   
+│   README.md 
 │
 └───public
+│   │   demo.gif
 │   │   demo.html
 │   │   index.html
 │   │   style.css
+│   │   thumbnail.png
 │
 └───src
 │   │   index.js
-│   │
 │   └───components
+│       │   contactUploader.js
 │       │   modal.js
 │       │   profileConstructor.js
-│       │   contactUploader.js
-│       │
 │
 └───lib
 │   │   dayjs.min.js
 │
-└───misc
+└───changelog (*)
 │   │   ...
 │
-└───changelog
-│   │   ...
-│
+
+(*): visual representation of UI/UX iterations (numerated for coherence)
 ```
 
 ## Contributions
 
 Open source contributions are always welcome. 
-Please refer to the debuglog, at:
+<br/>
+Current list of contribution opportunities can be found at `root/contribute.md`.
 
-[debuglog](https://github.com/jinyoungch0i/checkedin./blob/main/misc/debuglog.md)
+[contribute.md](https://github.com/jinyoungch0i/checkedin./blob/main/contribute.md)
 
 ## FAQ
 

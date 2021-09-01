@@ -1,8 +1,16 @@
-# DebugLog
+# ContributionLog
 
-This is a working documentation of currently-existent bugs that need to be addressed in order for `checkedin.` to function in its full capacity.
+Below are a couple of lists of 1) suggested next-steps, and 2) currently-existent bugs that need to be addressed in order for `checkedin.` to function in its full capacity.
 
-The list is organised in the order of priority.
+The lists are organised in order of priority.
+
+## Next Steps
+
+### Include Location input on modal form
+
+Allow user to input optional location data, and integrate Google PlaceAutocomplete API in order to create an elegant dropdown location search bar. 
+
+## Debugging Opportunities
 
 ### Form should be validating for required fields.
 
