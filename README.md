@@ -55,7 +55,7 @@ root
 │   │   ...
 │
 
-(*): visual representation of UI/UX iterations (numerated for coherence)
+(*): visual representation of UI/UX iterations (files are numerated for coherence)
 ```
 
 ## Contributions

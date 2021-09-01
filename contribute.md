@@ -1,6 +1,6 @@
 # ContributionLog
 
-Below are a couple of lists of 1) suggested next-steps, and 2) currently-existent bugs that need to be addressed in order for `checkedin.` to function in its full capacity.
+Below are a couple of lists of suggested [Next Steps](https://github.com/jinyoungch0i/checkedin./blob/main/contribute.md#next-steps) and [Bugs](https://github.com/jinyoungch0i/checkedin./blob/main/contribute.md#Bugs) that need to be addressed.
 
 The lists are organised in order of priority.
 
@@ -10,7 +10,7 @@ The lists are organised in order of priority.
 
 Allow user to input optional location data, and integrate Google PlaceAutocomplete API in order to create an elegant dropdown location search bar. 
 
-## Debugging Opportunities
+## Bugs
 
 ### Form should be validating for required fields.
 
