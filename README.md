@@ -44,9 +44,9 @@ root
 └───src
 │   │   index.js
 │   └───components
-│       │   contactUploader.js
+│       │   contact.js
 │       │   modal.js
-│       │   profileConstructor.js
+│       │   profile.js
 │
 └───lib
 │   │   dayjs.min.js

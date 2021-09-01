@@ -4,6 +4,7 @@
 //a one-liner snippet to incorpate dayjs library
 dayjs().format()
 
+/*MOVED TO profileConstructor (lines 8-20) [all MOVED TO to be removed from index.js]*/
 //constructor for every new Profile object (which is to be stored in profilesList array)
 class Profile {
     constructor(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn, randomId) {
@@ -18,6 +19,7 @@ class Profile {
     }
 }
 
+/*MOVED TO modal (lines 23-49)*/
 //a function that "refreshes" modal form fields from "update" mode:
 const resetModal = () => {
     document.getElementById("modaltitle").innerHTML = "new check-in";
@@ -46,6 +48,7 @@ document.addEventListener("keydown", e => {
     }
 });
 
+/*This is for base UI, so it'll stay in index.js (lines 52-60)*/
 //eventlistener for when 'add contact' button is pressed
 document.querySelector(".addContact").addEventListener("click", () => {
     //display submit button (by removing button--hidden class)
@@ -56,6 +59,7 @@ document.querySelector(".addContact").addEventListener("click", () => {
     toggleModal();
 });
 
+/*MOVED TO modal (lines 63-76)*/
 //another eventlistener for when "×" (close) button inside the modal is clicked
 document.querySelector("#close").addEventListener("click", () => {
 
@@ -71,6 +75,8 @@ document.querySelector("#close").addEventListener("click", () => {
     resetModal();
 });
 
+/* update eventlistener is tightly coupled with contactUploader
+so MOVED TO contact (or could be moved to modal; TBD!) (lines 80-119) */
 //a function that adds/removes display:hidden function of *prefilled* modal
 //for the purpose of updating an existing profileCard:
 const toggleUpdate = (item) => {
