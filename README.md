@@ -1,9 +1,5 @@
 # checkedin.
 
-<a href="https://jinyoungch0i.github.io/checkedin./">
-    <img src="misc/demo-resized.gif" alt='checkedIn dynamic demo'>
-</a>
-
 ## Summary
 
 `checkedin.` is an open source, browser-based CRUD application providing users with a minimalistic platform to manage their contacts and be reminded of when to get in touch with others. 
@@ -19,6 +15,10 @@ To make the most out of `checkedin.` it is encouraged to bookmark the [URL](http
 `checkedin.` is built with HTML, CSS, JavaScript, Node.js, Day.js, and Web Browser APIs (localStorage).
 
 (8/31/21): `checkedin.` is in the process of Google Firebase integration in order to enhance the portability and security of user data.
+
+<a href="https://jinyoungch0i.github.io/checkedin./">
+    <img src="misc/demo-resized.gif" alt='checkedIn dynamic demo'>
+</a>
 
 ## Directory Map
 
