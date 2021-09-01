@@ -1,21 +1,21 @@
 {
   "name": "checkedin",
   "version": "1.0.0",
-  "description": "<a href=\"https://jinyoungch0i.github.io/CheckedIn/\">     <img src=\"misc/checkedin.gif\" alt='checkedIn dynamic demo' width=\"500\"> </a>",
-  "main": "app.js",
+  "description": "Web Calendar built with HTML, CSS, JavaScript, and DayJS",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jinyoungch0i/CheckedIn.git"
+    "url": "git+https://github.com/jinyoungch0i/checkedin."
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jinyoungch0i/CheckedIn/issues"
+    "url": "https://github.com/jinyoungch0i/checkedin./issues"
   },
-  "homepage": "https://github.com/jinyoungch0i/CheckedIn#readme",
+  "homepage": "https://github.com/jinyoungch0i/checkedin./public",
   "dependencies": {
     "dayjs": "^1.10.4",
     "dotenv": "^10.0.0"
