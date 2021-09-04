@@ -20,6 +20,7 @@ const toggleModal = () => {
 };
 
 //eventlistener for when 'esc' is pressed; to close modalform:
+
 document.addEventListener("keydown", e => {
     if(e.keyCode == 27) {
         if (!document.getElementById("submit").classList.contains("button--hidden")) {
@@ -46,3 +47,23 @@ document.querySelector("#close").addEventListener("click", () => {
     toggleModal();
     resetModal();
 });
+
+// event listener to add profile to list when form is submitted
+const submitButton = document.getElementById("submit");
+submitButton.addEventListener("click", (event) => {
+    if (!document.getElementById("submit").classList.contains("button--hidden")) {
+        document.getElementById("submit").classList.toggle("button--hidden");
+    }
+    //preventDefault prevents the form from its default activity; adding to the root url with form input queries.
+    event.preventDefault();
+    toggleModal();
+    addProfileToList();
+});
+
+//preventing user from selecting past date on date input (further info. in COMMENTS)
+const today = new Date().toISOString().split("T")[0];
+document.getElementsByName("checkinby")[0].setAttribute("min", today);
+
+
+//ensure all necessary things are included here!!
+module.exports = resetModal, toggleModal, submitButton

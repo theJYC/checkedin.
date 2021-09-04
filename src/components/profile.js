@@ -4,6 +4,9 @@
     upon construction, each Profile object will be saved as a contact (which lives in localStorage)
 */
 
+//a one-liner snippet to incorpate dayjs library
+dayjs().format()
+
 //constructor for every new Profile object (which is to be stored in profilesList array)
 class Profile {
     constructor(firstName, lastInitial, notes, checkInBy, checkInTime, daysLeft, checkedIn, randomId) {
@@ -16,6 +19,41 @@ class Profile {
         this.checkedIn = checkedIn; // e.g. boolean; default is false (pending) and toggled to true (complete)
         this.randomId = randomId; // e.g. "6ab811e529". this is the unique identifier for each created profile (and reference when updated)
     }
+}
+
+//separate function to run when update is clicked, to remove existing profileCard from profilesList
+//based on its randomId
+const removeExistingProfile = (item) => {
+    console.log(item.randomId);
+
+    const index = profilesList.findIndex(profile => profile.randomId === item.randomId);
+    if (index > -1) {
+        console.log("removed: ", item.randomId);
+        profilesList.splice(index, 1);
+    }
+    else {
+        console.log("failed to remove: ", item);
+    }
+};
+
+//initialising newProfile as an undefined variable on the global scope
+//to be used locally in addProfileToList:
+let newProfile;
+
+// added post-crUd functionality integration! ---
+//in order to best reference profile cards other than referencing via their indexes,
+// (which was discovered to be problematic when the update functionality is involved
+//  since the list will be dynamically changing; i.e. when the checkin profile is updated to a different date
+//  which will change the order (i.e. change its index in the profilesList array)
+//the function below generates a random hex string to give as id attribute to each profile card
+//so that each profile card can be referenced more precisely when performing crUd algorithm:
+const generateRandomId = () => {
+    let output = '';
+    //this is to create a 15-digit random hexadecimal string (10 digits so that id overlap btwn profiles is ~slim~)
+    for (let i = 0; i < 10; i++) {
+        output += (Math.floor(Math.random() * 16)).toString(16);
+    }
+    return output;
 }
 
 //grabbing input values from 'add contact' form:
@@ -69,3 +107,60 @@ const addProfileToList = () => {
     render();
     form.reset();
 }
+
+//profilesList is an array that will at once be populated by user input
+//and later be saved to localStorage
+let profilesList = [];
+
+//day.js is to be used in lieu JS's native Date() object for more accuracy in date calulations
+//(see: https://www.youtube.com/watch?v=-5wpm-gesOY)
+const calculateDueDate = date => {
+    //retrieve today's date in "YYYY-MM-DD" format
+    let dateToday = dayjs();
+    //retrieve the user-input check-in date in "YYYY-MM-DD" format
+    let datePicked = dayjs(date);
+
+    //diff. between current date & check-in date was calculated to its floating point value
+    //instead of the integer value, since the former gives more accurate date calc.
+    let inXDaysFloat = datePicked.diff(dateToday, "days", true);
+
+    //e.g. 1.1234 days need to be converted to 2 day(s), not 1 day(s). therefore Math.ceil():
+    let inXDays = Math.ceil(inXDaysFloat);
+
+    if (inXDays == -1) return `yesterday`
+    else if (inXDays == 0) return "today"
+    else if (inXDays < 0) return `${inXDays * -1} days ago`
+    else if (inXDays == 1) return "tomorrow"
+    else return `in ${inXDays} days`
+}
+
+const saveToLocalStorage = () => {
+    localStorage.setItem(`profilesList`, JSON.stringify(profilesList));
+}
+
+//rendering the created profile objects onto the browser UI,
+const render = () => {
+    const cardContainer = document.getElementById("card-container");
+    const profiles = document.querySelectorAll(".profile");
+    profiles.forEach(profile => cardContainer.removeChild(profile));
+    //sorting by checkInDate (does not incorporate checkInTime, as of 03/02/2021)
+    profilesList.sort(function (a,b) {
+        if (a.checkInBy < b.checkInBy) {
+            return -1;
+        }
+        else if (a.checkInBy > b.checkInBy) {
+            return 1;
+        }
+        return 0;
+    });
+
+    for (i = 0; i < profilesList.length; i++) {
+        createProfile(profilesList[i]);
+    };
+};
+
+
+
+
+//ensure all necessary things are included here!!
+module.exports = Profile, addProfileToList, profilesList, calculateDueDate, saveToLocalStorage, render,
