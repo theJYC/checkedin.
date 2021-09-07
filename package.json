@@ -18,6 +18,7 @@
   "homepage": "https://github.com/jinyoungch0i/checkedin./public",
   "dependencies": {
     "dayjs": "^1.10.4",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "firebase": "^9.0.1"
   }
 }
