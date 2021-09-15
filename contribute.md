@@ -6,6 +6,10 @@ The lists are organised in order of priority.
 
 ## Next Steps
 
+### Provide default contact upon first visit
+
+If user has not yet submitted a contact (via the modal form), provide a sample "John D." profile card to the profilesList array. Ideal for enhanced UX.
+
 ### Include Location input on modal form
 
 Allow user to input optional location data, and integrate Google PlaceAutocomplete API in order to create an elegant dropdown location search bar. 
