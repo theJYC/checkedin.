@@ -1,3 +1,22 @@
+//make sure to link correctly in public/index.html once running smoothly!
+
+//importing function to create a firebase app for checkedin.
+import { initializeApp } from "firebase/app"
+
+//firebase configuration object provided in the browser firebase console
+const firebaseConfig = {
+  apiKey: "AIzaSyC6cWYDQc_pTFt0usPC5WOrhdheU6-yZVE",
+  authDomain: "checkedin-js.firebaseapp.com",
+  projectId: "checkedin-js",
+  storageBucket: "checkedin-js.appspot.com",
+  messagingSenderId: "223992859005",
+  appId: "1:223992859005:web:1160a988ad3ca0c7662414"
+};
+
+//initialising firebase
+const app = initializeApp(firebaseConfig)
+
+
 //importing all relevant modal methods:
 const { resetModal, toggleModal } = require("./components/modal")
 
