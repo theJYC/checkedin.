@@ -21,6 +21,8 @@ const firebaseApp = initializeApp(firebaseConfig)
 
 const auth = getAuth(firebaseApp)
 
+//functional eventhandler for when user logs in
+//n.b. this pattern is for Firebase version 9.
 onAuthStateChanged(auth, user => {
     if (user !== null) {console.log("Logged in!")}
     else {console.log("No user")}
