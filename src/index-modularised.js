@@ -3,6 +3,9 @@
 //importing function to create a firebase app for checkedin.
 import { initializeApp } from "firebase/app"
 
+//importing firebase services (e.g. authentication)
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+
 //firebase configuration object provided in the browser firebase console
 const firebaseConfig = {
   apiKey: "AIzaSyC6cWYDQc_pTFt0usPC5WOrhdheU6-yZVE",
@@ -14,7 +17,14 @@ const firebaseConfig = {
 };
 
 //initialising firebase
-const app = initializeApp(firebaseConfig)
+const firebaseApp = initializeApp(firebaseConfig)
+
+const auth = getAuth(firebaseApp)
+
+onAuthStateChanged(auth, user => {
+    if (user !== null) {console.log("Logged in!")}
+    else {console.log("No user")}
+})
 
 
 //importing all relevant modal methods:
