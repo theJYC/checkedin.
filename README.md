@@ -4,18 +4,18 @@
 
 `checkedin.` is an open source, browser-based CRUD application providing users with a minimalistic platform to manage their contacts and be reminded of when to get in touch with others. 
 
-Through the use of `localstorage` and `DOM manipulation`, `checkedin.` enables users to submit a contact that are due for a check-in and, upon page-refresh, update each contact's `daysLeft` variable to indicate whether the check-in is due/past-due, and/or signal how many days are left between the check-in date and the current date of browser session. 
+Through the use of `localstorage` and `DOM manipulation`, and the Object Oriented Programming (OOP) paradigm, `checkedin.` enables users to submit a contact that are due for a check-in and, upon page-refresh, update each contact's `daysLeft` variable to indicate whether the check-in is due/past-due, and/or signal how many days are left between the check-in date and the current date of browser session.
 
 To make the most out of `checkedin.` it is encouraged to bookmark the [URL](https://jinyoungch0i.github.io/checkedin./public) for ease of access, and to run it on a Chromium-based browser (e.g. Google Chrome, Microsoft Edge, or [Brave](https://brave.com/)) for optimal user experience.
 
-[Live Demo](https://jinyoungch0i.github.io/checkedin./) & [Source Code](https://github.com/jinyoungch0i/checkedin.) 
+[Live Demo](https://jinyoungch0i.github.io/checkedin./public) & [Source Code](https://github.com/jinyoungch0i/checkedin.)
 
 ## Technologies
 
 `checkedin.` is built with HTML, CSS, JavaScript, Node.js, Day.js, and Web Browser APIs (localStorage).
 
 (8/31/21): `checkedin.` is in the process of Google Firebase integration in order to enhance the portability and security of user data.
-
+(9/17/21): commits regarding the Firebase integration can be reviewed in the 'firebase-int' branch in the repository.
 ## Demo
 
 <a href="https://jinyoungch0i.github.io/checkedin./">
