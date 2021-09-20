@@ -8,7 +8,7 @@ Through the use of `localstorage` and `DOM manipulation`, and the Object Oriente
 
 To make the most out of `checkedin.` it is encouraged to bookmark the [URL](https://jinyoungch0i.github.io/checkedin./public) for ease of access, and to run it on a Chromium-based browser (e.g. Google Chrome, Microsoft Edge, or [Brave](https://brave.com/)) for optimal user experience.
 
-[Live Demo](https://jinyoungch0i.github.io/checkedin./public) & [Source Code](https://github.com/jinyoungch0i/checkedin.)
+[Live Demo](https://jinyoungch0i.github.io/checkedin./public) & [Source Code](https://github.com/jinyoungch0i/checkedin./blob/main/src/index.js)
 
 ## Technologies
 
